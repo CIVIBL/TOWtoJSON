@@ -1,0 +1,689 @@
+{
+  "name": "Test Skaven Army",
+  "description": "Generated from BCP format",
+  "game": "the-old-world",
+  "points": 1395,
+  "army": "skaven",
+  "characters": [
+    {
+      "name_en": "Grey Seer",
+      "name_cn": "灰先知",
+      "name_de": "Grauer Prophet",
+      "name_es": "Grey Seer",
+      "name_fr": "Prophète Gris",
+      "id": "grey-seer.ekaktuyz",
+      "points": 185,
+      "armyComposition": {
+        "skaven": {
+          "category": "characters",
+          "notes": {
+            "name_en": "Skaven Warlord or Grey Seer per 1000 points",
+            "name_cn": "每1000分一个斯卡文军阀或灰先知",
+            "name_de": "Skaven Warlord or Grey Seer per 1000 points",
+            "name_es": "Skaven Warlord or Grey Seer per 1000 points",
+            "name_fr": "Seigneur de Guerre ou Prophète Gris par tranche de 1000 points",
+            "name_it": "Skaven Warlord or Grey Seer per 1000 points",
+            "name_pl": "Skaven Warlord or Grey Seer per 1000 points"
+          }
+        },
+        "sk-renegade": {
+          "category": "characters",
+          "notes": {
+            "name_en": "0-1 Grey Seer per 1000 points",
+            "name_cn": "每1000分0-1 Grey Seer",
+            "name_de": "0-1 Grey Seer per 1000 points",
+            "name_es": "0-1 Grey Seer per 1000 points",
+            "name_fr": "0-1 Prophète Gris par tranche de 1000 points",
+            "name_it": "0-1 Grey Seer per 1000 points",
+            "name_pl": "0-1 Grey Seer per 1000 points"
+          }
+        }
+      },
+      "command": [
+        {
+          "name_en": "General",
+          "name_cn": "主将",
+          "name_de": "General",
+          "name_fr": "Général",
+          "name_es": "General",
+          "points": 0,
+          "active": true,
+          "id": 0
+        }
+      ],
+      "equipment": [
+        {
+          "name_en": "Hand weapon, Warpstone Tokens (D3)",
+          "name_cn": "单手武器, 次元石块(D3)",
+          "name_de": "Handwaffe, Warpstone Tokens (D3)",
+          "name_es": "Hand weapon, Warpstone Tokens (D3)",
+          "name_fr": "Arme de base, Fragments de Malepierre (D3)",
+          "points": 0,
+          "active": true,
+          "id": 0
+        }
+      ],
+      "armor": [],
+      "options": [
+        {
+          "name_en": "Wizard",
+          "name_cn": "法师",
+          "name_de": "Wizard",
+          "name_fr": "Sorcier",
+          "name_es": "Hechicero",
+          "points": 0,
+          "active": true,
+          "alwaysActive": true,
+          "options": [
+            {
+              "name_en": "Level 3 Wizard",
+              "name_cn": "3级法师",
+              "name_de": "Level 3 Wizard",
+              "name_fr": "Sorcier de Niveau 3",
+              "name_es": "Hechicero de Nivel 3",
+              "points": 0,
+              "exclusive": true,
+              "active": false
+            },
+            {
+              "name_en": "Level 4 Wizard",
+              "name_cn": "4级法师",
+              "name_de": "Level 4 Wizard",
+              "name_fr": "Sorcier de Niveau 4",
+              "name_es": "Hechicero de Nivel 4",
+              "points": 30,
+              "exclusive": true,
+              "active": true
+            }
+          ],
+          "id": 0
+        }
+      ],
+      "mounts": [
+        {
+          "name_en": "On foot",
+          "name_cn": "步行",
+          "name_de": "Zu Fuß",
+          "name_es": "On foot",
+          "name_fr": "À Pied",
+          "points": 0,
+          "active": false,
+          "id": 0
+        },
+        {
+          "name_en": "Screaming Bell {renegade}",
+          "name_cn": "尖啸巨钟 {renegade}",
+          "name_de": "Höllenglocke",
+          "name_es": "Screaming Bell",
+          "name_fr": "Cloche Hurlante",
+          "points": 185,
+          "active": true,
+          "id": 1
+        }
+      ],
+      "items": [
+        {
+          "name_en": "Magic Items",
+          "name_cn": "魔法物品",
+          "name_de": "Magische Gegenstände",
+          "name_es": "Objetos mágicos",
+          "name_fr": "Objets Magiques",
+          "types": [
+            "weapon",
+            "talisman",
+            "arcane-item",
+            "enchanted-item",
+            "armor-mages"
+          ],
+          "selected": [
+            {
+              "name_de": "Sturmdämon",
+              "name_en": "Storm Daemon",
+              "name_cn": "风暴恶魔",
+              "name_es": "Demonio de la tormenta",
+              "name_fr": "Orbe des Tempêtes",
+              "name_it": "Storm Daemon",
+              "points": 30,
+              "type": "arcane-item",
+              "onePerArmy": true,
+              "name": "storm daemon",
+              "id": 0
+            },
+            {
+              "name_cn": "毁灭红宝石之戒",
+              "name_de": "Rubinring der Zerstörung",
+              "name_en": "Ruby Ring of Ruin",
+              "name_fr": "Anneau Rubis de Ruine",
+              "name_it": "Anello Di Rubino Della Rovina",
+              "name_pl": "Rubinowy Pierścień Zguby",
+              "points": 35,
+              "type": "enchanted-item",
+              "onePerArmy": true,
+              "name": "ruby ring of ruin",
+              "id": 1
+            }
+          ],
+          "maxPoints": 100
+        }
+      ],
+      "lores": [
+        "battle-magic",
+        "daemonology",
+        "dark-magic",
+        "elementalism",
+        "illusion"
+      ],
+      "specialRules": {
+        "name_en": "Lore of the Horned Rat {renegade}, Magical Attacks, Magic Resistance (-1), Scurry Away, Verminous Valour, Warband, Warpstone Weapons (not for the mount)",
+        "name_cn": "大角鼠法系, 魔法攻击, 魔法抗性(-1), 抱头鼠窜, 首鼠两端, 战帮, 次元石武器(不适用于此模型的坐骑)",
+        "name_de": "Lore of the Horned Rat, Magical Attacks, Magic Resistance (-1), Scurry Away, Verminous Valour, Warband, Warpstone Weapons (not for the mount)",
+        "name_es": "Lore of the Horned Rat, Magical Attacks, Magic Resistance (-1), Scurry Away, Verminous Valour, Warband, Warpstone Weapons (not for the mount)",
+        "name_fr": "Domaine du Rat Cornu, Attaques Magiques, Résistance à la Magie (-1), Sauve qui Peut!, Courageux mais pas Téméraire, Bande de Guerre, Armes à base de Malepierre (ne s’applique pas à la monture)"
+      },
+      "notes": {
+        "name_en": "0-1 per 1000 points",
+        "name_cn": "每1000分0-1",
+        "name_de": "0-1 pro 1000 Punkte",
+        "name_es": "0-1 per 1000 points",
+        "name_fr": "0-1 par tranche de 1000 points"
+      },
+      "strength": 1,
+      "activeLore": "elementalism"
+    },
+    {
+      "name_en": "Plague Priest",
+      "name_cn": "瘟疫祭司",
+      "name_de": "Seuchenpriester",
+      "name_es": "Plague Priest",
+      "name_fr": "Prêtre de la Peste",
+      "id": "plague-priest.gpxavofy",
+      "points": 60,
+      "armyComposition": {
+        "skaven": {
+          "category": "characters",
+          "notes": {
+            "name_en": "0-1 Clan Skryre Warlock Engineer, Clan Eshin Master Assassin or Clan Pestilens Plague Priest per 1000 points",
+            "name_cn": "每1000分0-1史库里氏族工程术士, 埃辛氏族刺客大师或疫病氏族瘟疫祭司",
+            "name_de": "0-1 Clan Skryre Warlocktechniker, Clan Eshin Meisterassassinen or Clan Pestilens Seuchenpriester pro 1000 Punkte",
+            "name_es": "0-1 Clan Skryre Warlock Engineer, Clan Eshin Master Assassin or Clan Pestilens Plague Priest per 1000 points",
+            "name_fr": "0-1 Technomage du Clan Skryre, Maître Assassin du Clan Eshin ou Prêtre de la Peste du Clan Pestilens par tranche de 1000 points",
+            "name_it": "0-1 Clan Skryre Warlock Engineer, Clan Eshin Master Assassin or Clan Pestilens Plague Priest per 1000 points",
+            "name_pl": "0-1 Clan Skryre Warlock Engineer, Clan Eshin Master Assassin or Clan Pestilens Plague Priest per 1000 points"
+          }
+        },
+        "sk-renegade": {
+          "category": "characters"
+        }
+      },
+      "command": [
+        {
+          "name_en": "General",
+          "name_cn": "主将",
+          "name_de": "General",
+          "name_fr": "Général",
+          "name_es": "General",
+          "points": 0,
+          "id": 0
+        }
+      ],
+      "equipment": [
+        {
+          "name_en": "Hand weapon",
+          "name_cn": "单手武器",
+          "name_de": "Handwaffe",
+          "name_es": "Hand weapon",
+          "name_fr": "Arme de base",
+          "points": 0,
+          "active": false,
+          "id": 0
+        },
+        {
+          "name_en": "Additional hand weapon",
+          "name_cn": "额外单手武器",
+          "name_de": "Zusätzliche Handwaffe",
+          "name_es": "Additional hand weapon",
+          "name_fr": "Arme de base additionnelle",
+          "points": 3,
+          "active": false,
+          "id": 1
+        },
+        {
+          "name_en": "Hand weapon, Plague censer",
+          "name_cn": "单手武器, 瘟疫香炉",
+          "name_de": "Handwaffe, Seuchenschleuder",
+          "name_es": "Hand weapon, Plague censer",
+          "name_fr": "Arme de base, Encensoir à Peste",
+          "points": 6,
+          "active": true,
+          "id": 2
+        }
+      ],
+      "armor": [],
+      "options": [
+        {
+          "name_en": "Wizard",
+          "name_cn": "法师",
+          "name_de": "Wizard",
+          "name_fr": "Sorcier",
+          "name_es": "Hechicero",
+          "points": 0,
+          "options": [
+            {
+              "name_en": "Level 1 Wizard",
+              "name_cn": "1级法师",
+              "name_de": "Level 1 Wizard",
+              "name_fr": "Sorcier de Niveau 1",
+              "name_es": "Hechicero de Nivel 1",
+              "points": 30,
+              "exclusive": true,
+              "active": true
+            },
+            {
+              "name_en": "Level 2 Wizard",
+              "name_cn": "2级法师",
+              "name_de": "Level 2 Wizard",
+              "name_fr": "Sorcier de Niveau 2",
+              "name_es": "Hechicero de Nivel 2",
+              "points": 60,
+              "exclusive": true
+            }
+          ],
+          "id": 0
+        }
+      ],
+      "mounts": [
+        {
+          "name_en": "On foot",
+          "name_cn": "步行",
+          "name_de": "Zu Fuß",
+          "name_es": "On foot",
+          "name_fr": "À Pied",
+          "points": 0,
+          "active": false,
+          "id": 0
+        },
+        {
+          "name_en": "Plague Furnace {renegade}",
+          "name_cn": "瘟疫熔炉 {renegade}",
+          "name_de": "Seuchenmenetekel",
+          "name_es": "Plague Furnace",
+          "name_fr": "Creuset de la Peste",
+          "points": 170,
+          "active": true,
+          "id": 1
+        }
+      ],
+      "items": [
+        {
+          "name_en": "Magic Items",
+          "name_cn": "魔法物品",
+          "name_de": "Magische Gegenstände",
+          "name_es": "Objetos mágicos",
+          "name_fr": "Objets Magiques",
+          "types": [
+            "weapon",
+            "talisman",
+            "enchanted-item",
+            "armor-mages",
+            "arcane-item"
+          ],
+          "selected": [
+            {
+              "name_cn": "保护护符",
+              "name_de": "Talisman des Schutzes",
+              "name_en": "Talisman of Protection",
+              "name_fr": "Talisman de Protection",
+              "name_it": "Talismano Di Protezione",
+              "name_pl": "Talizman Ochrony",
+              "points": 30,
+              "type": "talisman",
+              "onePerArmy": true,
+              "name": "talisman of protection",
+              "id": 0
+            }
+          ],
+          "maxPoints": 50
+        }
+      ],
+      "lores": [
+        "daemonology",
+        "battle-magic",
+        "dark-magic"
+      ],
+      "specialRules": {
+        "name_en": "Cloud of Flies, Frenzy, Lore of the Horned Rat {renegade}, Magical Attacks, Scurry Away, Verminous Valour, Warband, Warpstone Weapons (not for the mount)",
+        "name_cn": "蝇之云, 狂暴, 大角鼠法系, 魔法攻击, 抱头鼠窜, 首鼠两端, 战帮, 次元石武器(不适用于此模型的坐骑)",
+        "name_de": "Cloud of Flies, Frenzy, Lore of the Horned Rat, Magical Attacks, Scurry Away, Verminous Valour, Warband, Warpstone Weapons (not for the mount)",
+        "name_es": "Cloud of Flies, Frenzy, Lore of the Horned Rat, Magical Attacks, Scurry Away, Verminous Valour, Warband, Warpstone Weapons (not for the mount)",
+        "name_fr": "Nuage de Mouches, Frénésie, Domaine du Rat Cornu, Attaques Magiques, Sauve qui Peut!, Courageux mais pas Téméraire, Bande de Guerre, Armes à base de Malepierre (ne s’applique pas à la monture)"
+      },
+      "strength": 1
+    }
+  ],
+  "core": [
+    {
+      "name_en": "Clanrats",
+      "name_cn": "氏族鼠",
+      "name_de": "Klanratten",
+      "name_es": "Clanrats",
+      "name_fr": "Guerriers des clans",
+      "id": "clanrats.amsfyyrl",
+      "points": 4,
+      "minimum": 20,
+      "maximum": 40,
+      "regimentalUnit": true,
+      "maxDetachments": 1,
+      "armyComposition": {
+        "skaven": {
+          "category": "core",
+          "notes": {
+            "name_en": "1+ per 1000 points",
+            "name_cn": "每1000分1+",
+            "name_de": "1+ pro 1000 Punkte",
+            "name_es": "1+ per 1000 points",
+            "name_fr": "1+ par tranche de 1000 points",
+            "name_it": "1+ per 1000 points",
+            "name_pl": "1+ per 1000 points"
+          }
+        },
+        "sk-renegade": {
+          "category": "core",
+          "maximum": 0,
+          "specialRules": {
+            "name_en": "Close Order, Horde, Scurry Away, Warband, Regimental Unit",
+            "name_cn": "紧密阵型, 部群, 抱头鼠窜, 战帮, 主团单位",
+            "name_de": "Close Order, Horde, Scurry Away, Warband, Regimental Unit",
+            "name_es": "Close Order, Horde, Scurry Away, Warband, Regimental Unit",
+            "name_fr": "Ordre Serré, Horde, Sauve qui Peut!, Bande de Guerre, Unité Régimentaire",
+            "name_it": "Close Order, Horde, Scurry Away, Warband, Regimental Unit",
+            "name_pl": "Close Order, Horde, Scurry Away, Warband, Regimental Unit"
+          }
+        }
+      },
+      "command": [
+        {
+          "name_en": "Clawleader (champion)",
+          "name_cn": "利爪队长(冠军)",
+          "name_de": "Klauenführer",
+          "name_es": "Clawleader (champion)",
+          "name_fr": "Grandes-griffes (champion)",
+          "points": 7,
+          "active": true,
+          "id": 0
+        },
+        {
+          "name_en": "Standard bearer",
+          "name_cn": "旗手",
+          "name_de": "Standartenträger",
+          "name_es": "Standard bearer",
+          "name_fr": "Porte-étendard",
+          "points": 5,
+          "active": true,
+          "id": 1
+        },
+        {
+          "name_en": "Musician",
+          "name_cn": "乐手",
+          "name_de": "Musiker",
+          "name_es": "Musician",
+          "name_fr": "Musicien",
+          "points": 5,
+          "active": true,
+          "id": 2
+        }
+      ],
+      "equipment": [
+        {
+          "name_en": "Hand weapon",
+          "name_cn": "单手武器",
+          "name_de": "Handwaffe",
+          "name_es": "Hand weapon",
+          "name_fr": "Arme de base",
+          "points": 0,
+          "perModel": true,
+          "active": true,
+          "id": 0
+        },
+        {
+          "name_en": "Hand weapon, Thrusting spear",
+          "name_cn": "单手武器, 刺矛",
+          "name_de": "Handwaffe, Stoßspeer",
+          "name_es": "Hand weapon, Thrusting spear",
+          "name_fr": "Arme de base, Lance d’infanterie",
+          "points": 1,
+          "perModel": true,
+          "id": 1
+        }
+      ],
+      "armor": [
+        {
+          "name_en": "Light armour",
+          "name_cn": "轻甲",
+          "name_de": "Leichte Rüstung",
+          "name_es": "Light armour",
+          "name_fr": "Armure légère",
+          "points": 0,
+          "perModel": true,
+          "active": true,
+          "id": 0
+        }
+      ],
+      "options": [
+        {
+          "name_en": "Shield",
+          "name_cn": "盾牌",
+          "name_de": "Schild",
+          "name_es": "Shield",
+          "name_fr": "Bouclier",
+          "points": 1,
+          "perModel": true,
+          "minimum": 0,
+          "maximum": 0,
+          "active": true,
+          "id": 0
+        }
+      ],
+      "mounts": [],
+      "items": [],
+      "lores": [],
+      "specialRules": {
+        "name_en": "Close Order, Horde, Scurry Away, Warband",
+        "name_cn": "紧密阵型, 部群, 抱头鼠窜, 战帮",
+        "name_de": "Close Order, Horde, Scurry Away, Warband",
+        "name_es": "Close Order, Horde, Scurry Away, Warband",
+        "name_fr": "Ordre Serré, Horde, Sauve qui Peut!, Bande de Guerre"
+      },
+      "strength": 31
+    },
+    {
+      "name_en": "Plague Monks",
+      "name_cn": "瘟疫僧",
+      "name_de": "Seuchenmönche",
+      "name_es": "Plague Monks",
+      "name_fr": "Moines de la Peste",
+      "id": "plague-monks-core.fvyxgjgo",
+      "points": 7,
+      "minimum": 10,
+      "maximum": 0,
+      "armyComposition": {
+        "sk-renegade": {
+          "category": "core",
+          "notes": {
+            "name_en": "0-1 unit of Stormvermin if army includes a Skaven Warlord OR 0-1 unit of Plague Monks if army includes a Plague Priest",
+            "name_cn": "如果你的军队包含1个斯卡文军阀，则0-1单位的风暴鼠或者如果你的军队包含1个瘟疫祭司，则0-1单位的瘟疫僧",
+            "name_de": "0-1 unit of Stormvermin if army includes a Skaven Warlord OR 0-1 unit of Plague Monks if army includes a Plague Priest",
+            "name_es": "0-1 unit of Stormvermin if army includes a Skaven Warlord OR 0-1 unit of Plague Monks if army includes a Plague Priest",
+            "name_fr": "0-1 unité de Vermines de choc si votre armée inclut un Seigneur de Guerre OU 0-1 unité de Moines de la Peste si votre armée inclut un Prêtre de la Peste",
+            "name_it": "0-1 unit of Stormvermin if army includes a Skaven Warlord OR 0-1 unit of Plague Monks if army includes a Plague Priest",
+            "name_pl": "0-1 unit of Stormvermin if army includes a Skaven Warlord OR 0-1 unit of Plague Monks if army includes a Plague Priest"
+          }
+        }
+      },
+      "command": [
+        {
+          "name_en": "Plague Deacon",
+          "name_cn": "瘟疫辅祭",
+          "name_de": "Seuchenprediger",
+          "name_es": "Plague Deacon",
+          "name_fr": "Diacre de la Peste",
+          "points": 6,
+          "magic": {
+            "types": [
+              "weapon",
+              "talisman",
+              "enchanted-item",
+              "armor"
+            ],
+            "maxPoints": 25
+          },
+          "active": true,
+          "id": 0
+        },
+        {
+          "name_en": "Standard bearer",
+          "name_cn": "旗手",
+          "name_de": "Standartenträger",
+          "name_es": "Standard bearer",
+          "name_fr": "Porte-étendard",
+          "points": 6,
+          "magic": {
+            "types": [
+              "banner"
+            ],
+            "maxPoints": 50,
+            "selected": [
+              {
+                "name_de": "Banner des Ungezieferhuschens",
+                "name_en": "Banner of Verminous Scurrying",
+                "name_cn": "灾祸肆虐旗帜",
+                "name_es": "Estandarte de escurrimientos verminosos",
+                "name_fr": "Bannière de Vivacité Vermineuse",
+                "name_it": "Banner of Verminous Scurrying",
+                "points": 35,
+                "type": "banner",
+                "onePerArmy": true,
+                "name": "banner of verminous scurrying",
+                "id": 0
+              }
+            ]
+          },
+          "active": true,
+          "id": 1
+        },
+        {
+          "name_en": "Musician",
+          "name_cn": "乐手",
+          "name_de": "Musiker",
+          "name_es": "Musician",
+          "name_fr": "Musicien",
+          "points": 6,
+          "id": 2
+        }
+      ],
+      "equipment": [
+        {
+          "name_en": "Hand weapon",
+          "name_cn": "单手武器",
+          "name_de": "Handwaffe",
+          "name_es": "Hand weapon",
+          "name_fr": "Arme de base",
+          "points": 0,
+          "perModel": true,
+          "active": true,
+          "id": 0
+        },
+        {
+          "name_en": "Additional hand weapons",
+          "name_cn": "额外单手武器",
+          "name_de": "Zusätzliche Handwaffen",
+          "name_es": "Additional hand weapons",
+          "name_fr": "Armes de base additionnelles",
+          "points": 2,
+          "perModel": true,
+          "id": 1
+        }
+      ],
+      "armor": [],
+      "options": [],
+      "mounts": [],
+      "items": [],
+      "lores": [],
+      "specialRules": {
+        "name_en": "Close Order, Frenzy, Horde, Scurry Away, Warband",
+        "name_cn": "紧密阵型, 狂暴, 部群, 抱头鼠窜, 战帮",
+        "name_de": "Close Order, Frenzy, Horde, Scurry Away, Warband",
+        "name_es": "Close Order, Frenzy, Horde, Scurry Away, Warband",
+        "name_fr": "Ordre Serré, Frénésie, Horde, Sauve qui Peut!, Bande de Guerre"
+      },
+      "strength": 25
+    }
+  ],
+  "special": [],
+  "rare": [
+    {
+      "name_en": "Hell Pit Abomination {renegade}",
+      "name_cn": "地狱深坑憎恶 {renegade}",
+      "name_de": "Höllengrubenbrut",
+      "name_es": "Hell Pit Abomination",
+      "name_fr": "Abomination de Malefosse",
+      "id": "hell-pit-abomination.ufqhxthv",
+      "points": 210,
+      "armyComposition": {
+        "skaven": {
+          "category": "rare"
+        },
+        "sk-renegade": {
+          "category": "rare",
+          "specialRules": {
+            "name_en": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable, Impact Hits (D3+1)",
+            "name_cn": "憎恶攻击, 紧密阵型, 心理免疫, 大型目标, 魔法抗性(-1), 随机攻击, 随机移动, 重生(5+), 践踏攻击(D3+1), 惊骇, 倒啦！, 祸害活千年, 永不战败, 撞击(D3+1)",
+            "name_de": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable, Impact Hits (D3+1)",
+            "name_es": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable, Impact Hits (D3+1)",
+            "name_fr": "Attaques Abominables, Ordre Serré, Immunisé à la Psychologie, Grande Cible, Résistance à la Magie (-1), Attaques Aléatoires, Mouvement Aléatoire, Régénération (5+), Attaques de Piétinement (D3+1), Terreur, Timmm-berrr!, Trop Horrible pour Mourir, Indémoralisable, Touches d’Impact (D3+1)",
+            "name_it": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable, Impact Hits (D3+1)",
+            "name_pl": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable, Impact Hits (D3+1)"
+          }
+        }
+      },
+      "command": [],
+      "equipment": [
+        {
+          "name_en": "Warpstone claws",
+          "name_cn": "次元石之爪",
+          "name_de": "Warpstein Klauen",
+          "name_es": "Warpstone claws",
+          "name_fr": "Griffes de Malepierre",
+          "points": 0,
+          "perModel": true,
+          "active": true,
+          "id": 0
+        }
+      ],
+      "armor": [],
+      "options": [],
+      "mounts": [],
+      "items": [],
+      "lores": [],
+      "specialRules": {
+        "name_en": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable",
+        "name_cn": "憎恶攻击, 紧密阵型, 心理免疫, 大型目标, 魔法抗性(-1), 随机攻击, 随机移动, 重生(5+), 践踏攻击(D3+1), 惊骇, 倒啦！, 祸害活千年, 永不战败",
+        "name_de": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable",
+        "name_es": "Abominable Attacks, Close Order, Immune to Psychology, Large Target, Magic Resistance (-1), Random Attacks, Random Movement, Regeneration (5+), Stomp Attacks (D3+1), Terror, Timmm-berrr!, Too Horrible to Die, Unbreakable",
+        "name_fr": "Attaques Abominables, Ordre Serré, Immunisé à la Psychologie, Grande Cible, Résistance à la Magie (-1), Attaques Aléatoires, Mouvement Aléatoire, Régénération (5+), Attaques de Piétinement (D3+1), Terreur, Timmm-berrr!, Trop Horrible pour Mourir, Indémoralisable"
+      },
+      "notes": {
+        "name_en": "0-1 Hell Pit Abomination per 1000 points",
+        "name_cn": "每1000分0-1地狱深坑憎恶",
+        "name_de": "0-1 Höllengrubenbrut pro 1000 Punkte",
+        "name_es": "0-1 Hell Pit Abomination per 1000 points",
+        "name_fr": "0-1 Abomination de Malefosse par tranche de 1000 points"
+      },
+      "strength": 1
+    }
+  ],
+  "mercenaries": [],
+  "allies": [],
+  "id": "czfezprf",
+  "armyComposition": "skaven",
+  "compositionRule": "grand-melee-combined-arms"
+}

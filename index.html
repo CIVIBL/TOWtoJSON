@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BCP List Converter - The Old World</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .textarea-scroll::-webkit-scrollbar { width: 8px; }
+    .textarea-scroll::-webkit-scrollbar-track { background: #1f2937; border-radius: 4px; }
+    .textarea-scroll::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+    .textarea-scroll::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gold-400">BCP List Converter</h1>
+        <p class="text-sm text-gray-400">Convert Best Coast Pairings lists to army builder formats</p>
+      </div>
+      <a href="https://buymeacoffee.com/beltenebros"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="flex items-center gap-2 px-3 py-2 bg-gold-500 hover:bg-gold-600 text-gray-900 rounded-lg text-sm font-medium transition-colors">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.196-.366-.231-.572-.065-.378-.125-.756-.192-1.133-.057-.325-.102-.69-.25-.987-.195-.4-.597-.634-.996-.788a5.723 5.723 0 00-.626-.194c-1-.263-2.05-.36-3.077-.416a25.834 25.834 0 00-3.7.062c-.915.083-1.88.184-2.75.5-.318.116-.646.256-.888.501-.297.302-.393.77-.177 1.146.154.267.415.456.692.58.36.162.737.284 1.123.366 1.075.238 2.189.331 3.287.37 1.218.05 2.437.01 3.65-.118.299-.033.598-.073.896-.119.352-.054.578-.513.474-.834-.124-.383-.457-.531-.834-.473-.466.074-.96.108-1.382.146-1.177.08-2.358.082-3.536.006a22.228 22.228 0 01-1.157-.107c-.086-.01-.18-.025-.258-.036-.243-.036-.484-.08-.724-.13-.111-.027-.111-.185 0-.212h.005c.277-.06.557-.108.838-.147h.002c.131-.009.263-.032.394-.048a25.076 25.076 0 013.426-.12c.674.019 1.347.067 2.017.144l.228.031c.267.04.533.088.798.145.392.085.895.113 1.07.542.055.137.08.288.111.431l.319 1.484a.237.237 0 01-.199.284h-.003c-.037.006-.075.01-.112.015a36.704 36.704 0 01-4.743.295 37.059 37.059 0 01-4.699-.304c-.14-.017-.293-.042-.417-.06-.326-.048-.649-.108-.973-.161-.393-.065-.768-.032-1.123.161-.29.16-.527.404-.675.701-.154.316-.199.66-.267 1-.069.34-.176.707-.135 1.056.087.753.613 1.365 1.37 1.502a39.69 39.69 0 0011.343.376.483.483 0 01.535.53l-.071.697-1.018 9.907c-.041.41-.047.832-.125 1.237-.122.637-.553 1.028-1.182 1.171-.577.131-1.165.2-1.756.205-.656.004-1.31-.025-1.966-.022-.699.004-1.556-.06-2.095-.58-.475-.458-.54-1.174-.605-1.793l-.731-7.013-.322-3.094c-.037-.351-.286-.695-.678-.678-.336.015-.718.3-.678.679l.228 2.185.949 9.112c.147 1.344 1.174 2.068 2.446 2.272.742.12 1.503.144 2.257.156.966.016 1.942.053 2.892-.122 1.408-.258 2.465-1.198 2.616-2.657.34-3.332.683-6.663 1.024-9.995l.215-2.087a.484.484 0 01.39-.426c.402-.078.787-.212 1.074-.518.455-.488.546-1.124.385-1.766zm-1.478.772c-.145.137-.363.201-.578.233-2.416.359-4.866.54-7.308.46-1.748-.06-3.477-.254-5.207-.498-.17-.024-.353-.055-.47-.18-.22-.236-.111-.71-.054-.995.052-.26.152-.609.463-.646.484-.057 1.046.148 1.526.22.577.088 1.156.159 1.737.212 2.48.226 5.002.19 7.472-.14.45-.06.899-.13 1.345-.21.399-.072.84-.206 1.08.206.166.281.188.657.162.974a.544.544 0 01-.169.364z"/>
+        </svg>
+        Buy me a coffee
+      </a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Textarea -->
+      <div class="mb-6">
+        <label for="bcp-input" class="block text-sm font-medium text-gray-300 mb-2">
+          Paste your BCP list
+        </label>
+        <textarea
+          id="bcp-input"
+          class="textarea-scroll w-full h-64 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent resize-none font-mono text-sm"
+          placeholder="Skaven
+
+8 drops
+
+Secret Objectives
+Beast hunter
+Hold the line
+
+465 - Grey Seer, General, Screaming Bell, Wizard Level 4, Elementalism
+
+232 - 31 Clanrats
+• 30x Clanrat, Shield, Clawleader, Standard Bearer, Musician
+• 1x Weapon Team
+• 1x Weapon Team Crew, Ratling Gun
+
+210 - Hell Pit Abomination"></textarea>
+      </div>
+
+      <!-- Format Toggle -->
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-300 mb-2">Output format</label>
+        <div class="flex gap-2">
+          <button
+            id="btn-owb"
+            class="format-btn flex-1 px-4 py-2 rounded-lg font-medium transition-colors bg-gold-600 text-gray-900"
+            data-format="owb">
+            Old World Builder
+          </button>
+          <button
+            id="btn-nr"
+            class="format-btn flex-1 px-4 py-2 rounded-lg font-medium transition-colors bg-gray-700 text-gray-300 hover:bg-gray-600"
+            data-format="nr"
+            disabled
+            title="Coming soon">
+            New Recruit
+            <span class="text-xs opacity-60">(soon)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Army Composition Dropdown (hidden until faction detected) -->
+      <div id="army-composition-section" class="mb-6 hidden">
+        <label for="army-composition" class="block text-sm font-medium text-gray-300 mb-2">
+          Army Composition
+        </label>
+        <select
+          id="army-composition"
+          class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
+          <option value="">Grand Army (default)</option>
+        </select>
+        <p id="army-composition-hint" class="mt-1 text-xs text-amber-400 hidden"></p>
+      </div>
+
+      <!-- Convert Button -->
+      <div class="mb-6">
+        <button
+          id="btn-convert"
+          class="w-full px-6 py-3 bg-gold-500 hover:bg-gold-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-gray-900 font-semibold rounded-lg transition-colors text-lg"
+          disabled>
+          Convert &amp; Download
+        </button>
+      </div>
+
+      <!-- Feedback Panel -->
+      <div id="feedback-panel" class="hidden">
+        <div class="bg-gray-800 border border-gray-700 rounded-lg p-4">
+          <div id="feedback-content"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-500">
+      <p>BCP List Converter v1.0</p>
+      <p class="mt-1">
+        <a href="https://github.com/yourusername/bcp-converter" target="_blank" class="hover:text-gold-400 transition-colors">
+          GitHub
+        </a>
+        <span class="mx-2">|</span>
+        <span>Not affiliated with Games Workshop</span>
+      </p>
+    </footer>
+  </div>
+
+  <script type="module">
+    // ============================================
+    // Smart Format-Agnostic Parser
+    // Uses faction data as dictionary to find units in ANY text format
+    // ============================================
+
+    /**
+     * Build a searchable index of unit names from faction data
+     */
+    function buildUnitNameIndex(factionData) {
+      const index = new Map();
+      const categories = ['characters', 'core', 'special', 'rare'];
+
+      for (const category of categories) {
+        const units = factionData[category] || [];
+        for (const unit of units) {
+          const name = unit.name_en || unit.name || '';
+          if (!name) continue;
+
+          // Generate variations for flexible matching
+          const variations = generateNameVariations(name);
+          for (const variation of variations) {
+            const key = variation.toLowerCase();
+            // Keep the longest match (prefer full names over partial)
+            if (!index.has(key) || name.length > index.get(key).originalName.length) {
+              index.set(key, { unit, category, originalName: name, matchLength: variation.length });
+            }
+          }
+        }
+      }
+      return index;
+    }
+
+    /**
+     * Generate variations of a unit name for flexible matching
+     */
+    function generateNameVariations(name) {
+      const variations = [name];
+      const lower = name.toLowerCase();
+      variations.push(lower);
+
+      // Handle plurals
+      if (lower.endsWith('s') && !lower.endsWith('ss')) variations.push(lower.slice(0, -1));
+      if (!lower.endsWith('s')) variations.push(lower + 's');
+
+      // Handle "of the" variations
+      if (lower.includes(' of the ')) variations.push(lower.replace(/ of the /g, ' '));
+      if (lower.includes(' of ')) variations.push(lower.replace(/ of /g, ' '));
+
+      return [...new Set(variations)];
+    }
+
+    /**
+     * Parse section headers to get category mapping
+     * Returns array of { category, startIndex }
+     */
+    function parseSectionHeaders(text) {
+      const sections = [];
+      const regex = /\+\+\s*(Characters|Core|Special|Rare)\s*(?:Units?)?\s*\[[\d,]+\s*pts?\]\s*\+\+/gi;
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        const categoryName = match[1].toLowerCase();
+        sections.push({
+          category: categoryName === 'characters' ? 'characters' : categoryName,
+          startIndex: match.index
+        });
+      }
+      return sections;
+    }
+
+    /**
+     * Get category for a position in the text based on section headers
+     */
+    function getCategoryAtPosition(position, sections) {
+      let category = 'special'; // default
+      for (const section of sections) {
+        if (position >= section.startIndex) {
+          category = section.category;
+        }
+      }
+      return category;
+    }
+
+    /**
+     * Extract total points from list header if present
+     * Looks for patterns like "Wood Elf Realms [2000 pts]" or "Skaven [1500pts]"
+     */
+    function extractHeaderPoints(text) {
+      const lines = text.split('\n').slice(0, 10); // Check first 10 lines
+      for (const line of lines) {
+        const trimmed = line.trim();
+        // Skip section headers like "++ Characters [1284 pts] ++"
+        if (trimmed.startsWith('++')) continue;
+        // Match faction header with points: "Wood Elf Realms [2000 pts]"
+        const match = trimmed.match(/^[A-Za-z][A-Za-z\s\-]+\s*\[(\d+)\s*pts?\]$/i);
+        if (match) {
+          return parseInt(match[1], 10);
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Find unit entry "anchors" - lines that have points, indicating a real unit entry
+     * Returns array of { lineStart, lineEnd, line, points, modelCount, unitNameArea }
+     */
+    function findUnitAnchors(text) {
+      const anchors = [];
+      const lines = text.split('\n');
+      let position = 0;
+      let seenSectionHeader = false;
+      let lineNumber = 0;
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        const lineStart = position;
+        const lineEnd = position + line.length;
+        lineNumber++;
+
+        // Skip section headers like "++ Characters [1284 pts] ++"
+        if (trimmed.startsWith('++') && trimmed.endsWith('++')) {
+          seenSectionHeader = true;
+          position = lineEnd + 1;
+          continue;
+        }
+
+        // Skip faction header lines like "Wood Elf Realms [2000 pts]"
+        // Only check in first 5 lines AND before any section headers
+        // Faction headers don't have model counts and appear at the very top
+        if (lineNumber <= 5 && !seenSectionHeader && anchors.length === 0) {
+          const isFactionHeader = /^[A-Za-z][A-Za-z\s\-]+\s*\[\d+\s*pts?\]$/i.test(trimmed);
+          if (isFactionHeader) {
+            position = lineEnd + 1;
+            continue;
+          }
+        }
+
+        // Pattern 1: OWB format "Unit Name [XXX pts]" or "15 Glade Guard [225 pts]"
+        const owbMatch = trimmed.match(/^(.+?)\s*\[(\d+)\s*pts?\]$/i);
+        if (owbMatch) {
+          let unitNameArea = owbMatch[1].trim();
+          const points = parseInt(owbMatch[2], 10);
+
+          // Extract model count if present at start
+          let modelCount = 1;
+          const countMatch = unitNameArea.match(/^(\d+)\s+(.+)$/);
+          if (countMatch) {
+            modelCount = parseInt(countMatch[1], 10);
+            unitNameArea = countMatch[2].trim();
+          }
+
+          anchors.push({ lineStart, lineEnd, line: trimmed, points, modelCount, unitNameArea });
+        }
+
+        // Pattern 2: BCP format "XXX - Unit Name, options..."
+        const bcpMatch = trimmed.match(/^(\d+)\s*-\s*(.+)$/);
+        if (bcpMatch && !owbMatch) {
+          const points = parseInt(bcpMatch[1], 10);
+          let unitNameArea = bcpMatch[2].trim();
+
+          // Extract model count if present
+          let modelCount = 1;
+          const countMatch = unitNameArea.match(/^(\d+)\s+(.+)$/);
+          if (countMatch) {
+            modelCount = parseInt(countMatch[1], 10);
+            unitNameArea = countMatch[2].trim();
+          }
+
+          anchors.push({ lineStart, lineEnd, line: trimmed, points, modelCount, unitNameArea });
+        }
+
+        position = lineEnd + 1; // +1 for newline
+      }
+
+      return anchors;
+    }
+
+    /**
+     * Build index of magic items
+     */
+    function buildSmartMagicItemIndex(magicItems, factionSlug) {
+      const index = new Map();
+
+      // Process each key in magic items (general, faction-specific, etc.)
+      for (const [key, items] of Object.entries(magicItems)) {
+        // Items can be an array or an object with nested arrays
+        if (Array.isArray(items)) {
+          for (const item of items) {
+            const name = (item.name_en || item.name || '').toLowerCase();
+            if (name) index.set(name, { ...item, source: key });
+          }
+        } else if (typeof items === 'object') {
+          // Nested structure (categories within)
+          for (const categoryItems of Object.values(items)) {
+            if (Array.isArray(categoryItems)) {
+              for (const item of categoryItems) {
+                const name = (item.name_en || item.name || '').toLowerCase();
+                if (name) index.set(name, { ...item, source: key });
+              }
+            }
+          }
+        }
+      }
+
+      return index;
+    }
+
+    /**
+     * Match a unit name area against the unit index
+     * Returns the best matching unit or null
+     */
+    function matchUnitName(unitNameArea, unitIndex) {
+      const areaLower = unitNameArea.toLowerCase();
+
+      // Sort entries by length (longest first)
+      const sortedEntries = [...unitIndex.entries()].sort((a, b) => b[0].length - a[0].length);
+
+      for (const [nameLower, data] of sortedEntries) {
+        // Check if the unit name is in the name area
+        if (areaLower.includes(nameLower)) {
+          return data;
+        }
+      }
+
+      return null;
+    }
+
+    /**
+     * Extract and match equipment/options from context against unit's valid options
+     */
+    function extractOptions(context, unit, magicItemIndex) {
+      const result = {
+        equipment: [], armor: [], options: [], mounts: [], command: [],
+        items: [], lore: null, wizardLevel: null
+      };
+
+      const contextLower = context.toLowerCase();
+
+      // Check equipment
+      if (unit.equipment) {
+        for (let i = 0; i < unit.equipment.length; i++) {
+          const eq = unit.equipment[i];
+          const eqName = (eq.name_en || eq.name || '').toLowerCase();
+          if (eqName && eqName.length > 3 && contextLower.includes(eqName)) {
+            result.equipment.push({ index: i, name: eqName, data: eq });
+          }
+        }
+      }
+
+      // Check armor
+      if (unit.armor) {
+        for (let i = 0; i < unit.armor.length; i++) {
+          const arm = unit.armor[i];
+          const armName = (arm.name_en || arm.name || '').toLowerCase();
+          if (armName && armName.length > 3 && contextLower.includes(armName)) {
+            result.armor.push({ index: i, name: armName, data: arm });
+          }
+        }
+      }
+
+      // Check mounts
+      if (unit.mounts) {
+        for (let i = 0; i < unit.mounts.length; i++) {
+          const mount = unit.mounts[i];
+          const mountName = (mount.name_en || mount.name || '').toLowerCase();
+          if (mountName && contextLower.includes(mountName)) {
+            result.mounts.push({ index: i, name: mountName, data: mount });
+          }
+        }
+      }
+
+      // Check command (General, Champion, Standard Bearer, Musician)
+      if (unit.command) {
+        for (let i = 0; i < unit.command.length; i++) {
+          const cmd = unit.command[i];
+          const cmdName = (cmd.name_en || cmd.name || '').toLowerCase();
+          if (cmdName && contextLower.includes(cmdName)) {
+            result.command.push({ index: i, name: cmdName, data: cmd });
+          }
+        }
+        // Also check for "General" keyword
+        if (contextLower.includes('general')) {
+          const generalIdx = unit.command.findIndex(c => (c.name_en || '').toLowerCase().includes('general'));
+          if (generalIdx >= 0 && !result.command.some(c => c.index === generalIdx)) {
+            result.command.push({ index: generalIdx, name: 'general', data: unit.command[generalIdx] });
+          }
+        }
+      }
+
+      // Check regular options
+      if (unit.options) {
+        for (let i = 0; i < unit.options.length; i++) {
+          const opt = unit.options[i];
+          const optName = (opt.name_en || opt.name || '').toLowerCase();
+          if (optName && optName.length > 3 && contextLower.includes(optName)) {
+            result.options.push({ index: i, type: 'option', name: optName, data: opt });
+          }
+          // Check nested options (wizard levels)
+          if (opt.options) {
+            for (let j = 0; j < opt.options.length; j++) {
+              const subOpt = opt.options[j];
+              const subOptName = (subOpt.name_en || subOpt.name || '').toLowerCase();
+              if (subOptName && contextLower.includes(subOptName)) {
+                result.options.push({ index: i, subIndex: j, type: 'nested', name: subOptName, data: subOpt });
+              }
+            }
+          }
+        }
+      }
+
+      // Check for wizard level patterns
+      const wizardMatch = contextLower.match(/(?:level|lvl)\s*(\d)/i);
+      if (wizardMatch) result.wizardLevel = parseInt(wizardMatch[1], 10);
+
+      // Check for lore
+      const lores = [
+        'battle magic', 'daemonology', 'dark magic', 'elementalism',
+        'high magic', 'illusion', 'necromancy', 'lore of the wilds',
+        'lore of athel loren', 'lore of the horned rat', 'lore of nurgle',
+        'lore of slaanesh', 'lore of tzeentch', 'lore of khorne'
+      ];
+      for (const lore of lores) {
+        if (contextLower.includes(lore)) {
+          result.lore = lore.replace(/\s+/g, '-');
+          break;
+        }
+      }
+
+      // Check magic items
+      for (const [itemName, itemData] of magicItemIndex.entries()) {
+        if (itemName.length > 4 && contextLower.includes(itemName)) {
+          result.items.push({ name: itemName, data: itemData });
+        }
+      }
+
+      return result;
+    }
+
+    /**
+     * Build index of detachment units from faction data
+     * Returns Map of detachment name -> detachment unit template
+     */
+    function buildDetachmentIndex(factionData) {
+      const index = new Map();
+      const categories = ['characters', 'core', 'special', 'rare'];
+
+      for (const category of categories) {
+        const units = factionData[category] || [];
+        for (const unit of units) {
+          if (unit.detachment) {
+            const name = (unit.name_en || unit.name || '').toLowerCase();
+            if (name) {
+              index.set(name, unit);
+              // Add variations
+              if (name.endsWith('s')) index.set(name.slice(0, -1), unit);
+              if (!name.endsWith('s')) index.set(name + 's', unit);
+            }
+          }
+        }
+      }
+      return index;
+    }
+
+    /**
+     * Extract detachments from context (e.g., "1x Deepwood Hound")
+     */
+    function extractDetachments(context, detachmentIndex) {
+      const detachments = [];
+      const contextLower = context.toLowerCase();
+      const lines = context.split('\n');
+
+      for (const line of lines) {
+        const trimmed = line.trim().toLowerCase();
+        // Pattern: "1x Deepwood Hound" or "• 1x Deepwood Hound"
+        const match = trimmed.match(/[•\-]?\s*(\d+)x?\s+(.+)/);
+        if (match) {
+          const count = parseInt(match[1], 10);
+          const itemName = match[2].trim();
+
+          // Check if this matches a detachment unit
+          for (const [detachName, detachUnit] of detachmentIndex.entries()) {
+            if (itemName.includes(detachName) || detachName.includes(itemName)) {
+              detachments.push({
+                unit: detachUnit,
+                count: count
+              });
+              break;
+            }
+          }
+        }
+      }
+      return detachments;
+    }
+
+    /**
+     * Main parsing function - anchor-based approach
+     * Only creates units from lines that have points (real unit entries)
+     */
+    function parseWithFactionData(text, factionData, magicItemIndex) {
+      const unitIndex = buildUnitNameIndex(factionData);
+      const detachmentIndex = buildDetachmentIndex(factionData);
+      const sections = parseSectionHeaders(text);
+      const anchors = findUnitAnchors(text);
+
+      // Try to get total points from header first
+      const headerPoints = extractHeaderPoints(text);
+
+      const units = [];
+      let calculatedPoints = 0;
+
+      for (let i = 0; i < anchors.length; i++) {
+        const anchor = anchors[i];
+        const nextAnchorStart = i + 1 < anchors.length ? anchors[i + 1].lineStart : text.length;
+
+        // Get the context for this unit (from this anchor to the next)
+        const context = text.substring(anchor.lineStart, nextAnchorStart);
+
+        // Try to match the unit name against faction data
+        const matchedUnit = matchUnitName(anchor.unitNameArea, unitIndex);
+
+        if (matchedUnit) {
+          // Determine category from section headers or faction data
+          const category = sections.length > 0
+            ? getCategoryAtPosition(anchor.lineStart, sections)
+            : matchedUnit.category;
+
+          // Extract options from the full context
+          const options = extractOptions(context, matchedUnit.unit, magicItemIndex);
+
+          // Check for detachments if this is a regimental unit
+          let detachments = [];
+          if (matchedUnit.unit.regimentalUnit || matchedUnit.unit.maxDetachments) {
+            detachments = extractDetachments(context, detachmentIndex);
+          }
+
+          units.push({
+            rawName: matchedUnit.originalName,
+            matchedName: anchor.unitNameArea,
+            category: category,
+            unitTemplate: matchedUnit.unit,
+            modelCount: anchor.modelCount,
+            rawPoints: anchor.points,
+            detachments: detachments,
+            ...options,
+            success: true
+          });
+
+          calculatedPoints += anchor.points;
+        } else {
+          // Unit not found in faction data - still track it
+          units.push({
+            rawName: anchor.unitNameArea,
+            matchedName: anchor.unitNameArea,
+            category: sections.length > 0 ? getCategoryAtPosition(anchor.lineStart, sections) : 'special',
+            unitTemplate: null,
+            modelCount: anchor.modelCount,
+            rawPoints: anchor.points,
+            detachments: [],
+            equipment: [], armor: [], options: [], mounts: [], command: [], items: [],
+            success: false
+          });
+
+          calculatedPoints += anchor.points;
+        }
+      }
+
+      // Use header points if available, otherwise use calculated sum
+      const totalPoints = headerPoints !== null ? headerPoints : calculatedPoints;
+
+      return { units, totalPoints, unitCount: units.length };
+    }
+
+    // Faction detection configuration
+    const FACTION_CONFIG = {
+      'skaven': {
+        names: ['skaven', 'ratmen'],
+        abbreviations: ['sk'],
+        armiesOfInfamy: ['clan pestilens', 'clan skryre', 'clan moulder', 'clan eshin'],
+        uniqueUnits: ['clanrats', 'stormvermin', 'grey seer', 'plague monks', 'rat ogres', 'hell pit abomination', 'warplock', 'plague priest', 'warlock engineer', 'doomwheel', 'screaming bell', 'plague furnace', 'giant rats', 'ratling gun']
+      },
+      'wood-elf-realms': {
+        names: ['wood elves', 'wood elf realms', 'wood elf', 'welves', 'woodies'],
+        abbreviations: ['we'],
+        armiesOfInfamy: ['host of talsyn', "orion's wild hunt", 'orions wild hunt'],
+        uniqueUnits: ['glade guard', 'glade lord', 'eternal guard', 'wardancers', 'waywatchers', 'dryads', 'treeman', 'treekin', 'wild riders', 'warhawk riders', 'branchwraith', 'spellweaver', 'forest dragon']
+      },
+      'empire-of-man': {
+        names: ['empire', 'the empire', 'empire of man', 'the empire of man'],
+        abbreviations: ['eom', 'emp'],
+        armiesOfInfamy: ['knightly order', 'city-state', 'nuln', 'altdorf', 'middenheim', 'talabheim', 'averland', 'reikland'],
+        uniqueUnits: ['state troops', 'halberdiers', 'swordsmen', 'handgunners', 'greatswords', 'reiksguard', 'demigryph', 'steam tank', 'war altar', 'flagellants', 'battle wizard', 'warrior priest', 'grand master', 'general of the empire', 'helblaster', 'helstorm']
+      },
+      'kingdom-of-bretonnia': {
+        names: ['bretonnia', 'kingdom of bretonnia', 'bretonnians'],
+        abbreviations: ['bret', 'kob'],
+        armiesOfInfamy: ['errantry crusade', 'exiles of leonesse', 'defenders of parravon'],
+        uniqueUnits: ['knights of the realm', 'knights errant', 'questing knights', 'grail knights', 'pegasus knights', 'men at arms', 'peasant bowmen', 'trebuchet', 'damsel', 'prophetess', 'paladin', 'bretonnian lord', 'green knight']
+      },
+      'dwarfen-mountain-holds': {
+        names: ['dwarfs', 'dwarves', 'dwarfen mountain holds', 'dwarf', 'dawi'],
+        abbreviations: ['dmh', 'dw'],
+        armiesOfInfamy: ['karak kadrin', 'zhufbar', 'barak varr', 'karak azul'],
+        uniqueUnits: ['dwarf warriors', 'longbeards', 'hammerers', 'ironbreakers', 'slayers', 'thunderers', 'quarrellers', 'irondrakes', 'miners', 'grudge thrower', 'organ gun', 'gyrocopter', 'runelord', 'runesmith', 'thane', 'dwarf lord']
+      },
+      'high-elf-realms': {
+        names: ['high elves', 'high elf realms', 'high elf', 'asur'],
+        abbreviations: ['he', 'her'],
+        armiesOfInfamy: ['defenders of ulthuan', 'saphery', 'eataine', 'caledor'],
+        uniqueUnits: ['silver helms', 'dragon princes', 'swordmasters', 'white lions', 'phoenix guard', 'shadow warriors', 'lothern sea guard', 'ellyrian reavers', 'lion chariot', 'archmage', 'loremaster', 'frostheart phoenix', 'flamespyre phoenix']
+      },
+      'tomb-kings-of-khemri': {
+        names: ['tomb kings', 'tomb kings of khemri', 'khemri', 'nehekhara'],
+        abbreviations: ['tk', 'tkok'],
+        armiesOfInfamy: ['legion of the sands', 'army of numas'],
+        uniqueUnits: ['tomb guard', 'ushabti', 'necropolis knights', 'sepulchral stalkers', 'carrion', 'screaming skull catapult', 'casket of souls', 'warsphinx', 'necrosphinx', 'hierotitan', 'tomb king', 'tomb prince', 'liche priest', 'skeleton chariots']
+      },
+      'vampire-counts': {
+        names: ['vampire counts', 'vampires', 'undead', 'sylvania'],
+        abbreviations: ['vc', 'vamps'],
+        armiesOfInfamy: ['von carstein', 'blood dragon', 'necrarch', 'lahmian', 'strigoi'],
+        uniqueUnits: ['crypt ghouls', 'grave guard', 'black knights', 'blood knights', 'dire wolves', 'fell bats', 'spirit host', 'hexwraiths', 'vargheists', 'crypt horrors', 'mortis engine', 'terrorgheist', 'zombie dragon', 'varghulf', 'vampire lord', 'necromancer', 'wight king', 'cairn wraith', 'tomb banshee', 'wight lord', 'zombies', 'skeletons', 'master necromancer', 'necromantic acolyte', 'corpse cart', 'black coach']
+      },
+      'warriors-of-chaos': {
+        names: ['warriors of chaos', 'chaos warriors', 'chaos', 'hordes of chaos'],
+        abbreviations: ['woc', 'cw'],
+        armiesOfInfamy: ['khorne', 'nurgle', 'tzeentch', 'slaanesh', 'undivided'],
+        uniqueUnits: ['chaos warriors', 'chosen', 'chaos knights', 'chaos chariot', 'gorebeast chariot', 'marauders', 'forsaken', 'chaos spawn', 'dragon ogres', 'chimera', 'daemon prince', 'chaos lord', 'exalted hero', 'chaos sorcerer', 'hellcannon', 'shaggoth']
+      },
+      'orc-and-goblin-tribes': {
+        names: ['orcs and goblins', 'orcs & goblins', 'orc and goblin tribes', 'greenskins', 'orcs', 'goblins'],
+        abbreviations: ['o&g', 'ong', 'oag'],
+        armiesOfInfamy: ['grimgor', 'wurrzag', 'grom', 'skarsnik'],
+        uniqueUnits: ['orc boyz', 'black orcs', 'savage orcs', 'boar boyz', 'night goblins', 'goblin wolf riders', 'spider riders', 'squig hoppers', 'trolls', 'giants', 'doom diver', 'rock lobber', 'arachnarok', 'orc warboss', 'goblin shaman']
+      },
+      'beastmen-brayherds': {
+        names: ['beastmen', 'beastmen brayherds', 'brayherds', 'beasts of chaos'],
+        abbreviations: ['bm', 'bob', 'boc'],
+        armiesOfInfamy: ['khorngor', 'pestigor', 'tzaangor', 'slaangor'],
+        uniqueUnits: ['gors', 'ungors', 'bestigors', 'centigors', 'minotaurs', 'razorgors', 'cygor', 'ghorgon', 'jabberslythe', 'beastlord', 'wargor', 'bray-shaman', 'doombull', 'gorebull']
+      },
+      'daemons-of-chaos': {
+        names: ['daemons', 'daemons of chaos', 'chaos daemons', 'demons'],
+        abbreviations: ['doc'],
+        armiesOfInfamy: ['khorne daemons', 'nurgle daemons', 'tzeentch daemons', 'slaanesh daemons'],
+        uniqueUnits: ['bloodletters', 'bloodcrushers', 'flesh hounds', 'bloodthirster', 'plaguebearers', 'plague drones', 'nurglings', 'great unclean one', 'pink horrors', 'flamers', 'screamers', 'lord of change', 'daemonettes', 'seekers', 'fiends', 'keeper of secrets', 'herald']
+      },
+      'dark-elves': {
+        names: ['dark elves', 'dark elf', 'druchii', 'naggaroth'],
+        abbreviations: ['de', 'delves'],
+        armiesOfInfamy: ['cult of slaanesh', 'black ark', 'har ganeth'],
+        uniqueUnits: ['dreadspears', 'darkshards', 'black guard', 'executioners', 'witch elves', 'shades', 'dark riders', 'cold one knights', 'war hydra', 'kharibdyss', 'black dragon', 'dreadlord', 'supreme sorceress', 'assassin', 'death hag', 'corsairs']
+      },
+      'lizardmen': {
+        names: ['lizardmen', 'lizardman', 'seraphon', 'lustria'],
+        abbreviations: ['lm', 'liz'],
+        armiesOfInfamy: ['itza', 'hexoatl'],
+        uniqueUnits: ['saurus warriors', 'temple guard', 'skinks', 'chameleon skinks', 'kroxigors', 'cold one riders', 'stegadon', 'bastiladon', 'carnosaur', 'salamanders', 'terradons', 'slann', 'saurus oldblood', 'skink priest', 'engine of the gods']
+      },
+      'ogre-kingdoms': {
+        names: ['ogre kingdoms', 'ogres', 'ogre', 'gutbusters'],
+        abbreviations: ['ok', 'ogk'],
+        armiesOfInfamy: ['great maw'],
+        uniqueUnits: ['ogre bulls', 'ironguts', 'leadbelchers', 'maneaters', 'gnoblars', 'gorgers', 'mournfang cavalry', 'stonehorn', 'thundertusk', 'ironblaster', 'tyrant', 'bruiser', 'butcher', 'slaughtermaster', 'firebelly']
+      },
+      'chaos-dwarfs': {
+        names: ['chaos dwarfs', 'chaos dwarves', 'dawi zharr'],
+        abbreviations: ['chd', 'chdw'],
+        armiesOfInfamy: ['hashut', 'legion of azgorh'],
+        uniqueUnits: ['infernal guard', 'hobgoblins', 'bull centaurs', "k'daai", 'iron daemon', 'deathshrieker', 'magma cannon', 'dreadquake mortar', 'sorcerer-prophet', 'daemonsmith']
+      },
+      'grand-cathay': {
+        names: ['cathay', 'grand cathay'],
+        abbreviations: ['gc', 'cath'],
+        armiesOfInfamy: ['ivory road', 'celestial court'],
+        uniqueUnits: ['jade warriors', 'peasant long spearmen', 'iron hail gunners', 'crane gunners', 'celestial dragon guard', 'longma riders', 'terracotta sentinels', 'war compass', 'lord magistrate']
+      }
+    };
+
+    function normalizeFactionName(factionName) {
+      if (!factionName) return null;
+      const input = factionName.toLowerCase().trim();
+
+      // 1. Try exact match first
+      for (const [slug, config] of Object.entries(FACTION_CONFIG)) {
+        if (config.names.includes(input)) return slug;
+        if (config.abbreviations.includes(input)) return slug;
+        for (const aoi of config.armiesOfInfamy) {
+          if (input === aoi || input.includes(aoi)) return slug;
+        }
+      }
+
+      // 2. Try partial matching - check if input contains a faction keyword
+      for (const [slug, config] of Object.entries(FACTION_CONFIG)) {
+        for (const name of config.names) {
+          if (input.includes(name) || name.includes(input)) return slug;
+        }
+      }
+
+      // 3. Try word-based matching for compound names like "My Skaven List"
+      const words = input.split(/[\s\-_:]+/);
+      for (const word of words) {
+        if (word.length < 2) continue;
+        for (const [slug, config] of Object.entries(FACTION_CONFIG)) {
+          for (const name of config.names) {
+            if (name.split(/\s+/).some(n => n === word)) return slug;
+          }
+          if (config.abbreviations.includes(word)) return slug;
+        }
+      }
+
+      return null;
+    }
+
+    function detectFactionFromUnits(units) {
+      if (!units || units.length === 0) return null;
+      const unitNames = units.map(u => u.rawName.toLowerCase());
+      const scores = {};
+
+      for (const [slug, config] of Object.entries(FACTION_CONFIG)) {
+        scores[slug] = 0;
+        for (const unitName of unitNames) {
+          for (const uniqueUnit of config.uniqueUnits) {
+            if (unitName.includes(uniqueUnit) || uniqueUnit.includes(unitName)) {
+              scores[slug] += 1;
+            }
+          }
+        }
+      }
+
+      let bestSlug = null, bestScore = 0;
+      for (const [slug, score] of Object.entries(scores)) {
+        if (score > bestScore) { bestScore = score; bestSlug = slug; }
+      }
+      return bestScore > 0 ? bestSlug : null;
+    }
+
+    function getFactionSlug(factionName, units = []) {
+      let slug = normalizeFactionName(factionName);
+      if (!slug && units.length > 0) slug = detectFactionFromUnits(units);
+      return slug;
+    }
+
+    // Army of Infamy detection configuration
+    const ARMY_OF_INFAMY_DETECTION = {
+      'wood-elf-realms': {
+        'host-of-talsyn': {
+          name: 'Host of Talsyn',
+          indicatorUnits: ['dryads', 'treeman', 'treeman ancient', 'branchwraith', 'treekin'],
+          counterUnits: ['glade guard', 'glade riders', 'wild riders', 'waywatchers', 'wardancers', 'deepwood scouts'],
+          threshold: 0.5
+        }
+      },
+      'skaven': {
+        'clan-pestilens': {
+          name: 'Clan Pestilens',
+          indicatorUnits: ['plague monks', 'plague priest', 'plague furnace', 'plague censer bearers'],
+          counterUnits: ['stormvermin', 'warplock jezzails', 'ratling gun', 'doom-flayer'],
+          threshold: 0.4
+        }
+      }
+    };
+
+    function detectArmyOfInfamy(factionSlug, units) {
+      const result = { detected: null, suggestions: [], warnings: [] };
+      if (!factionSlug || !units || units.length === 0) return result;
+
+      const armyConfigs = ARMY_OF_INFAMY_DETECTION[factionSlug];
+      if (!armyConfigs) return result;
+
+      for (const [armySlug, config] of Object.entries(armyConfigs)) {
+        let indicatorCount = 0, counterCount = 0;
+
+        for (const unit of units) {
+          const name = unit.rawName.toLowerCase();
+          const weight = unit.modelCount || 1;
+
+          for (const indicator of config.indicatorUnits) {
+            if (name.includes(indicator)) { indicatorCount += weight; break; }
+          }
+          for (const counter of config.counterUnits) {
+            if (name.includes(counter)) { counterCount += weight; break; }
+          }
+        }
+
+        const totalWeighted = indicatorCount + counterCount;
+        if (totalWeighted > 0) {
+          const ratio = indicatorCount / totalWeighted;
+          if (ratio >= config.threshold) {
+            result.suggestions.push({ slug: armySlug, name: config.name, confidence: ratio });
+            if (ratio >= 0.7) {
+              result.warnings.push(`This looks like a ${config.name} list (${Math.round(ratio * 100)}% indicator units). Select army composition manually if incorrect.`);
+            } else {
+              result.warnings.push(`This might be a ${config.name} list. Select army composition manually if needed.`);
+            }
+          }
+        }
+      }
+
+      result.suggestions.sort((a, b) => b.confidence - a.confidence);
+      if (result.suggestions.length > 0 && result.suggestions[0].confidence >= 0.7) {
+        result.detected = result.suggestions[0].slug;
+      }
+      return result;
+    }
+
+    function getArmyCompositions(factionSlug) {
+      const compositions = [{ slug: factionSlug, name: 'Grand Army' }];
+      const config = FACTION_CONFIG[factionSlug];
+      if (config && config.armiesOfInfamy) {
+        for (const aoi of config.armiesOfInfamy) {
+          compositions.push({
+            slug: aoi.replace(/\s+/g, '-').toLowerCase(),
+            name: aoi.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+          });
+        }
+      }
+      return compositions;
+    }
+
+    // ============================================
+    // Faction Data (loaded dynamically)
+    // ============================================
+    let factionDataCache = {};
+    let magicItemsData = null;
+
+    async function loadFactionData(factionSlug) {
+      if (factionDataCache[factionSlug]) return factionDataCache[factionSlug];
+      const resp = await fetch(`src/data/owb/${factionSlug}.json`);
+      if (!resp.ok) throw new Error(`Failed to load faction: ${factionSlug}`);
+      factionDataCache[factionSlug] = await resp.json();
+      return factionDataCache[factionSlug];
+    }
+
+    async function loadMagicItems() {
+      if (magicItemsData) return magicItemsData;
+      const resp = await fetch('src/data/owb/magic-items.json');
+      if (!resp.ok) throw new Error('Failed to load magic items');
+      magicItemsData = await resp.json();
+      return magicItemsData;
+    }
+
+    // ============================================
+    // Matcher (simplified inline version)
+    // ============================================
+    function normalizeString(str) {
+      return str.toLowerCase().replace(/['']/g, "'").replace(/[""]/g, '"')
+        .replace(/\s+/g, ' ').replace(/[^\w\s'-]/g, '').trim();
+    }
+
+    function buildUnitIndex(factionData) {
+      const index = new Map();
+      for (const cat of ['characters', 'core', 'special', 'rare', 'mercenaries', 'allies']) {
+        for (const unit of factionData[cat] || []) {
+          index.set(normalizeString(unit.name_en), { unit, category: cat });
+        }
+      }
+      return index;
+    }
+
+    function buildMagicItemsIndex(magicItemsData, factionSlug) {
+      const index = new Map();
+      for (const item of magicItemsData.general || []) {
+        index.set(normalizeString(item.name_en), { ...item, source: 'general' });
+      }
+      if (magicItemsData[factionSlug]) {
+        for (const item of magicItemsData[factionSlug]) {
+          index.set(normalizeString(item.name_en), { ...item, source: factionSlug });
+        }
+      }
+      const specialCats = ['forest-spites', 'kindreds', 'vampiric-powers', 'knightly-virtues',
+        'elven-honours', 'gifts-of-chaos', 'chaos-mutations', 'chaotic-traits', 'big-names',
+        'disciplines-old-ones', 'forbidden-poisons', 'gifts-of-khaine', 'incantation-scrolls'];
+      for (const cat of specialCats) {
+        for (const item of magicItemsData[cat] || []) {
+          const key = normalizeString(item.name_en);
+          if (!index.has(key)) index.set(key, { ...item, source: cat });
+        }
+      }
+      return index;
+    }
+
+    function fuzzyScore(a, b) {
+      if (a === b) return 1;
+      if (a.includes(b) || b.includes(a)) return 0.9;
+      return 0;
+    }
+
+    function findUnit(rawName, unitIndex) {
+      const normalized = normalizeString(rawName);
+      if (unitIndex.has(normalized)) return unitIndex.get(normalized);
+      const variations = [normalized, normalized.replace(/s$/, ''), normalized + 's',
+        normalized.replace(/ies$/, 'y'), normalized.replace(/men$/, 'man'), normalized.replace(/man$/, 'men')];
+      for (const v of variations) {
+        if (unitIndex.has(v)) return unitIndex.get(v);
+      }
+      for (const [key, value] of unitIndex) {
+        if (key.includes(normalized) || normalized.includes(key)) return value;
+      }
+      return null;
+    }
+
+    function findInArrayFuzzy(arr, searchTerm) {
+      if (!arr || !arr.length) return null;
+      const normalized = normalizeString(searchTerm);
+      for (let i = 0; i < arr.length; i++) {
+        if (!arr[i].name_en) continue;
+        const itemNorm = normalizeString(arr[i].name_en);
+        if (itemNorm.includes(normalized) || normalized.includes(itemNorm)) {
+          return { item: arr[i], index: i, score: 0.85 };
+        }
+      }
+      return null;
+    }
+
+    function classifyToken(token, unitTemplate, magicItemsIndex) {
+      const normalized = normalizeString(token);
+      const result = { type: 'unknown', raw: token, match: null, index: null };
+
+      if (normalized === 'general') {
+        for (let i = 0; i < (unitTemplate.command || []).length; i++) {
+          if (normalizeString(unitTemplate.command[i].name_en || '').includes('general')) {
+            return { type: 'command', raw: token, match: unitTemplate.command[i], index: i };
+          }
+        }
+      }
+
+      const wizardMatch = token.match(/wizard\s*level\s*(\d+)/i) || token.match(/level\s*(\d+)\s*wizard/i);
+      if (wizardMatch) {
+        const level = parseInt(wizardMatch[1], 10);
+        for (let i = 0; i < (unitTemplate.options || []).length; i++) {
+          const opt = unitTemplate.options[i];
+          if (opt.name_en?.toLowerCase().includes('wizard') && opt.options) {
+            for (let j = 0; j < opt.options.length; j++) {
+              if (opt.options[j].name_en?.toLowerCase().includes(`level ${level}`)) {
+                return { type: 'wizard', raw: token, match: { parentIndex: i, subIndex: j, option: opt.options[j] }, index: i };
+              }
+            }
+          }
+        }
+      }
+
+      const lores = ['battle magic', 'daemonology', 'dark magic', 'elementalism', 'high magic', 'illusion', 'necromancy'];
+      if (lores.some(l => normalized.includes(l))) {
+        return { type: 'lore', raw: token, match: { lore: token }, index: null };
+      }
+
+      let match = findInArrayFuzzy(unitTemplate.command, token);
+      if (match) return { type: 'command', raw: token, match: match.item, index: match.index };
+
+      match = findInArrayFuzzy(unitTemplate.mounts, token);
+      if (match) return { type: 'mount', raw: token, match: match.item, index: match.index };
+
+      match = findInArrayFuzzy(unitTemplate.equipment, token);
+      if (match) return { type: 'equipment', raw: token, match: match.item, index: match.index };
+
+      match = findInArrayFuzzy(unitTemplate.armor, token);
+      if (match) return { type: 'armor', raw: token, match: match.item, index: match.index };
+
+      match = findInArrayFuzzy(unitTemplate.options, token);
+      if (match) return { type: 'option', raw: token, match: match.item, index: match.index };
+
+      const itemMatch = magicItemsIndex.get(normalized);
+      if (itemMatch) return { type: 'item', raw: token, match: itemMatch, index: null };
+
+      for (const [key, item] of magicItemsIndex) {
+        if (key.includes(normalized) || normalized.includes(key)) {
+          return { type: 'item', raw: token, match: item, index: null };
+        }
+      }
+
+      if (normalized.includes('banner') && !normalized.includes('bearer')) {
+        for (const [key, item] of magicItemsIndex) {
+          if (item.type === 'banner' && (key.includes(normalized) || normalized.includes(key))) {
+            return { type: 'banner', raw: token, match: item, index: null };
+          }
+        }
+      }
+
+      return result;
+    }
+
+    function matchUnit(parsedUnit, unitIndex, magicItemsIndex) {
+      const unitMatch = findUnit(parsedUnit.rawName, unitIndex);
+      if (!unitMatch) {
+        return { success: false, rawName: parsedUnit.rawName, error: `Unit not found: ${parsedUnit.rawName}` };
+      }
+
+      const classifiedTokens = parsedUnit.tokens.map(t => classifyToken(t, unitMatch.unit, magicItemsIndex));
+      const classifiedSubItems = parsedUnit.subItems.map(sub => ({
+        ...sub,
+        classifiedTokens: sub.tokens.map(t => classifyToken(t, unitMatch.unit, magicItemsIndex))
+      }));
+
+      return {
+        success: true,
+        rawName: parsedUnit.rawName,
+        unitTemplate: unitMatch.unit,
+        category: unitMatch.category,
+        modelCount: parsedUnit.modelCount,
+        rawPoints: parsedUnit.rawPoints,
+        classifiedTokens,
+        subItems: classifiedSubItems,
+        unknownTokens: classifiedTokens.filter(t => t.type === 'unknown').map(t => t.raw)
+      };
+    }
+
+    // ============================================
+    // Generator (simplified inline version)
+    // ============================================
+    function generateIdSuffix(len = 8) {
+      const chars = 'abcdefghijklmnopqrstuvwxyz';
+      let r = '';
+      for (let i = 0; i < len; i++) r += chars[Math.floor(Math.random() * chars.length)];
+      return r;
+    }
+
+    function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+    function buildUnit(matchedUnit) {
+      const unit = deepClone(matchedUnit.unitTemplate);
+      unit.id = `${matchedUnit.unitTemplate.id}.${generateIdSuffix()}`;
+      unit.strength = matchedUnit.modelCount || 1;
+
+      // Activate equipment (from smart parser: matchedUnit.equipment = [{index, name, data}])
+      if (matchedUnit.equipment?.length > 0) {
+        unit.equipment?.forEach(e => e.active = false);
+        for (const eq of matchedUnit.equipment) {
+          if (unit.equipment?.[eq.index]) unit.equipment[eq.index].active = true;
+        }
+      }
+
+      // Activate armor
+      for (const arm of matchedUnit.armor || []) {
+        if (unit.armor?.[arm.index]) unit.armor[arm.index].active = true;
+      }
+
+      // Activate mounts
+      if (matchedUnit.mounts?.length > 0) {
+        unit.mounts?.forEach(m => m.active = false);
+        for (const mount of matchedUnit.mounts) {
+          if (unit.mounts?.[mount.index]) unit.mounts[mount.index].active = true;
+        }
+      }
+
+      // Activate command options
+      for (const cmd of matchedUnit.command || []) {
+        if (unit.command?.[cmd.index]) unit.command[cmd.index].active = true;
+      }
+
+      // Activate regular options
+      for (const opt of matchedUnit.options || []) {
+        if (opt.type === 'nested' && opt.subIndex !== undefined) {
+          // Nested option (wizard level)
+          if (unit.options?.[opt.index]) {
+            unit.options[opt.index].active = true;
+            unit.options[opt.index].options?.forEach(o => o.active = false);
+            if (unit.options[opt.index].options?.[opt.subIndex]) {
+              unit.options[opt.index].options[opt.subIndex].active = true;
+            }
+          }
+        } else if (unit.options?.[opt.index]) {
+          unit.options[opt.index].active = true;
+        }
+      }
+
+      // Set lore
+      if (matchedUnit.lore && unit.lores) {
+        unit.activeLore = matchedUnit.lore;
+      }
+
+      // Add magic items
+      for (const item of matchedUnit.items || []) {
+        const itemData = item.data;
+        // Special handling for banners
+        if (itemData.type === 'banner' && unit.command) {
+          let added = false;
+          for (const cmd of unit.command) {
+            if ((cmd.name_en || '').toLowerCase().includes('standard') && cmd.magic?.types?.includes('banner')) {
+              cmd.active = true;
+              if (!cmd.magic.selected) cmd.magic.selected = [];
+              const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: cmd.magic.selected.length };
+              delete sel.source;
+              cmd.magic.selected.push(sel);
+              added = true;
+              break;
+            }
+          }
+          if (added) continue;
+        }
+        // Regular magic items go in unit.items
+        if (unit.items) {
+          let slot = unit.items.find(s => s.types?.includes(itemData.type)) || unit.items.find(s => s.name_en?.toLowerCase().includes('magic'));
+          if (slot) {
+            if (!slot.selected) slot.selected = [];
+            const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: slot.selected.length };
+            delete sel.source;
+            slot.selected.push(sel);
+          }
+        }
+      }
+
+      // Add detachments (for regimental units like Beast Pack)
+      if (matchedUnit.detachments?.length > 0) {
+        unit.detachments = [];
+        for (const det of matchedUnit.detachments) {
+          const detachUnit = deepClone(det.unit);
+          detachUnit.id = `${det.unit.id}.${generateIdSuffix()}`;
+          detachUnit.strength = det.count;
+          // Ensure equipment is active
+          if (detachUnit.equipment) {
+            detachUnit.equipment.forEach((eq, i) => {
+              if (eq.id === undefined) eq.id = i;
+              if (eq.active === undefined && i === 0) eq.active = true;
+            });
+          }
+          unit.detachments.push(detachUnit);
+        }
+      }
+
+      // Ensure IDs
+      [unit.command, unit.equipment, unit.armor, unit.options, unit.mounts].forEach(arr => {
+        if (arr) arr.forEach((item, i) => { if (item.id === undefined) item.id = i; });
+      });
+
+      return unit;
+    }
+
+    function generateOWBJson(matchedList, options = {}) {
+      const { name = 'Converted Army', description = '', armyComposition = null } = options;
+      const result = {
+        name, description, game: 'the-old-world', points: matchedList.totalPoints,
+        army: matchedList.factionSlug,
+        characters: [], core: [], special: [], rare: [], mercenaries: [], allies: [],
+        id: generateIdSuffix(8),
+        armyComposition: armyComposition || matchedList.factionSlug,
+        compositionRule: 'grand-melee-combined-arms'
+      };
+
+      for (const m of matchedList.units) {
+        if (!m.success) continue;
+        const unit = buildUnit(m);
+        (result[m.category] || result.special).push(unit);
+      }
+
+      return result;
+    }
+
+    // ============================================
+    // UI Logic
+    // ============================================
+    const textarea = document.getElementById('bcp-input');
+    const btnConvert = document.getElementById('btn-convert');
+    const btnOwb = document.getElementById('btn-owb');
+    const btnNr = document.getElementById('btn-nr');
+    const feedbackPanel = document.getElementById('feedback-panel');
+    const feedbackContent = document.getElementById('feedback-content');
+    const armyCompositionSection = document.getElementById('army-composition-section');
+    const armyCompositionSelect = document.getElementById('army-composition');
+    const armyCompositionHint = document.getElementById('army-composition-hint');
+
+    let selectedFormat = 'owb';
+    let detectedFactionSlug = null;
+    let detectedArmyOfInfamy = null;
+
+    // Debounce function for input handling
+    function debounce(fn, delay) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+      };
+    }
+
+    // Update army composition dropdown when text changes
+    const updateArmyComposition = debounce(async () => {
+      const text = textarea.value.trim();
+      if (!text) {
+        armyCompositionSection.classList.add('hidden');
+        detectedFactionSlug = null;
+        detectedArmyOfInfamy = null;
+        return;
+      }
+
+      try {
+        // Detect faction from text using known unit names in FACTION_CONFIG
+        const factionSlug = detectFactionFromText(text);
+
+        if (!factionSlug) {
+          armyCompositionSection.classList.add('hidden');
+          detectedFactionSlug = null;
+          return;
+        }
+
+        detectedFactionSlug = factionSlug;
+
+        // Populate dropdown
+        const compositions = getArmyCompositions(factionSlug);
+        armyCompositionSelect.innerHTML = compositions.map(c =>
+          `<option value="${c.slug}">${c.name}</option>`
+        ).join('');
+
+        // Detect Army of Infamy from text (simplified)
+        const aoiResult = detectArmyOfInfamyFromText(factionSlug, text);
+        detectedArmyOfInfamy = aoiResult;
+
+        // Auto-select if high confidence
+        if (aoiResult.detected) {
+          armyCompositionSelect.value = aoiResult.detected;
+        }
+
+        // Show hint if suggestion exists
+        if (aoiResult.warnings.length > 0) {
+          armyCompositionHint.textContent = aoiResult.warnings[0];
+          armyCompositionHint.classList.remove('hidden');
+        } else {
+          armyCompositionHint.classList.add('hidden');
+        }
+
+        armyCompositionSection.classList.remove('hidden');
+      } catch (e) {
+        armyCompositionSection.classList.add('hidden');
+      }
+    }, 300);
+
+    /**
+     * Quick faction detection from raw text using FACTION_CONFIG unique units
+     * Priority: 1) Explicit faction name in header, 2) Unit-based scoring
+     */
+    function detectFactionFromText(text) {
+      const lines = text.split('\n');
+      const scores = {};
+
+      // Helper: check if a line looks like a unit entry (has points pattern)
+      const isUnitLine = (line) => {
+        const trimmed = line.trim();
+        return /^\d+\s*-\s*.+/.test(trimmed) || /\[\d+\s*pts?\]/.test(trimmed);
+      };
+
+      // Step 1: Check first few lines for explicit faction name
+      // Only check non-unit lines (faction header shouldn't have points)
+      for (let i = 0; i < Math.min(5, lines.length); i++) {
+        const line = lines[i].trim().toLowerCase();
+        if (!line || isUnitLine(lines[i])) continue;
+
+        // Clean the line (remove points if present)
+        const cleanLine = line.replace(/\s*\[\d+\s*pts?\]\s*$/i, '').trim();
+
+        for (const [slug, config] of Object.entries(FACTION_CONFIG)) {
+          // Check exact faction name match
+          for (const name of config.names) {
+            if (cleanLine === name) {
+              return slug;
+            }
+          }
+          // Check abbreviations only on clean header lines (not unit lines)
+          for (const abbr of config.abbreviations) {
+            if (cleanLine === abbr) return slug;
+          }
+          // Check armies of infamy
+          for (const aoi of config.armiesOfInfamy) {
+            if (cleanLine === aoi || cleanLine.includes(aoi)) return slug;
+          }
+        }
+      }
+
+      // Step 2: Unit-based detection (primary method when header doesn't match)
+      // Extract unit names from unit lines (lines with points patterns)
+      const unitLines = [];
+      for (const line of lines) {
+        const trimmed = line.trim();
+        // OWB format: "Unit Name [XXX pts]"
+        const owbMatch = trimmed.match(/^(.+?)\s*\[\d+\s*pts?\]$/i);
+        if (owbMatch) {
+          unitLines.push(owbMatch[1].toLowerCase());
+          continue;
+        }
+        // BCP format: "XXX - Unit Name, options..."
+        const bcpMatch = trimmed.match(/^\d+\s*-\s*(.+)$/);
+        if (bcpMatch) {
+          // Take just the unit name part (before first comma)
+          const unitPart = bcpMatch[1].split(',')[0].trim().toLowerCase();
+          unitLines.push(unitPart);
+        }
+      }
+
+      // Score each faction by how many unique units match
+      for (const [slug, config] of Object.entries(FACTION_CONFIG)) {
+        scores[slug] = 0;
+        const matchedUnits = new Set();
+        for (const unitLine of unitLines) {
+          for (const uniqueUnit of config.uniqueUnits) {
+            // Use word boundary matching to avoid partial matches
+            const regex = new RegExp(`\\b${uniqueUnit.replace(/\s+/g, '\\s+')}\\b`, 'i');
+            if (regex.test(unitLine) && !matchedUnits.has(uniqueUnit)) {
+              matchedUnits.add(uniqueUnit);
+              scores[slug] += 1;
+            }
+          }
+        }
+      }
+
+      // Pick faction with highest score
+      let bestSlug = null, bestScore = 0;
+      for (const [slug, score] of Object.entries(scores)) {
+        if (score > bestScore) { bestScore = score; bestSlug = slug; }
+      }
+      return bestScore > 0 ? bestSlug : null;
+    }
+
+    /**
+     * Quick Army of Infamy detection from raw text
+     */
+    function detectArmyOfInfamyFromText(factionSlug, text) {
+      const result = { detected: null, suggestions: [], warnings: [] };
+      const textLower = text.toLowerCase();
+
+      const armyConfigs = ARMY_OF_INFAMY_DETECTION[factionSlug];
+      if (!armyConfigs) return result;
+
+      for (const [armySlug, config] of Object.entries(armyConfigs)) {
+        let indicatorCount = 0, counterCount = 0;
+
+        for (const indicator of config.indicatorUnits) {
+          const regex = new RegExp(indicator, 'gi');
+          const matches = textLower.match(regex);
+          if (matches) indicatorCount += matches.length;
+        }
+        for (const counter of config.counterUnits) {
+          const regex = new RegExp(counter, 'gi');
+          const matches = textLower.match(regex);
+          if (matches) counterCount += matches.length;
+        }
+
+        const total = indicatorCount + counterCount;
+        if (total > 0) {
+          const ratio = indicatorCount / total;
+          if (ratio >= config.threshold) {
+            result.suggestions.push({ slug: armySlug, name: config.name, confidence: ratio });
+            if (ratio >= 0.7) {
+              result.warnings.push(`This looks like a ${config.name} list. Select army composition manually if incorrect.`);
+            } else {
+              result.warnings.push(`This might be a ${config.name} list.`);
+            }
+          }
+        }
+      }
+
+      if (result.suggestions.length > 0 && result.suggestions[0].confidence >= 0.7) {
+        result.detected = result.suggestions[0].slug;
+      }
+      return result;
+    }
+
+    textarea.addEventListener('input', () => {
+      btnConvert.disabled = !textarea.value.trim();
+      updateArmyComposition();
+    });
+
+    btnOwb.addEventListener('click', () => {
+      selectedFormat = 'owb';
+      btnOwb.classList.remove('bg-gray-700', 'text-gray-300');
+      btnOwb.classList.add('bg-gold-600', 'text-gray-900');
+      btnNr.classList.remove('bg-gold-600', 'text-gray-900');
+      btnNr.classList.add('bg-gray-700', 'text-gray-300');
+    });
+
+    function showFeedback(html) {
+      feedbackContent.innerHTML = html;
+      feedbackPanel.classList.remove('hidden');
+    }
+
+    function downloadJson(data, filename) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    btnConvert.addEventListener('click', async () => {
+      const text = textarea.value.trim();
+      if (!text) return;
+
+      btnConvert.disabled = true;
+      btnConvert.textContent = 'Converting...';
+
+      try {
+        // Use the detected faction from the dropdown (already computed on input)
+        const factionSlug = detectedFactionSlug;
+        if (!factionSlug) {
+          throw new Error('Could not detect faction. Please ensure the text contains recognizable unit names.');
+        }
+
+        // Load data
+        const [factionData, magicItems] = await Promise.all([
+          loadFactionData(factionSlug),
+          loadMagicItems()
+        ]);
+
+        // Smart parse - uses faction data as dictionary to find units in any format
+        const magicItemIndex = buildSmartMagicItemIndex(magicItems, factionSlug);
+        const parsed = parseWithFactionData(text, factionData, magicItemIndex);
+
+        if (parsed.units.length === 0) {
+          throw new Error('No units found in the text. Please check that it contains valid unit names.');
+        }
+
+        const matchedList = {
+          faction: factionSlug,
+          factionSlug,
+          totalPoints: parsed.totalPoints,
+          units: parsed.units
+        };
+
+        // Get selected army composition
+        const selectedComposition = armyCompositionSelect.value || factionSlug;
+
+        // Generate
+        const owbJson = generateOWBJson(matchedList, {
+          name: `${factionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} Army`,
+          description: 'Converted from army list',
+          armyComposition: selectedComposition
+        });
+
+        // Show feedback
+        const successCount = parsed.units.length;
+        const compositionName = armyCompositionSelect.options[armyCompositionSelect.selectedIndex]?.text || 'Grand Army';
+
+        const displayFaction = factionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+        let html = `<div class="flex items-center gap-2 text-green-400 mb-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span class="font-medium">Parsed: ${displayFaction} - ${parsed.totalPoints} pts</span>
+        </div>
+        <div class="text-gray-300 text-sm mb-2">${successCount} units found (${compositionName})</div>`;
+
+        // Show matched units
+        const unitNames = parsed.units.map(u => `${u.modelCount > 1 ? u.modelCount + ' ' : ''}${u.rawName}`);
+        html += `<div class="text-gray-400 text-xs mt-2">Units: ${unitNames.join(', ')}</div>`;
+
+        showFeedback(html);
+
+        // Download
+        const filename = `${factionSlug}_${parsed.totalPoints}pts.owb.json`;
+        downloadJson(owbJson, filename);
+
+      } catch (err) {
+        showFeedback(`<div class="flex items-center gap-2 text-red-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+          <span class="font-medium">Error: ${err.message}</span>
+        </div>`);
+      } finally {
+        btnConvert.disabled = false;
+        btnConvert.textContent = 'Convert & Download';
+      }
+    });
+  </script>
+</body>
+</html>
