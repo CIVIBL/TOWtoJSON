@@ -358,16 +358,24 @@ Hold the line
 
     /**
      * Build index of magic items
+     * Normalizes names by removing asterisks and other special chars
      */
     function buildSmartMagicItemIndex(magicItems, factionSlug) {
       const index = new Map();
+
+      // Helper to normalize item name (remove asterisks, lowercase)
+      const normalizeName = (name) => {
+        return name.toLowerCase().replace(/\*/g, '').trim();
+      };
 
       // Process each key in magic items (general, faction-specific, etc.)
       for (const [key, items] of Object.entries(magicItems)) {
         // Items can be an array or an object with nested arrays
         if (Array.isArray(items)) {
           for (const item of items) {
-            const name = (item.name_en || item.name || '').toLowerCase();
+            // Use name_en first, fall back to name
+            const rawName = item.name_en || item.name || '';
+            const name = normalizeName(rawName);
             if (name) index.set(name, { ...item, source: key });
           }
         } else if (typeof items === 'object') {
@@ -375,7 +383,8 @@ Hold the line
           for (const categoryItems of Object.values(items)) {
             if (Array.isArray(categoryItems)) {
               for (const item of categoryItems) {
-                const name = (item.name_en || item.name || '').toLowerCase();
+                const rawName = item.name_en || item.name || '';
+                const name = normalizeName(rawName);
                 if (name) index.set(name, { ...item, source: key });
               }
             }
@@ -389,16 +398,46 @@ Hold the line
     /**
      * Match a unit name area against the unit index
      * Returns the best matching unit or null
+     *
+     * For BCP format "Mage, Sea Guard, Lothern Skycutter, Wizard Level 2...",
+     * the unit name is the FIRST segment (before first comma).
+     * Things after commas are options/mounts, not the unit name.
      */
     function matchUnitName(unitNameArea, unitIndex) {
       const areaLower = unitNameArea.toLowerCase();
 
+      // Extract the first segment (the actual unit name in BCP format)
+      // e.g., "Mage, Sea Guard, Lothern Skycutter" -> "Mage"
+      const firstSegment = areaLower.split(',')[0].trim();
+
+      // Also handle model count prefix: "20 Sisters of Avelorn" -> "Sisters of Avelorn"
+      const firstSegmentNoCount = firstSegment.replace(/^\d+\s+/, '');
+
       // Sort entries by length (longest first)
       const sortedEntries = [...unitIndex.entries()].sort((a, b) => b[0].length - a[0].length);
 
+      // FIRST: Try to match against just the first segment (highest priority)
       for (const [nameLower, data] of sortedEntries) {
-        // Check if the unit name is in the name area
-        if (areaLower.includes(nameLower)) {
+        if (firstSegmentNoCount === nameLower || firstSegmentNoCount.includes(nameLower)) {
+          return data;
+        }
+      }
+
+      // SECOND: Try exact match on first segment with variations
+      for (const [nameLower, data] of sortedEntries) {
+        // Check singular/plural variations
+        const nameNoS = nameLower.endsWith('s') ? nameLower.slice(0, -1) : nameLower;
+        const segmentNoS = firstSegmentNoCount.endsWith('s') ? firstSegmentNoCount.slice(0, -1) : firstSegmentNoCount;
+        if (segmentNoS === nameNoS) {
+          return data;
+        }
+      }
+
+      // THIRD: Fall back to checking the whole string, but only if match is near the start
+      for (const [nameLower, data] of sortedEntries) {
+        const matchIndex = areaLower.indexOf(nameLower);
+        // Only accept if match is within first 30 chars (likely the actual unit name, not a mount)
+        if (matchIndex >= 0 && matchIndex < 30) {
           return data;
         }
       }
@@ -507,9 +546,9 @@ Hold the line
         }
       }
 
-      // Check magic items
+      // Check magic items (min 5 chars to avoid false positives like "ward")
       for (const [itemName, itemData] of magicItemIndex.entries()) {
-        if (itemName.length > 4 && contextLower.includes(itemName)) {
+        if (itemName.length >= 5 && contextLower.includes(itemName)) {
           result.items.push({ name: itemName, data: itemData });
         }
       }
