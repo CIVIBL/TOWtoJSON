@@ -528,9 +528,40 @@ Hold the line
         }
       }
 
-      // Check for wizard level patterns
-      const wizardMatch = contextLower.match(/(?:level|lvl)\s*(\d)/i);
-      if (wizardMatch) result.wizardLevel = parseInt(wizardMatch[1], 10);
+      // Check for wizard level patterns: "Wizard Level 2" or "Level 2 Wizard" or "Lvl 2"
+      const wizardMatch = contextLower.match(/(?:wizard\s+level|level|lvl)\s*(\d)/i);
+      if (wizardMatch) {
+        result.wizardLevel = parseInt(wizardMatch[1], 10);
+
+        // Find and add the corresponding nested wizard option
+        // OWB format is "Level X Wizard", BCP format is "Wizard Level X"
+        if (unit.options) {
+          for (let i = 0; i < unit.options.length; i++) {
+            const opt = unit.options[i];
+            const optName = (opt.name_en || opt.name || '').toLowerCase();
+            // Check if this is a Wizard option with nested levels
+            if (optName === 'wizard' && opt.options) {
+              // Find the matching level option
+              for (let j = 0; j < opt.options.length; j++) {
+                const subOpt = opt.options[j];
+                const subOptName = (subOpt.name_en || subOpt.name || '').toLowerCase();
+                // Match "Level X Wizard" where X is the extracted level
+                if (subOptName.includes(`level ${result.wizardLevel}`) && subOptName.includes('wizard')) {
+                  // Only add if not already present
+                  const alreadyAdded = result.options.some(
+                    o => o.type === 'nested' && o.index === i && o.subIndex === j
+                  );
+                  if (!alreadyAdded) {
+                    result.options.push({ index: i, subIndex: j, type: 'nested', name: subOptName, data: subOpt });
+                  }
+                  break;
+                }
+              }
+              break;
+            }
+          }
+        }
+      }
 
       // Check for lore
       const lores = [
@@ -1207,8 +1238,25 @@ Hold the line
           }
           if (added) continue;
         }
-        // Regular magic items go in unit.items
-        if (unit.items) {
+        // For ranked units, check if champion has a magic slot for this item type
+        let addedToChampion = false;
+        if (unit.command) {
+          for (const cmd of unit.command) {
+            // Find champion command options (typically first entry, or one with magic slot)
+            if (cmd.magic?.types?.includes(itemData.type)) {
+              cmd.active = true;
+              if (!cmd.magic.selected) cmd.magic.selected = [];
+              const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: cmd.magic.selected.length };
+              delete sel.source;
+              cmd.magic.selected.push(sel);
+              addedToChampion = true;
+              break;
+            }
+          }
+        }
+
+        // Fall back to unit.items for characters/units with their own items array
+        if (!addedToChampion && unit.items) {
           let slot = unit.items.find(s => s.types?.includes(itemData.type)) || unit.items.find(s => s.name_en?.toLowerCase().includes('magic'));
           if (slot) {
             if (!slot.selected) slot.selected = [];
