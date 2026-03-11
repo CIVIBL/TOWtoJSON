@@ -467,12 +467,23 @@ Hold the line
         }
       }
 
-      // Check armor
+      // Check armor - only match once per armor name (avoid duplicates from Elven Honours variants)
       if (unit.armor) {
+        const matchedArmorNames = new Set();
         for (let i = 0; i < unit.armor.length; i++) {
           const arm = unit.armor[i];
           const armName = (arm.name_en || arm.name || '').toLowerCase();
-          if (armName && armName.length > 3 && contextLower.includes(armName)) {
+          // Skip if already matched this armor name, or if it requires an Elven Honour we don't have
+          if (armName && armName.length > 3 && contextLower.includes(armName) && !matchedArmorNames.has(armName)) {
+            // Prefer the version without requiredMagicItem unless we have that item
+            if (arm.requiredMagicItem) {
+              // Check if we have the required magic item in context
+              const reqItem = arm.requiredMagicItem.toLowerCase();
+              if (!contextLower.includes(reqItem)) {
+                continue; // Skip this variant, we don't have the required honour
+              }
+            }
+            matchedArmorNames.add(armName);
             result.armor.push({ index: i, name: armName, data: arm });
           }
         }
@@ -1180,9 +1191,12 @@ Hold the line
         }
       }
 
-      // Activate armor
-      for (const arm of matchedUnit.armor || []) {
-        if (unit.armor?.[arm.index]) unit.armor[arm.index].active = true;
+      // Activate armor (exclusive - deactivate all others first)
+      if (matchedUnit.armor?.length > 0) {
+        unit.armor?.forEach(a => a.active = false);
+        for (const arm of matchedUnit.armor) {
+          if (unit.armor?.[arm.index]) unit.armor[arm.index].active = true;
+        }
       }
 
       // Activate mounts
