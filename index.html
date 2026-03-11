@@ -446,6 +446,32 @@ Hold the line
     }
 
     /**
+     * Check if a name matches in context with plural/singular flexibility
+     * Handles: "Shield" matching "Shields", "Spear" matching "Spears", etc.
+     */
+    function nameMatchesInContext(name, contextLower) {
+      if (!name || name.length < 3) return false;
+      const nameLower = name.toLowerCase();
+
+      // Direct match
+      if (contextLower.includes(nameLower)) return true;
+
+      // Try singular/plural variations
+      // If name ends in 's', try without it
+      if (nameLower.endsWith('s') && !nameLower.endsWith('ss')) {
+        const singular = nameLower.slice(0, -1);
+        if (singular.length >= 3 && contextLower.includes(singular)) return true;
+      }
+      // If name doesn't end in 's', try with it
+      if (!nameLower.endsWith('s')) {
+        const plural = nameLower + 's';
+        if (contextLower.includes(plural)) return true;
+      }
+
+      return false;
+    }
+
+    /**
      * Extract and match equipment/options from context against unit's valid options
      */
     function extractOptions(context, unit, magicItemIndex) {
@@ -460,9 +486,9 @@ Hold the line
       if (unit.equipment) {
         for (let i = 0; i < unit.equipment.length; i++) {
           const eq = unit.equipment[i];
-          const eqName = (eq.name_en || eq.name || '').toLowerCase();
-          if (eqName && eqName.length > 3 && contextLower.includes(eqName)) {
-            result.equipment.push({ index: i, name: eqName, data: eq });
+          const eqName = eq.name_en || eq.name || '';
+          if (nameMatchesInContext(eqName, contextLower)) {
+            result.equipment.push({ index: i, name: eqName.toLowerCase(), data: eq });
           }
         }
       }
@@ -472,19 +498,19 @@ Hold the line
         const matchedArmorNames = new Set();
         for (let i = 0; i < unit.armor.length; i++) {
           const arm = unit.armor[i];
-          const armName = (arm.name_en || arm.name || '').toLowerCase();
+          const armName = arm.name_en || arm.name || '';
+          const armNameLower = armName.toLowerCase();
           // Skip if already matched this armor name, or if it requires an Elven Honour we don't have
-          if (armName && armName.length > 3 && contextLower.includes(armName) && !matchedArmorNames.has(armName)) {
+          if (nameMatchesInContext(armName, contextLower) && !matchedArmorNames.has(armNameLower)) {
             // Prefer the version without requiredMagicItem unless we have that item
             if (arm.requiredMagicItem) {
               // Check if we have the required magic item in context
-              const reqItem = arm.requiredMagicItem.toLowerCase();
-              if (!contextLower.includes(reqItem)) {
+              if (!nameMatchesInContext(arm.requiredMagicItem, contextLower)) {
                 continue; // Skip this variant, we don't have the required honour
               }
             }
-            matchedArmorNames.add(armName);
-            result.armor.push({ index: i, name: armName, data: arm });
+            matchedArmorNames.add(armNameLower);
+            result.armor.push({ index: i, name: armNameLower, data: arm });
           }
         }
       }
@@ -493,20 +519,20 @@ Hold the line
       if (unit.mounts) {
         for (let i = 0; i < unit.mounts.length; i++) {
           const mount = unit.mounts[i];
-          const mountName = (mount.name_en || mount.name || '').toLowerCase();
-          if (mountName && contextLower.includes(mountName)) {
-            result.mounts.push({ index: i, name: mountName, data: mount });
+          const mountName = mount.name_en || mount.name || '';
+          if (nameMatchesInContext(mountName, contextLower)) {
+            result.mounts.push({ index: i, name: mountName.toLowerCase(), data: mount });
           }
         }
       }
 
-      // Check command (General, Champion, Standard Bearer, Musician)
+      // Check command (General, Champion, Standard Bearer, Musician, Battle Standard Bearer)
       if (unit.command) {
         for (let i = 0; i < unit.command.length; i++) {
           const cmd = unit.command[i];
-          const cmdName = (cmd.name_en || cmd.name || '').toLowerCase();
-          if (cmdName && contextLower.includes(cmdName)) {
-            result.command.push({ index: i, name: cmdName, data: cmd });
+          const cmdName = cmd.name_en || cmd.name || '';
+          if (nameMatchesInContext(cmdName, contextLower)) {
+            result.command.push({ index: i, name: cmdName.toLowerCase(), data: cmd });
           }
         }
         // Also check for "General" keyword
@@ -516,23 +542,30 @@ Hold the line
             result.command.push({ index: generalIdx, name: 'general', data: unit.command[generalIdx] });
           }
         }
+        // Check for "Battle Standard Bearer" (BSB) - common across factions
+        if (contextLower.includes('battle standard bearer') || contextLower.includes('bsb')) {
+          const bsbIdx = unit.command.findIndex(c => (c.name_en || '').toLowerCase().includes('battle standard bearer'));
+          if (bsbIdx >= 0 && !result.command.some(c => c.index === bsbIdx)) {
+            result.command.push({ index: bsbIdx, name: 'battle standard bearer', data: unit.command[bsbIdx] });
+          }
+        }
       }
 
       // Check regular options
       if (unit.options) {
         for (let i = 0; i < unit.options.length; i++) {
           const opt = unit.options[i];
-          const optName = (opt.name_en || opt.name || '').toLowerCase();
-          if (optName && optName.length > 3 && contextLower.includes(optName)) {
-            result.options.push({ index: i, type: 'option', name: optName, data: opt });
+          const optName = opt.name_en || opt.name || '';
+          if (nameMatchesInContext(optName, contextLower)) {
+            result.options.push({ index: i, type: 'option', name: optName.toLowerCase(), data: opt });
           }
           // Check nested options (wizard levels)
           if (opt.options) {
             for (let j = 0; j < opt.options.length; j++) {
               const subOpt = opt.options[j];
-              const subOptName = (subOpt.name_en || subOpt.name || '').toLowerCase();
-              if (subOptName && contextLower.includes(subOptName)) {
-                result.options.push({ index: i, subIndex: j, type: 'nested', name: subOptName, data: subOpt });
+              const subOptName = subOpt.name_en || subOpt.name || '';
+              if (nameMatchesInContext(subOptName, contextLower)) {
+                result.options.push({ index: i, subIndex: j, type: 'nested', name: subOptName.toLowerCase(), data: subOpt });
               }
             }
           }
