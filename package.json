@@ -5,8 +5,14 @@
   "type": "module",
   "scripts": {
     "serve": "python -m http.server 8080",
-    "test": "node --test \"test/*.test.js\""
+    "test": "node --test \"test/*.test.js\"",
+    "build:data": "node scripts/build-data.mjs"
   },
-  "keywords": ["warhammer", "old-world", "bcp", "army-list"],
+  "keywords": [
+    "warhammer",
+    "old-world",
+    "bcp",
+    "army-list"
+  ],
   "license": "MIT"
 }
