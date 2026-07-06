@@ -5,10 +5,7 @@
   "type": "module",
   "scripts": {
     "serve": "python -m http.server 8080",
-    "test:parser": "node test/testParser.js",
-    "test:matcher": "node test/testMatcher.js",
-    "test:generator": "node test/testGenerator.js",
-    "test": "node test/testParser.js && node test/testMatcher.js && node test/testGenerator.js"
+    "test": "node --test \"test/*.test.js\""
   },
   "keywords": ["warhammer", "old-world", "bcp", "army-list"],
   "license": "MIT"
