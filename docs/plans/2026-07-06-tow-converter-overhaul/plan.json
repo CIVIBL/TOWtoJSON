@@ -10,7 +10,7 @@
     {
       "letter": "A",
       "name": "Consolidate to one implementation with real tests",
-      "status": "In Progress",
+      "status": "Complete",
       "depends_on": [],
       "rationale": "Every later fix must land in exactly one place. Extract the live inline implementation from index.html into ES modules, delete the two dead layers (old src/ modules and the unused inline matcher), and replace the print-only test scripts with assertions against the extracted modules.",
       "tasks": [
@@ -30,7 +30,7 @@
         {
           "id": "A2",
           "name": "Rewire index.html to import modules and delete inline copies",
-          "status": "pending",
+          "status": "completed",
           "depends_on": ["A1"],
           "files": {
             "create": [],
@@ -43,7 +43,7 @@
         {
           "id": "A3",
           "name": "Replace demo test scripts with assertions; delete dead src modules",
-          "status": "pending",
+          "status": "completed",
           "depends_on": ["A1"],
           "files": {
             "create": ["test/fixtures/skaven-bcp.txt", "test/parse.test.js", "test/detect.test.js", "test/generate.test.js"],
