@@ -20,7 +20,13 @@
           "status": "completed",
           "depends_on": [],
           "files": {
-            "create": ["src/js/parse.js", "src/js/match.js", "src/js/items.js", "src/js/detect.js", "src/js/generate.js"],
+            "create": [
+              "src/js/parse.js",
+              "src/js/match.js",
+              "src/js/items.js",
+              "src/js/detect.js",
+              "src/js/generate.js"
+            ],
             "modify": [],
             "test": []
           },
@@ -31,10 +37,14 @@
           "id": "A2",
           "name": "Rewire index.html to import modules and delete inline copies",
           "status": "completed",
-          "depends_on": ["A1"],
+          "depends_on": [
+            "A1"
+          ],
           "files": {
             "create": [],
-            "modify": ["index.html"],
+            "modify": [
+              "index.html"
+            ],
             "test": []
           },
           "verification": "npm run serve (background), then convert the Skaven test list from CLAUDE.md in a browser via preview tools; grep -c 'function parseWithFactionData' index.html returns 0",
@@ -44,11 +54,32 @@
           "id": "A3",
           "name": "Replace demo test scripts with assertions; delete dead src modules",
           "status": "completed",
-          "depends_on": ["A1"],
+          "depends_on": [
+            "A1"
+          ],
           "files": {
-            "create": ["test/fixtures/skaven-bcp.txt", "test/parse.test.js", "test/detect.test.js", "test/generate.test.js"],
-            "modify": ["package.json", "src/parser/bcpParser.js", "src/parser/smartParser.js", "src/matcher/factionMatcher.js", "src/generator/owbGenerator.js", "test/testParser.js", "test/testMatcher.js", "test/testGenerator.js", "test/output-skaven.json"],
-            "test": ["test/parse.test.js", "test/detect.test.js", "test/generate.test.js"]
+            "create": [
+              "test/fixtures/skaven-bcp.txt",
+              "test/parse.test.js",
+              "test/detect.test.js",
+              "test/generate.test.js"
+            ],
+            "modify": [
+              "package.json",
+              "src/parser/bcpParser.js",
+              "src/parser/smartParser.js",
+              "src/matcher/factionMatcher.js",
+              "src/generator/owbGenerator.js",
+              "test/testParser.js",
+              "test/testMatcher.js",
+              "test/testGenerator.js",
+              "test/output-skaven.json"
+            ],
+            "test": [
+              "test/parse.test.js",
+              "test/detect.test.js",
+              "test/generate.test.js"
+            ]
           },
           "verification": "npm test",
           "done_when": "npm test runs node --test and passes; asserts 10 anchors and 2197 points for the Skaven fixture and faction detection returns 'skaven'; src/parser, src/matcher, src/generator and the three old test scripts are deleted."
@@ -58,19 +89,27 @@
     {
       "letter": "B",
       "name": "Token-based matching",
-      "status": "Not Started",
-      "depends_on": ["A"],
+      "status": "Complete",
+      "depends_on": [
+        "A"
+      ],
       "rationale": "Substring search across whole unit blocks is the root cause of wrong equipment, options, and magic items. Replace it with per-token classification scoped to each entry line, and scope magic items to the detected faction.",
       "tasks": [
         {
           "id": "B1",
           "name": "Rewrite extractOptions as per-token classification",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [],
           "files": {
-            "create": ["test/match.test.js"],
-            "modify": ["src/js/match.js"],
-            "test": ["test/match.test.js"]
+            "create": [
+              "test/match.test.js"
+            ],
+            "modify": [
+              "src/js/match.js"
+            ],
+            "test": [
+              "test/match.test.js"
+            ]
           },
           "verification": "node --test test/match.test.js",
           "done_when": "extractOptions consumes comma/bullet tokens instead of substring-scanning the block; returns unknownTokens; Skaven fixture units match with correct command/equipment and no false-positive options; all match tests pass."
@@ -78,12 +117,18 @@
         {
           "id": "B2",
           "name": "Scope magic item index to the detected faction",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [],
           "files": {
-            "create": ["test/items.test.js"],
-            "modify": ["src/js/items.js"],
-            "test": ["test/items.test.js"]
+            "create": [
+              "test/items.test.js"
+            ],
+            "modify": [
+              "src/js/items.js"
+            ],
+            "test": [
+              "test/items.test.js"
+            ]
           },
           "verification": "node --test test/items.test.js",
           "done_when": "buildMagicItemIndex(magicItems, 'skaven') contains general + skaven items only (plus mapped special categories for factions that have them); a Bretonnian virtue is not matchable from a Skaven list; tests pass."
@@ -91,12 +136,19 @@
         {
           "id": "B3",
           "name": "Fix magic item placement (character vs champion vs banner)",
-          "status": "pending",
-          "depends_on": ["B1"],
+          "status": "completed",
+          "depends_on": [
+            "B1"
+          ],
           "files": {
             "create": [],
-            "modify": ["src/js/generate.js", "test/generate.test.js"],
-            "test": ["test/generate.test.js"]
+            "modify": [
+              "src/js/generate.js",
+              "test/generate.test.js"
+            ],
+            "test": [
+              "test/generate.test.js"
+            ]
           },
           "verification": "node --test test/generate.test.js",
           "done_when": "Character items land in unit.items slots by type; banners land on the Standard Bearer's magic.selected; champion slots are used only for items tokenized from a champion sub-line; generated Skaven JSON matches the shape of reference-files/tree-army_owb.json entries."
@@ -107,7 +159,9 @@
       "letter": "C",
       "name": "Data-driven faction and Army of Infamy detection",
       "status": "Not Started",
-      "depends_on": ["A"],
+      "depends_on": [
+        "A"
+      ],
       "rationale": "Detection must come from the data we already ship, not hand-typed lists. Build generated indexes (unit-name index, official composition slugs from the OWB repo), then rewrite detection to consume them.",
       "tasks": [
         {
@@ -116,7 +170,11 @@
           "status": "pending",
           "depends_on": [],
           "files": {
-            "create": ["scripts/build-data.mjs", "src/data/owb/unit-name-index.json", "src/data/owb/army-compositions.json"],
+            "create": [
+              "scripts/build-data.mjs",
+              "src/data/owb/unit-name-index.json",
+              "src/data/owb/army-compositions.json"
+            ],
             "modify": [],
             "test": []
           },
@@ -127,11 +185,18 @@
           "id": "C2",
           "name": "Rewrite detection to consume generated indexes",
           "status": "pending",
-          "depends_on": ["C1"],
+          "depends_on": [
+            "C1"
+          ],
           "files": {
             "create": [],
-            "modify": ["src/js/detect.js", "test/detect.test.js"],
-            "test": ["test/detect.test.js"]
+            "modify": [
+              "src/js/detect.js",
+              "test/detect.test.js"
+            ],
+            "test": [
+              "test/detect.test.js"
+            ]
           },
           "verification": "node --test test/detect.test.js",
           "done_when": "Faction scoring uses unit-name-index.json (full rosters, not curated lists); getArmyCompositions returns official slugs from army-compositions.json; AoI detection flags header mentions and AoI-restricted options/items; hard-coded FACTION_CONFIG.uniqueUnits and naive slug generation are deleted."
@@ -140,10 +205,14 @@
           "id": "C3",
           "name": "Wire UI to new detection API",
           "status": "pending",
-          "depends_on": ["C2"],
+          "depends_on": [
+            "C2"
+          ],
           "files": {
             "create": [],
-            "modify": ["index.html"],
+            "modify": [
+              "index.html"
+            ],
             "test": []
           },
           "verification": "npm run serve; paste Skaven list -> dropdown shows official compositions; paste a Host of Talsyn-heavy Wood Elf list -> dropdown auto-selects host-of-talsyn",
@@ -155,7 +224,10 @@
       "letter": "D",
       "name": "Honest feedback panel",
       "status": "Not Started",
-      "depends_on": ["B", "C"],
+      "depends_on": [
+        "B",
+        "C"
+      ],
       "rationale": "Silent unit drops and unreported unknown tokens are why bad exports look successful. Build a structured conversion report and render it before download.",
       "tasks": [
         {
@@ -164,9 +236,14 @@
           "status": "pending",
           "depends_on": [],
           "files": {
-            "create": ["src/js/report.js", "test/report.test.js"],
+            "create": [
+              "src/js/report.js",
+              "test/report.test.js"
+            ],
             "modify": [],
-            "test": ["test/report.test.js"]
+            "test": [
+              "test/report.test.js"
+            ]
           },
           "verification": "node --test test/report.test.js",
           "done_when": "buildReport returns matched/dropped units, unknown tokens per unit, and a points check (parsed anchor points vs computed OWB points per unit and total); tests cover a list with one unmatchable unit and one unknown token."
@@ -175,10 +252,14 @@
           "id": "D2",
           "name": "Render report in feedback panel",
           "status": "pending",
-          "depends_on": ["D1"],
+          "depends_on": [
+            "D1"
+          ],
           "files": {
             "create": [],
-            "modify": ["index.html"],
+            "modify": [
+              "index.html"
+            ],
             "test": []
           },
           "verification": "npm run serve; convert a list containing a misspelled unit and confirm the panel shows it as dropped with a warning before download",
@@ -190,7 +271,9 @@
       "letter": "E",
       "name": "New Recruit export",
       "status": "Not Started",
-      "depends_on": ["B"],
+      "depends_on": [
+        "B"
+      ],
       "rationale": "NR needs BattleScribe catalogue UUIDs that OWB data does not contain. Extract a per-faction index from the community .cat files at build time, generate roster JSON from the same matched intermediate representation, and enable the UI toggle.",
       "tasks": [
         {
@@ -199,8 +282,15 @@
           "status": "pending",
           "depends_on": [],
           "files": {
-            "create": ["scripts/build-nr-data.mjs", "src/data/nr/game-system.json", "src/data/nr/skaven.json", "src/data/nr/wood-elf-realms.json"],
-            "modify": ["package.json"],
+            "create": [
+              "scripts/build-nr-data.mjs",
+              "src/data/nr/game-system.json",
+              "src/data/nr/skaven.json",
+              "src/data/nr/wood-elf-realms.json"
+            ],
+            "modify": [
+              "package.json"
+            ],
             "test": []
           },
           "verification": "node scripts/build-nr-data.mjs --faction skaven && node -e \"const d=require('./src/data/nr/skaven.json'); if(!d.catalogueId||!d.units.length) process.exit(1); console.log(d.units.length + ' units')\"",
@@ -210,11 +300,18 @@
           "id": "E2",
           "name": "NR roster generator",
           "status": "pending",
-          "depends_on": ["E1"],
+          "depends_on": [
+            "E1"
+          ],
           "files": {
-            "create": ["src/js/generate-nr.js", "test/generate-nr.test.js"],
+            "create": [
+              "src/js/generate-nr.js",
+              "test/generate-nr.test.js"
+            ],
             "modify": [],
-            "test": ["test/generate-nr.test.js"]
+            "test": [
+              "test/generate-nr.test.js"
+            ]
           },
           "verification": "node --test test/generate-nr.test.js",
           "done_when": "generateNRJson(matchedList) emits a roster matching reference-files/In_The_Pines_-_Logan_s_Lair_-__To_Test_.json structure (roster > forces > selections with entryId, categories, costs); Skaven fixture produces selections for all 10 entries with correct total cost; validated by manual import into newrecruit.eu."
@@ -223,10 +320,14 @@
           "id": "E3",
           "name": "Enable New Recruit UI toggle",
           "status": "pending",
-          "depends_on": ["E2"],
+          "depends_on": [
+            "E2"
+          ],
           "files": {
             "create": [],
-            "modify": ["index.html"],
+            "modify": [
+              "index.html"
+            ],
             "test": []
           },
           "verification": "npm run serve; select New Recruit, convert Skaven fixture, downloaded file imports into newrecruit.eu",
