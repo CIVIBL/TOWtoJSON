@@ -31,11 +31,12 @@ export function buildMagicItemIndex(magicItems, factionSlug) {
     return name.toLowerCase().replace(/\*/g, '').trim();
   };
 
-  const indexItem = (item, key) => {
-    // Use name_en first, fall back to name
+  const indexItem = (item, key, sourceIndex) => {
+    // Use name_en first, fall back to name. sourceIndex is the item's position
+    // within its section — OWB identifies selected items by this index.
     const rawName = item.name_en || item.name || '';
     const name = normalizeName(rawName);
-    if (name) index.set(name, { ...item, source: key });
+    if (name) index.set(name, { ...item, source: key, sourceIndex });
   };
 
   // 'general' first so faction-specific entries override it on collision.
@@ -46,16 +47,12 @@ export function buildMagicItemIndex(magicItems, factionSlug) {
     if (!items) continue;
     // Items can be an array or an object with nested arrays
     if (Array.isArray(items)) {
-      for (const item of items) {
-        indexItem(item, key);
-      }
+      items.forEach((item, i) => indexItem(item, key, i));
     } else if (typeof items === 'object') {
       // Nested structure (categories within)
       for (const categoryItems of Object.values(items)) {
         if (Array.isArray(categoryItems)) {
-          for (const item of categoryItems) {
-            indexItem(item, key);
-          }
+          categoryItems.forEach((item, i) => indexItem(item, key, i));
         }
       }
     }

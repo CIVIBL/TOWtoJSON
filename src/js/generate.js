@@ -65,53 +65,61 @@ export function buildUnit(matchedUnit) {
     unit.activeLore = matchedUnit.lore;
   }
 
-  // Add magic items
+  // Add magic items. Placement is decided by where the item was tokenized and
+  // by type: banners go to the Standard bearer, champion sub-line items to the
+  // champion's magic slot, everything else to the unit's own items slots.
+  // OWB resolves a selected item by its index within its magic-items.json
+  // section, so `id` must be the item's sourceIndex (see phase-b/b3.md).
+  const unplaced = [];
   for (const item of matchedUnit.items || []) {
     const itemData = item.data;
-    // Special handling for banners
+    const makeSelected = () => {
+      const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: itemData.sourceIndex ?? 0 };
+      delete sel.source;
+      delete sel.sourceIndex;
+      return sel;
+    };
+    const placeOnCommand = (cmd) => {
+      cmd.active = true;
+      if (!cmd.magic.selected) cmd.magic.selected = [];
+      cmd.magic.selected.push(makeSelected());
+    };
+
+    // 1. Banners belong to the Standard bearer.
     if (itemData.type === 'banner' && unit.command) {
-      let added = false;
-      for (const cmd of unit.command) {
-        if ((cmd.name_en || '').toLowerCase().includes('standard') && cmd.magic?.types?.includes('banner')) {
-          cmd.active = true;
-          if (!cmd.magic.selected) cmd.magic.selected = [];
-          const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: cmd.magic.selected.length };
-          delete sel.source;
-          cmd.magic.selected.push(sel);
-          added = true;
-          break;
-        }
-      }
-      if (added) continue;
-    }
-    // For ranked units, check if champion has a magic slot for this item type
-    let addedToChampion = false;
-    if (unit.command) {
-      for (const cmd of unit.command) {
-        // Find champion command options (typically first entry, or one with magic slot)
-        if (cmd.magic?.types?.includes(itemData.type)) {
-          cmd.active = true;
-          if (!cmd.magic.selected) cmd.magic.selected = [];
-          const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: cmd.magic.selected.length };
-          delete sel.source;
-          cmd.magic.selected.push(sel);
-          addedToChampion = true;
-          break;
-        }
+      const standard = unit.command.find(c =>
+        (c.name_en || '').toLowerCase().includes('standard') && c.magic?.types?.includes('banner'));
+      if (standard) {
+        placeOnCommand(standard);
+        continue;
       }
     }
 
-    // Fall back to unit.items for characters/units with their own items array
-    if (!addedToChampion && unit.items) {
-      let slot = unit.items.find(s => s.types?.includes(itemData.type)) || unit.items.find(s => s.name_en?.toLowerCase().includes('magic'));
-      if (slot) {
-        if (!slot.selected) slot.selected = [];
-        const sel = { ...itemData, name: itemData.name || itemData.name_en?.toLowerCase(), id: slot.selected.length };
-        delete sel.source;
-        slot.selected.push(sel);
+    // 2. Items tokenized from a champion sub-line belong to the champion.
+    if (item.fromChampion && unit.command) {
+      const champion = unit.command.find(c => c.magic?.types?.includes(itemData.type));
+      if (champion) {
+        placeOnCommand(champion);
+        continue;
       }
     }
+
+    // 3. Characters and units with their own items slots.
+    if (unit.items) {
+      const slot = unit.items.find(s => s.types?.includes(itemData.type))
+        || unit.items.find(s => s.name_en?.toLowerCase().includes('magic'));
+      if (slot) {
+        if (!slot.selected) slot.selected = [];
+        slot.selected.push(makeSelected());
+        continue;
+      }
+    }
+
+    // 4. No legal slot: surface it instead of dropping silently (read by the
+    //    Phase D report; stripped from the JSON in generateOWBJson).
+    unplaced.push(item.name);
   }
+  if (unplaced.length > 0) unit.__unplacedItems = unplaced;
 
   // Add detachments (for regimental units like Beast Pack)
   if (matchedUnit.detachments?.length > 0) {
@@ -153,6 +161,10 @@ export function generateOWBJson(matchedList, options = {}) {
   for (const m of matchedList.units) {
     if (!m.success) continue;
     const unit = buildUnit(m);
+    if (unit.__unplacedItems) {
+      m.unplacedItems = unit.__unplacedItems;
+      delete unit.__unplacedItems;
+    }
     (result[m.category] || result.special).push(unit);
   }
 
