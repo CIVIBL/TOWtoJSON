@@ -39,27 +39,12 @@ test('parseWithFactionData returns 10 units totalling 2197 points', () => {
   assert.equal(parsed.totalPoints, 2197);
 });
 
-test('parseWithFactionData matches all 10 units', { todo: true }, () => {
-  // KNOWN LIMITATION: skaven.json names the unit "Hell Pit Abomination {renegade}",
-  // so the two "Hell Pit Abomination" entries do not match under the current
-  // substring matcher. Phase B fixes this — see phase-b/b1.md test case 6.
+test('parseWithFactionData matches all 10 units', () => {
+  // Includes the two "Hell Pit Abomination" entries, whose data name carries a
+  // {renegade} annotation (stripped since Phase B1 — phase-b/b1.md case 6).
   const parsed = parseWithFactionData(fixture, skavenData, itemIndex);
   for (const unit of parsed.units) {
     assert.equal(unit.success, true, `unit "${unit.rawName}" did not match`);
   }
 });
 
-test('parseWithFactionData matches exactly 8 of 10 units (current behavior)', () => {
-  // Hard pin on current behavior: the two Hell Pit Abomination entries fail
-  // ("Hell Pit Abomination {renegade}" in skaven.json). When Phase B lands
-  // (phase-b/b1.md test case 6), this becomes 10 and the todo test above passes.
-  const parsed = parseWithFactionData(fixture, skavenData, itemIndex);
-  const matched = parsed.units.filter(u => u.success);
-  assert.equal(matched.length, 8);
-
-  const failed = parsed.units.filter(u => !u.success);
-  assert.equal(failed.length, 2);
-  for (const unit of failed) {
-    assert.equal(unit.rawName, 'Hell Pit Abomination');
-  }
-});

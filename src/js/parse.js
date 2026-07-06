@@ -36,16 +36,22 @@ export function buildUnitNameIndex(factionData) {
  */
 export function generateNameVariations(name) {
   const variations = [name];
-  const lower = name.toLowerCase();
-  variations.push(lower);
+  // Strip {faction} annotations like "Hell Pit Abomination {renegade}" so the
+  // clean name is matchable (phase-b/b1.md case 6).
+  const stripped = name.replace(/\s*\{[^}]*\}/g, '').trim();
+  const bases = new Set([name.toLowerCase(), stripped.toLowerCase()]);
 
-  // Handle plurals
-  if (lower.endsWith('s') && !lower.endsWith('ss')) variations.push(lower.slice(0, -1));
-  if (!lower.endsWith('s')) variations.push(lower + 's');
+  for (const lower of bases) {
+    variations.push(lower);
 
-  // Handle "of the" variations
-  if (lower.includes(' of the ')) variations.push(lower.replace(/ of the /g, ' '));
-  if (lower.includes(' of ')) variations.push(lower.replace(/ of /g, ' '));
+    // Handle plurals
+    if (lower.endsWith('s') && !lower.endsWith('ss')) variations.push(lower.slice(0, -1));
+    if (!lower.endsWith('s')) variations.push(lower + 's');
+
+    // Handle "of the" variations
+    if (lower.includes(' of the ')) variations.push(lower.replace(/ of the /g, ' '));
+    if (lower.includes(' of ')) variations.push(lower.replace(/ of /g, ' '));
+  }
 
   return [...new Set(variations)];
 }

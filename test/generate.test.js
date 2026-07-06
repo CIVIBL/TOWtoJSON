@@ -44,20 +44,19 @@ test('output has the OWB list shape', () => {
 
 test('only matched units are placed, in faction-data categories', () => {
   const { output } = runPipeline();
-  // 8 matched units (the 2 Hell Pit Abomination entries fail to match — see
-  // parse.test.js and phase-b/b1.md test case 6). No section headers in the
-  // fixture, so categories come from faction data: 3 characters (Grey Seer +
-  // 2 Plague Priests), 5 core (2 Clanrats, 2 Giant Rats, Plague Monks {core}).
+  // All 10 units match since Phase B1 ({...} annotation stripping). No section
+  // headers in the fixture, so categories come from faction data: 3 characters,
+  // 5 core (2 Clanrats, 2 Giant Rats, Plague Monks core), 2 rare (Hell Pits).
   assert.equal(output.characters.length, 3);
   assert.equal(output.core.length, 5);
   assert.equal(output.special.length, 0);
-  assert.equal(output.rare.length, 0);
+  assert.equal(output.rare.length, 2);
 });
 
 test('unit ids are template id plus 8-letter suffix', () => {
   const { output } = runPipeline();
   const units = [...output.characters, ...output.core, ...output.special, ...output.rare];
-  assert.equal(units.length, 8);
+  assert.equal(units.length, 10);
   for (const unit of units) {
     assert.match(unit.id, /^[a-z-]+\.[a-z]{8}$/);
   }
