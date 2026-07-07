@@ -158,7 +158,7 @@
     {
       "letter": "C",
       "name": "Data-driven faction and Army of Infamy detection",
-      "status": "Not Started",
+      "status": "Complete",
       "depends_on": [
         "A"
       ],
@@ -167,7 +167,7 @@
         {
           "id": "C1",
           "name": "Build script for unit-name index and official army-composition slugs",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [],
           "files": {
             "create": [
@@ -184,7 +184,7 @@
         {
           "id": "C2",
           "name": "Rewrite detection to consume generated indexes",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [
             "C1"
           ],
@@ -204,7 +204,7 @@
         {
           "id": "C3",
           "name": "Wire UI to new detection API",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [
             "C2"
           ],
