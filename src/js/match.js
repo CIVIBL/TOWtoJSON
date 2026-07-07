@@ -258,7 +258,8 @@ function findWizardNestedOption(unit, level) {
 export function extractOptions(context, unit, magicItemIndex) {
   const result = {
     equipment: [], armor: [], options: [], mounts: [], command: [],
-    items: [], lore: null, wizardLevel: null, unknownTokens: []
+    items: [], lore: null, wizardLevel: null, unknownTokens: [],
+    rankAndFileCount: null
   };
 
   const { mainTokens, subLines } = tokenizeUnitBlock(context);
@@ -270,6 +271,9 @@ export function extractOptions(context, unit, magicItemIndex) {
 
   for (const line of subLines) {
     if (tokenEquals(line.label, unitName)) {
+      // The rank-and-file line carries the unit's real strength — anchor
+      // counts like "31 Clanrats" often include weapon team crew.
+      if (line.count) result.rankAndFileCount = (result.rankAndFileCount || 0) + line.count;
       tokenGroups.push({ tokens: line.tokens, fromChampion: false });
       continue;
     }
@@ -277,6 +281,19 @@ export function extractOptions(context, unit, magicItemIndex) {
     if (cmdIdx >= 0) {
       addCommand(result, cmdIdx, unit.command[cmdIdx]);
       tokenGroups.push({ tokens: line.tokens, fromChampion: true });
+      continue;
+    }
+    // Whole-line match for compound entries whose data name contains commas
+    // ("1x Packmaster, Whip" -> option "Packmaster, Whip"). Must run before
+    // label-only classification, which would pick the first comma-part
+    // variant regardless of the rest of the line.
+    const lineText = [line.label, ...line.tokens].join(', ');
+    const full = matchFullLine(lineText, unit);
+    if (full) {
+      if (full.type === 'option' && full.data.stackable && line.count) {
+        full.stackableCount = line.count;
+      }
+      apply(result, full, unit, false);
       continue;
     }
     // OWB-style option lines ("- Shields") classify by their label.
@@ -312,6 +329,28 @@ export function extractOptions(context, unit, magicItemIndex) {
   return result;
 }
 
+/**
+ * Match an entire sub-line against compound option/equipment/armor names.
+ * Uses full-name equality (norm + plural), so "Packmaster, Whip" cannot be
+ * claimed by "Packmaster, Things-catcher".
+ */
+function matchFullLine(lineText, unit) {
+  const fullEquals = (name) => {
+    const t = norm(lineText);
+    const n = norm(name);
+    return t === n || depluralize(t) === depluralize(n);
+  };
+  for (const [list, type] of [[unit.options, 'option'], [unit.equipment, 'equipment'], [unit.armor, 'armor']]) {
+    if (!list) continue;
+    for (let i = 0; i < list.length; i++) {
+      if (fullEquals(list[i].name_en || list[i].name || '')) {
+        return { type, raw: lineText, index: i, data: list[i] };
+      }
+    }
+  }
+  return null;
+}
+
 function addCommand(result, index, data) {
   if (!result.command.some(c => c.index === index)) {
     result.command.push({ index, name: norm(data.name_en || data.name || ''), data });
@@ -338,11 +377,18 @@ function apply(result, c, unit, fromChampion) {
         result.armor.push({ index: c.index, name: norm(c.data.name_en || ''), data: c.data });
       }
       break;
-    case 'option':
-      if (!result.options.some(o => o.type === 'option' && o.index === c.index)) {
-        result.options.push({ index: c.index, type: 'option', name: norm(c.data.name_en || ''), data: c.data });
+    case 'option': {
+      const existing = result.options.find(o => o.type === 'option' && o.index === c.index);
+      if (existing) {
+        if (c.stackableCount !== undefined) existing.stackableCount = c.stackableCount;
+      } else {
+        result.options.push({
+          index: c.index, type: 'option', name: norm(c.data.name_en || ''), data: c.data,
+          ...(c.stackableCount !== undefined ? { stackableCount: c.stackableCount } : {})
+        });
       }
       break;
+    }
     case 'nested-option':
       if (!result.options.some(o => o.type === 'nested' && o.index === c.index && o.subIndex === c.subIndex)) {
         result.options.push({ index: c.index, subIndex: c.subIndex, type: 'nested', name: norm(c.data.name_en || ''), data: c.data });

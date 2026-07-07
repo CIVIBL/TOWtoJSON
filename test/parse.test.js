@@ -39,6 +39,18 @@ test('parseWithFactionData returns 10 units totalling 2197 points', () => {
   assert.equal(parsed.totalPoints, 2197);
 });
 
+test('weapon team bullets become one detachment with its weapon', () => {
+  const parsed = parseWithFactionData(fixture, skavenData, itemIndex);
+  const clanrats = parsed.units.filter(u => u.rawName === 'Clanrats');
+  assert.equal(clanrats.length, 2);
+  for (const unit of clanrats) {
+    assert.equal(unit.detachments.length, 1, 'exactly one Weapon Team (crew line must not duplicate it)');
+    assert.equal(unit.detachments[0].count, 1);
+    assert.deepEqual(unit.detachments[0].tokens, ['Ratling Gun']);
+    assert.equal(unit.modelCount, unit.rawPoints === 232 ? 30 : 29, 'strength from rank-and-file line');
+  }
+});
+
 test('parseWithFactionData matches all 10 units', () => {
   // Includes the two "Hell Pit Abomination" entries, whose data name carries a
   // {renegade} annotation (stripped since Phase B1 — phase-b/b1.md case 6).

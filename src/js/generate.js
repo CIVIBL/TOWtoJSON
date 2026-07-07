@@ -1,5 +1,6 @@
 // Old World Builder JSON generator.
-// Extracted verbatim from index.html (Phase A1) — item placement fixes land in Phase B3.
+
+import { tokenEquals } from './match.js';
 
 function generateIdSuffix(len = 8) {
   const chars = 'abcdefghijklmnopqrstuvwxyz';
@@ -57,6 +58,10 @@ export function buildUnit(matchedUnit) {
       }
     } else if (unit.options?.[opt.index]) {
       unit.options[opt.index].active = true;
+      // OWB prices stackable options by stackableCount, not by active.
+      if (opt.stackableCount !== undefined) {
+        unit.options[opt.index].stackableCount = opt.stackableCount;
+      }
     }
   }
 
@@ -128,12 +133,21 @@ export function buildUnit(matchedUnit) {
       const detachUnit = deepClone(det.unit);
       detachUnit.id = `${det.unit.id}.${generateIdSuffix()}`;
       detachUnit.strength = det.count;
-      // Ensure equipment is active
       if (detachUnit.equipment) {
         detachUnit.equipment.forEach((eq, i) => {
           if (eq.id === undefined) eq.id = i;
-          if (eq.active === undefined && i === 0) eq.active = true;
         });
+        // Activate the listed weapon ("Ratling Gun" matches equipment
+        // "Hand weapons, Ratling Gun"); fall back to the first entry.
+        const listed = (det.tokens || [])
+          .map(token => detachUnit.equipment.findIndex(e => tokenEquals(token, e.name_en || e.name || '')))
+          .find(idx => idx >= 0);
+        if (listed !== undefined) {
+          detachUnit.equipment.forEach(e => e.active = false);
+          detachUnit.equipment[listed].active = true;
+        } else if (!detachUnit.equipment.some(e => e.active)) {
+          detachUnit.equipment[0].active = true;
+        }
       }
       unit.detachments.push(detachUnit);
     }

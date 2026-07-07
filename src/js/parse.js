@@ -2,7 +2,7 @@
 // Uses faction data as dictionary to find units in ANY text format.
 // Extracted verbatim from index.html (Phase A1) — behavior changes land in Phase B.
 
-import { matchUnitName, extractOptions } from './match.js';
+import { matchUnitName, extractOptions, tokenizeUnitBlock, tokenEquals } from './match.js';
 
 /**
  * Build a searchable index of unit names from faction data
@@ -207,31 +207,38 @@ export function buildDetachmentIndex(factionData) {
 }
 
 /**
- * Extract detachments from context (e.g., "1x Deepwood Hound")
+ * Extract detachments from a unit block's sub-lines.
+ * A line whose label IS a detachment unit ("1x Weapon Team") creates one;
+ * a matching crew line ("1x Weapon Team Crew, Ratling Gun") contributes its
+ * tokens (the weapon choice) to that detachment instead of duplicating it.
  */
 export function extractDetachments(context, detachmentIndex) {
+  const { subLines } = tokenizeUnitBlock(context);
   const detachments = [];
-  const contextLower = context.toLowerCase();
-  const lines = context.split('\n');
 
-  for (const line of lines) {
-    const trimmed = line.trim().toLowerCase();
-    // Pattern: "1x Deepwood Hound" or "• 1x Deepwood Hound"
-    const match = trimmed.match(/[•\-]?\s*(\d+)x?\s+(.+)/);
-    if (match) {
-      const count = parseInt(match[1], 10);
-      const itemName = match[2].trim();
-
-      // Check if this matches a detachment unit
-      for (const [detachName, detachUnit] of detachmentIndex.entries()) {
-        if (itemName.includes(detachName) || detachName.includes(itemName)) {
-          detachments.push({
-            unit: detachUnit,
-            count: count
-          });
-          break;
-        }
+  for (const line of subLines) {
+    let matchedUnit = null;
+    for (const [detachName, detachUnit] of detachmentIndex.entries()) {
+      if (tokenEquals(line.label, detachName)) {
+        matchedUnit = detachUnit;
+        break;
       }
+    }
+    if (matchedUnit) {
+      const existing = detachments.find(d => d.unit === matchedUnit);
+      if (existing) {
+        existing.count += line.count;
+        existing.tokens.push(...line.tokens);
+      } else {
+        detachments.push({ unit: matchedUnit, count: line.count, tokens: [...line.tokens] });
+      }
+      continue;
+    }
+
+    const crewMatch = line.label.match(/^(.+?)\s+crew$/i);
+    if (crewMatch) {
+      const det = detachments.find(d => tokenEquals(crewMatch[1], d.unit.name_en || d.unit.name || ''));
+      if (det) det.tokens.push(...line.tokens);
     }
   }
   return detachments;
@@ -283,7 +290,9 @@ export function parseWithFactionData(text, factionData, magicItemIndex) {
         matchedName: anchor.unitNameArea,
         category: category,
         unitTemplate: matchedUnit.unit,
-        modelCount: anchor.modelCount,
+        // Anchor counts like "31 Clanrats" include sub-models (weapon team
+        // crew); the rank-and-file sub-line carries the real strength.
+        modelCount: options.rankAndFileCount ?? anchor.modelCount,
         rawPoints: anchor.points,
         detachments: detachments,
         ...options,

@@ -55,17 +55,21 @@ test('unknown tokens are reported per unit (d1 case b)', () => {
   assert.deepEqual(entry.tokens, ['Made Up Thing']);
 });
 
-test('per-unit point mismatches are listed', () => {
+test('fixture converts points-exact: OWB total equals the BCP total', () => {
+  // Model-group handling (strength from rank-and-file sub-lines, weapon team
+  // detachments with listed equipment, stackable packmasters) must reproduce
+  // every anchor cost exactly.
   const { report } = run(fixture);
-  // The Clanrats anchors include Weapon Team model costs that OWB cannot
-  // reproduce from the unit alone — those two must show as mismatches.
-  const names = report.points.unitMismatches.map(m => m.name);
-  assert.ok(names.includes('Clanrats'), 'Clanrats mismatch flagged');
-  for (const m of report.points.unitMismatches) {
-    assert.equal(typeof m.parsed, 'number');
-    assert.equal(typeof m.computed, 'number');
-    assert.notEqual(m.parsed, m.computed);
-  }
+  assert.deepEqual(report.points.unitMismatches, []);
+  assert.equal(report.points.computed, 2197);
+});
+
+test('per-unit point mismatches are listed when real', () => {
+  const { report } = run(fixture.replace('210 - Hell Pit Abomination', '999 - Hell Pit Abomination'));
+  const mismatch = report.points.unitMismatches.find(m => m.name === 'Hell Pit Abomination');
+  assert.ok(mismatch, 'mismatch flagged');
+  assert.equal(mismatch.parsed, 999);
+  assert.equal(mismatch.computed, 210);
 });
 
 test('unplaced items surface as warnings', () => {

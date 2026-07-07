@@ -102,6 +102,44 @@ test('classifyToken priority: command beats item prefix overlap', () => {
   assert.equal(c.type, 'command');
 });
 
+// --- model-group refinement (post-Phase D) ---
+
+test('rank-and-file sub-line count drives unit strength', () => {
+  // "31 Clanrats" includes the Weapon Team crew; the 30x line is the real
+  // rank-and-file strength.
+  const block = `232 - 31 Clanrats
+• 30x Clanrat, Shield, Clawleader, Standard Bearer, Musician
+• 1x Weapon Team
+• 1x Weapon Team Crew, Ratling Gun`;
+  const r = extractOptions(block, clanrats, skavenItems);
+  assert.equal(r.rankAndFileCount, 30);
+});
+
+test('full sub-line matches a compound stackable option with its count', () => {
+  const giantRats = skaven.core.find(u => u.id === 'giant-rats');
+  const block = `47 - 14 Giant Rats
+• 14x Giant Rat
+• 1x Packmaster, Whip`;
+  const r = extractOptions(block, giantRats, skavenItems);
+  assert.equal(r.rankAndFileCount, 14);
+  const packmaster = r.options.find(o => /packmaster, whip/i.test(o.name));
+  assert.ok(packmaster, 'Packmaster, Whip option matched as a whole line');
+  assert.equal(packmaster.stackableCount, 1);
+  // The Whip token must not leak into unknowns or double-match.
+  assert.deepEqual(r.unknownTokens, []);
+});
+
+test('full sub-line match picks the right compound variant', () => {
+  const giantRats = skaven.core.find(u => u.id === 'giant-rats');
+  const block = `52 - 14 Giant Rats
+• 14x Giant Rat
+• 1x Packmaster, Things-catcher`;
+  const r = extractOptions(block, giantRats, skavenItems);
+  const packmaster = r.options.find(o => /things-catcher/i.test(o.name));
+  assert.ok(packmaster, 'Things-catcher variant matched, not Whip');
+  assert.equal(r.options.some(o => /whip/i.test(o.name)), false);
+});
+
 test('champion sub-line items are flagged fromChampion', () => {
   const block = `222 - 25 Plague Monks
 • 1x Plague Deacon, Warpstone Amulet`;
