@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "In Progress",
+  "status": "Complete",
   "workflow": "plan-only",
   "execution_mode": "subagents",
   "goal": "Consolidate the converter to one tested ES-module implementation, make matching and detection data-driven and token-based, surface conversion warnings, then add New Recruit export.",
@@ -270,7 +270,7 @@
     {
       "letter": "E",
       "name": "New Recruit export",
-      "status": "Not Started",
+      "status": "Complete",
       "depends_on": [
         "B"
       ],
@@ -279,7 +279,7 @@
         {
           "id": "E1",
           "name": "Build NR catalogue index from .cat/.gst files",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [],
           "files": {
             "create": [
@@ -299,7 +299,7 @@
         {
           "id": "E2",
           "name": "NR roster generator",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [
             "E1"
           ],
@@ -319,7 +319,7 @@
         {
           "id": "E3",
           "name": "Enable New Recruit UI toggle",
-          "status": "pending",
+          "status": "completed",
           "depends_on": [
             "E2"
           ],
