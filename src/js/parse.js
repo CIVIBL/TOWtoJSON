@@ -312,5 +312,5 @@ export function parseWithFactionData(text, factionData, magicItemIndex) {
   // Use header points if available, otherwise use calculated sum
   const totalPoints = headerPoints !== null ? headerPoints : calculatedPoints;
 
-  return { units, totalPoints, unitCount: units.length };
+  return { units, totalPoints, unitCount: units.length, headerPoints };
 }
