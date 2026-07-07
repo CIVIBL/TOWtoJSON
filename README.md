@@ -2,7 +2,7 @@
 
 Convert Warhammer: The Old World army lists to importable JSON for army builder apps.
 
-**[Use it live](https://civibl.github.io/TOWtoJSON/)**
+**[Use it live](https://towlistconverter.xyz/)**
 
 ## What it does
 
