@@ -135,6 +135,18 @@ Hold the line
         </div>
       </div>
 
+      <!-- Manual faction picker (shown when detection fails) -->
+      <div id="faction-manual-section" class="mb-6 hidden">
+        <label for="faction-manual" class="block text-sm font-medium text-parchment-muted mb-2">
+          Faction (could not detect automatically)
+        </label>
+        <select
+          id="faction-manual"
+          class="w-full px-4 py-2 bg-parchment-dark border border-parchment-border rounded text-parchment-text focus:border-aged-gold focus:ring-1 focus:ring-aged-gold outline-none">
+          <option value="">Select a faction...</option>
+        </select>
+      </div>
+
       <!-- Army Composition Dropdown (hidden until faction detected) -->
       <div id="army-composition-section" class="mb-6 hidden">
         <label for="army-composition" class="block text-sm font-medium text-parchment-muted mb-2">
@@ -182,7 +194,7 @@ Hold the line
   <script type="module">
     import { parseWithFactionData } from './src/js/parse.js';
     import { buildMagicItemIndex } from './src/js/items.js';
-    import { detectFactionFromText, detectArmyOfInfamyFromText, getArmyCompositions } from './src/js/detect.js';
+    import { detectFaction, detectArmyOfInfamy, getArmyCompositions } from './src/js/detect.js';
     import { generateOWBJson } from './src/js/generate.js';
 
     // ============================================
@@ -207,6 +219,22 @@ Hold the line
       return magicItemsData;
     }
 
+    // Generated detection indexes (scripts/build-data.mjs)
+    let unitNameIndex = null;
+    let compositionsData = null;
+
+    async function loadDetectionData() {
+      if (unitNameIndex && compositionsData) return { unitNameIndex, compositionsData };
+      const [idxResp, compResp] = await Promise.all([
+        fetch('src/data/owb/unit-name-index.json'),
+        fetch('src/data/owb/army-compositions.json')
+      ]);
+      if (!idxResp.ok || !compResp.ok) throw new Error('Failed to load detection data');
+      unitNameIndex = await idxResp.json();
+      compositionsData = await compResp.json();
+      return { unitNameIndex, compositionsData };
+    }
+
     // ============================================
     // UI Logic
     // ============================================
@@ -219,6 +247,8 @@ Hold the line
     const armyCompositionSection = document.getElementById('army-composition-section');
     const armyCompositionSelect = document.getElementById('army-composition');
     const armyCompositionHint = document.getElementById('army-composition-hint');
+    const factionManualSection = document.getElementById('faction-manual-section');
+    const factionManualSelect = document.getElementById('faction-manual');
 
     let selectedFormat = 'owb';
     let detectedFactionSlug = null;
@@ -233,52 +263,79 @@ Hold the line
       };
     }
 
-    // Update army composition dropdown when text changes
+    // Show the composition dropdown for a faction, with AoI auto-detection.
+    async function showCompositionsFor(factionSlug, text) {
+      const { compositionsData } = await loadDetectionData();
+
+      const compositions = getArmyCompositions(factionSlug, compositionsData);
+      armyCompositionSelect.innerHTML = compositions.map(c =>
+        `<option value="${c.slug}">${c.name}</option>`
+      ).join('');
+
+      // AoI detection uses composition-restricted options/items, which
+      // requires the faction file and magic items (both cached after first use).
+      let aoiResult = { detected: null, suggestions: [], warnings: [] };
+      try {
+        const [factionData, magicItems] = await Promise.all([
+          loadFactionData(factionSlug),
+          loadMagicItems()
+        ]);
+        aoiResult = detectArmyOfInfamy(text, factionSlug, compositionsData, factionData, magicItems);
+      } catch (e) {
+        // Detection is best-effort; the dropdown still works manually.
+      }
+      detectedArmyOfInfamy = aoiResult;
+
+      if (aoiResult.detected) {
+        armyCompositionSelect.value = aoiResult.detected;
+      }
+      if (aoiResult.warnings.length > 0) {
+        armyCompositionHint.textContent = aoiResult.warnings[0];
+        armyCompositionHint.classList.remove('hidden');
+      } else {
+        armyCompositionHint.classList.add('hidden');
+      }
+
+      armyCompositionSection.classList.remove('hidden');
+    }
+
+    function showManualFactionPicker(compositionsData) {
+      if (factionManualSelect.options.length <= 1) {
+        const factionOptions = Object.entries(compositionsData.factions)
+          .map(([slug, f]) => `<option value="${slug}">${f.name}</option>`)
+          .join('');
+        factionManualSelect.innerHTML = '<option value="">Select a faction...</option>' + factionOptions;
+      }
+      factionManualSection.classList.remove('hidden');
+    }
+
+    // Update faction/composition UI when text changes
     const updateArmyComposition = debounce(async () => {
       const text = textarea.value.trim();
       if (!text) {
         armyCompositionSection.classList.add('hidden');
+        factionManualSection.classList.add('hidden');
         detectedFactionSlug = null;
         detectedArmyOfInfamy = null;
         return;
       }
 
       try {
-        // Detect faction from text using known unit names in FACTION_CONFIG
-        const factionSlug = detectFactionFromText(text);
+        const { unitNameIndex, compositionsData } = await loadDetectionData();
+        const factionSlug = detectFaction(text, unitNameIndex, compositionsData);
 
         if (!factionSlug) {
-          armyCompositionSection.classList.add('hidden');
-          detectedFactionSlug = null;
+          // Fall back to a manual picker instead of a dead end. Keep any
+          // faction the user already picked by hand.
+          detectedFactionSlug = factionManualSelect.value || null;
+          showManualFactionPicker(compositionsData);
+          if (!detectedFactionSlug) armyCompositionSection.classList.add('hidden');
           return;
         }
 
+        factionManualSection.classList.add('hidden');
         detectedFactionSlug = factionSlug;
-
-        // Populate dropdown
-        const compositions = getArmyCompositions(factionSlug);
-        armyCompositionSelect.innerHTML = compositions.map(c =>
-          `<option value="${c.slug}">${c.name}</option>`
-        ).join('');
-
-        // Detect Army of Infamy from text (simplified)
-        const aoiResult = detectArmyOfInfamyFromText(factionSlug, text);
-        detectedArmyOfInfamy = aoiResult;
-
-        // Auto-select if high confidence
-        if (aoiResult.detected) {
-          armyCompositionSelect.value = aoiResult.detected;
-        }
-
-        // Show hint if suggestion exists
-        if (aoiResult.warnings.length > 0) {
-          armyCompositionHint.textContent = aoiResult.warnings[0];
-          armyCompositionHint.classList.remove('hidden');
-        } else {
-          armyCompositionHint.classList.add('hidden');
-        }
-
-        armyCompositionSection.classList.remove('hidden');
+        await showCompositionsFor(factionSlug, text);
       } catch (e) {
         armyCompositionSection.classList.add('hidden');
       }
@@ -287,6 +344,13 @@ Hold the line
     textarea.addEventListener('input', () => {
       btnConvert.disabled = !textarea.value.trim();
       updateArmyComposition();
+    });
+
+    factionManualSelect.addEventListener('change', async () => {
+      const slug = factionManualSelect.value;
+      if (!slug) return;
+      detectedFactionSlug = slug;
+      await showCompositionsFor(slug, textarea.value.trim());
     });
 
     btnOwb.addEventListener('click', () => {
@@ -325,7 +389,7 @@ Hold the line
         // Use the detected faction from the dropdown (already computed on input)
         const factionSlug = detectedFactionSlug;
         if (!factionSlug) {
-          throw new Error('Could not detect faction. Please ensure the text contains recognizable unit names.');
+          throw new Error('Could not detect the faction. Pick one from the faction dropdown above and convert again.');
         }
 
         // Load data

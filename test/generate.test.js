@@ -1,11 +1,11 @@
 // Full-pipeline OWB generator tests against the live ES modules in src/js/.
-// detectFactionFromText -> buildMagicItemIndex -> parseWithFactionData -> generateOWBJson
+// detectFaction -> buildMagicItemIndex -> parseWithFactionData -> generateOWBJson
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-import { detectFactionFromText } from '../src/js/detect.js';
+import { detectFaction } from '../src/js/detect.js';
 import { buildMagicItemIndex } from '../src/js/items.js';
 import { parseWithFactionData } from '../src/js/parse.js';
 import { generateOWBJson } from '../src/js/generate.js';
@@ -13,9 +13,11 @@ import { generateOWBJson } from '../src/js/generate.js';
 const fixture = fs.readFileSync(new URL('./fixtures/skaven-bcp.txt', import.meta.url), 'utf8');
 const skavenData = JSON.parse(fs.readFileSync(new URL('../src/data/owb/skaven.json', import.meta.url), 'utf8'));
 const magicItemsData = JSON.parse(fs.readFileSync(new URL('../src/data/owb/magic-items.json', import.meta.url), 'utf8'));
+const unitNameIndex = JSON.parse(fs.readFileSync(new URL('../src/data/owb/unit-name-index.json', import.meta.url), 'utf8'));
+const compositionsData = JSON.parse(fs.readFileSync(new URL('../src/data/owb/army-compositions.json', import.meta.url), 'utf8'));
 
 function runPipeline() {
-  const factionSlug = detectFactionFromText(fixture);
+  const factionSlug = detectFaction(fixture, unitNameIndex, compositionsData);
   const itemIndex = buildMagicItemIndex(magicItemsData, factionSlug);
   const parsed = parseWithFactionData(fixture, skavenData, itemIndex);
   const output = generateOWBJson({
