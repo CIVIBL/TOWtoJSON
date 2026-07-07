@@ -365,21 +365,30 @@ Hold the line
     btnNr.addEventListener('click', () => setFormat('nr'));
 
     // New Recruit catalogue data (per COMPOSITION, not faction — NR ships
-    // separate catalogues for Armies of Infamy)
+    // separate catalogues for Armies of Infamy). index.json maps composition
+    // slugs to files: renegade legacies live in their base catalogue and all
+    // Knightly Orders share one.
     const nrDataCache = {};
     let nrGameSystem = null;
+    let nrManifest = null;
 
     async function loadNrData(compositionSlug) {
       if (!nrGameSystem) {
-        const resp = await fetch('src/data/nr/game-system.json');
-        if (!resp.ok) throw new Error('Failed to load New Recruit game system data');
-        nrGameSystem = await resp.json();
+        const [gsResp, idxResp] = await Promise.all([
+          fetch('src/data/nr/game-system.json'),
+          fetch('src/data/nr/index.json')
+        ]);
+        if (!gsResp.ok || !idxResp.ok) throw new Error('Failed to load New Recruit game system data');
+        nrGameSystem = await gsResp.json();
+        nrManifest = await idxResp.json();
       }
-      if (!(compositionSlug in nrDataCache)) {
-        const resp = await fetch(`src/data/nr/${compositionSlug}.json`);
-        nrDataCache[compositionSlug] = resp.ok ? await resp.json() : null;
+      const fileSlug = nrManifest.files[compositionSlug];
+      if (!fileSlug) return { nrFaction: null, gameSystem: nrGameSystem };
+      if (!(fileSlug in nrDataCache)) {
+        const resp = await fetch(`src/data/nr/${fileSlug}.json`);
+        nrDataCache[fileSlug] = resp.ok ? await resp.json() : null;
       }
-      return { nrFaction: nrDataCache[compositionSlug], gameSystem: nrGameSystem };
+      return { nrFaction: nrDataCache[fileSlug], gameSystem: nrGameSystem };
     }
 
     function showFeedback(html) {
@@ -418,7 +427,7 @@ Hold the line
       });
 
       const total = matchedList.units.length;
-      const unitWarnings = warnings.filter(w => /not (matched|found in the New Recruit catalogue)$/.test(w.reason));
+      const unitWarnings = warnings.filter(w => /^not /.test(w.reason));
       const matched = total - unitWarnings.length;
       const clean = warnings.length === 0;
 

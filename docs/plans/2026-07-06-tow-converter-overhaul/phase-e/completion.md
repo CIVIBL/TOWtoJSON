@@ -16,7 +16,8 @@ All three tasks complete. `npm test`: 61 tests, 61 pass. Commits: "feat: NR cata
 - Browser: NR toggle converts and downloads; Empire (no NR data shipped) gets a graceful "not yet available" message; OWB path unchanged.
 - Profiles/rules are NOT emitted (NR re-resolves them from the catalogue by id). MANUAL GATE OPEN: import ./skaven_2197pts.nr.json (untracked, repo root) at newrecruit.eu to confirm; if NR rejects rosters without profiles, that is the first thing to revisit.
 
-## Follow-ups
+## Follow-ups (both done post-phase)
 
-- Only 3 NR catalogues shipped; run `npm run build:nr -- --faction <slug>` after extending CATALOGUE_MAP to cover more factions/compositions (~1-2 MB each, lazily fetched).
-- NR data files are large due to magic-item subtree duplication per character; a shared-subtree encoding would cut them ~70% if size becomes a problem.
+- NR coverage extended to all 39 catalogues (every faction + AoI); src/data/nr/index.json maps all 51 composition slugs to files (renegade legacies -> base catalogue, the 5 Knightly Orders -> one shared catalogue). Guarded by test/nr-data.test.js.
+- Shared-subtree encoding implemented (42.3 MB -> 5.3 MB); build stores link-target children once under `shared`, generator re-prefixes paths on expansion.
+- Hardening note: OWB names Empire infantry "State Troops"; real BCP lists often say "Halberdiers/Swordsmen" — needs alias handling in the faction-sweep work.

@@ -60,14 +60,36 @@ function matchRequest(node, requests) {
 const isMandatory = (node) => typeof node.min === 'number' && node.min >= 1;
 
 /**
+ * Resolve a node's children. Shared subtrees (node.sub, produced by the build
+ * script to deduplicate link targets like magic item trees) are stored with
+ * paths relative to the linking entry — re-prefix them with this node's link
+ * trail (its path minus the final target-id segment).
+ */
+export function childrenOf(node, ctx) {
+  if (node.children) return node.children;
+  if (!node.sub) return [];
+  if (ctx.childrenCache.has(node)) return ctx.childrenCache.get(node);
+  const stored = ctx.shared[node.sub] || [];
+  const prefix = node.path.slice(0, node.path.lastIndexOf('::'));
+  const reprefix = (nodes) => nodes.map(n => ({
+    ...n,
+    path: `${prefix}::${n.path}`,
+    ...(n.children ? { children: reprefix(n.children) } : {})
+  }));
+  const expanded = reprefix(stored);
+  ctx.childrenCache.set(node, expanded);
+  return expanded;
+}
+
+/**
  * Does this subtree contain a requested node? (memoized per call tree)
  */
-function subtreeWants(node, requests, memo) {
+function subtreeWants(node, requests, memo, ctx) {
   if (memo.has(node)) return memo.get(node);
   let wants = Boolean(matchRequest(node, requests));
   if (!wants) {
-    for (const c of node.children || []) {
-      if (subtreeWants(c, requests, memo)) { wants = true; break; }
+    for (const c of childrenOf(node, ctx)) {
+      if (subtreeWants(c, requests, memo, ctx)) { wants = true; break; }
     }
   }
   memo.set(node, wants);
@@ -98,8 +120,8 @@ function buildSelection(node, ctx, parentNumber, matchedNames) {
 
   const memo = ctx.wantsMemo;
   const children = [];
-  for (const child of node.children || []) {
-    const childRequested = subtreeWants(child, ctx.requests, memo);
+  for (const child of childrenOf(node, ctx)) {
+    const childRequested = subtreeWants(child, ctx.requests, memo, ctx);
     if (childRequested || isMandatory(child)) {
       children.push(buildSelection(child, ctx, node.type === 'model' ? number : 1, matchedNames));
     }
@@ -163,12 +185,14 @@ export function generateNRJson(matchedList, nrFaction, gameSystem, options = {})
       requests,
       strength: m.modelCount || 1,
       mainModel,
-      wantsMemo: new Map()
+      wantsMemo: new Map(),
+      childrenCache: new Map(),
+      shared: nrFaction.shared || {}
     };
     const matchedNames = new Set();
     const children = [];
     for (const child of nrUnit.children || []) {
-      if (subtreeWants(child, requests, ctx.wantsMemo) || isMandatory(child) || child === mainModel) {
+      if (subtreeWants(child, requests, ctx.wantsMemo, ctx) || isMandatory(child) || child === mainModel) {
         children.push(buildSelection(child, ctx, 1, matchedNames));
       }
     }
