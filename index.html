@@ -196,6 +196,7 @@ Hold the line
     import { buildMagicItemIndex } from './src/js/items.js';
     import { detectFaction, detectArmyOfInfamy, getArmyCompositions } from './src/js/detect.js';
     import { generateOWBJson } from './src/js/generate.js';
+    import { buildReport, cleanDisplayName } from './src/js/report.js';
 
     // ============================================
     // Faction Data (loaded dynamically)
@@ -423,23 +424,51 @@ Hold the line
           armyComposition: selectedComposition
         });
 
-        // Show feedback
-        const successCount = parsed.units.length;
+        // Build and render the conversion report
+        const report = buildReport(parsed, owbJson);
         const compositionName = armyCompositionSelect.options[armyCompositionSelect.selectedIndex]?.text || 'Grand Army';
-
         const displayFaction = factionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-        let html = `<div class="flex items-center gap-2 text-aged-sage mb-2">
+        const clean = report.matched === report.total;
+        let html = `<div class="flex items-center gap-2 ${clean ? 'text-aged-sage' : 'text-aged-crimson'} mb-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${clean ? 'M5 13l4 4L19 7' : 'M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z'}"></path>
           </svg>
-          <span class="font-medium">Parsed: ${displayFaction} - ${parsed.totalPoints} pts</span>
-        </div>
-        <div class="text-parchment-text text-sm mb-2">${successCount} units found (${compositionName})</div>`;
+          <span class="font-medium">Matched ${report.matched} of ${report.total} entries — ${displayFaction}, ${esc(compositionName)}, ${report.points.parsed} pts</span>
+        </div>`;
 
-        // Show matched units
-        const unitNames = parsed.units.map(u => `${u.modelCount > 1 ? u.modelCount + ' ' : ''}${u.rawName}`);
-        html += `<div class="text-parchment-muted text-xs mt-2">Units: ${unitNames.join(', ')}</div>`;
+        if (report.dropped.length > 0) {
+          html += `<div class="text-aged-crimson text-sm mb-2">
+            <span class="font-medium">Not in the export (check spelling, or report an issue on GitHub):</span>
+            <ul class="list-disc ml-5 mt-1">${report.dropped.map(d =>
+              `<li>${esc(d.name)} (${d.points} pts)</li>`).join('')}</ul>
+          </div>`;
+        }
+
+        for (const u of report.unknownTokens) {
+          html += `<div class="text-aged-gold text-sm mb-1">${esc(u.unit)}: ${u.tokens.map(esc).map(t => `"${t}"`).join(', ')} not recognized — missing from the export.</div>`;
+        }
+        for (const w of report.warnings.filter(w => !w.includes('NOT in the export'))) {
+          html += `<div class="text-aged-gold text-sm mb-1">${esc(w)}</div>`;
+        }
+
+        // Points check
+        const pts = report.points;
+        if (pts.unitMismatches.length > 0 || (pts.header !== null && pts.header !== pts.computed)) {
+          html += `<details class="text-sm text-parchment-muted mt-2 mb-1">
+            <summary class="cursor-pointer text-aged-gold">Old World Builder will show ${pts.computed} pts (list says ${pts.header ?? pts.parsed})</summary>
+            <ul class="list-disc ml-5 mt-1">${pts.unitMismatches.map(m =>
+              `<li>${esc(m.name)}: listed ${m.parsed}, OWB shows ${m.computed}</li>`).join('')}</ul>
+            <p class="mt-1">Usually caused by model counts that include sub-models (weapon teams, packmasters) or options OWB prices differently. The list still imports; adjust it in the builder.</p>
+          </details>`;
+        } else {
+          html += `<div class="text-parchment-muted text-sm mt-1">Points check: ${pts.computed} pts in Old World Builder.</div>`;
+        }
+
+        const unitNames = parsed.units.filter(u => u.success).map(u =>
+          `${u.modelCount > 1 ? u.modelCount + ' ' : ''}${cleanDisplayName(u.rawName)}`);
+        html += `<div class="text-parchment-muted text-xs mt-2">Exported: ${unitNames.map(esc).join(', ')}</div>`;
 
         showFeedback(html);
 
