@@ -16,6 +16,21 @@
    "entryId": "3923-9999-f3e2-9245",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "71a0-34a3-9bbf-e645",
+     "name": "0-1 Glade Lord or Spellweaver per 1,000 points",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -3962,6 +3977,21 @@
    "entryId": "2fbc-5442-c332-f043",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "71a0-34a3-9bbf-e645",
+     "name": "0-1 Glade Lord or Spellweaver per 1,000 points",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -7825,6 +7855,16 @@
    "entryId": "2cc9-e0e8-dd72-422a",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -8004,6 +8044,21 @@
    "linkId": "f253-f3cd-9418-5afa",
    "entryId": "0b56-2a71-424a-5042",
    "categories": [
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -11633,6 +11688,16 @@
    "linkId": "1b4a-a55b-5c62-4874",
    "entryId": "96d3-d1a9-ff94-84f6",
    "categories": [
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -15317,6 +15382,16 @@
    "linkId": "304e-1b69-6ac4-3d8e",
    "entryId": "f957-3ded-9234-666f",
    "categories": [
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -19232,6 +19307,16 @@
    "entryId": "8192-39b4-a938-caec",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -23095,6 +23180,16 @@
    "entryId": "4b26-6fe7-b18f-8392",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -23278,6 +23373,21 @@
    "entryId": "9a51-e463-37b2-5381",
    "categories": [
     {
+     "entryId": "3ba8-a41e-b6ae-d4ba",
+     "name": "Named Characters",
+     "primary": true
+    },
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -23363,6 +23473,26 @@
    "entryId": "22da-2e6a-3ff1-d441",
    "categories": [
     {
+     "entryId": "3ba8-a41e-b6ae-d4ba",
+     "name": "Named Characters",
+     "primary": true
+    },
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": false
+    },
+    {
+     "entryId": "71a0-34a3-9bbf-e645",
+     "name": "0-1 Glade Lord or Spellweaver per 1,000 points",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -23421,6 +23551,21 @@
    "linkId": "2ef2-64b3-41b7-6204",
    "entryId": "d3d1-dd14-80c2-840e",
    "categories": [
+    {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -27914,6 +28059,21 @@
    "entryId": "1ae5-ebd2-c2f0-74da",
    "categories": [
     {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -28039,6 +28199,21 @@
    "linkId": "2c37-c198-3b22-303a",
    "entryId": "886b-7a97-d451-3f0c",
    "categories": [
+    {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -32572,6 +32747,21 @@
    "entryId": "9264-289b-db3a-5b8d",
    "categories": [
     {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -36227,6 +36417,21 @@
    "entryId": "9264-289b-db3a-5b8d",
    "categories": [
     {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -39881,6 +40086,21 @@
    "linkId": "ce42-3543-1f9a-4e6c",
    "entryId": "873e-530a-12f0-b908",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -44355,6 +44575,21 @@
    "entryId": "d37c-a95d-615e-71d9",
    "categories": [
     {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -48827,6 +49062,21 @@
    "linkId": "2e17-8c5b-994d-af2b",
    "entryId": "7424-2365-3deb-fb13",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -53303,6 +53553,21 @@
    "entryId": "ff64-94cc-3afd-5333",
    "categories": [
     {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -53429,6 +53694,21 @@
    "entryId": "226a-c7c5-2a68-5f72",
    "categories": [
     {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -53550,6 +53830,21 @@
    "linkId": "f561-a63e-90b1-5c3d",
    "entryId": "4a01-6b67-783-6d3a",
    "categories": [
+    {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -58016,6 +58311,21 @@
    "linkId": "ec99-3898-0527-dd26",
    "entryId": "db57-f9aa-42fe-a3bd",
    "categories": [
+    {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "ab10-4058-4013-f8f7",
+     "name": "Faction: Wood Elf Realms - Host of Talsyn",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",

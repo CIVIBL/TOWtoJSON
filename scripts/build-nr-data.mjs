@@ -202,6 +202,10 @@ function buildFactionData(slug) {
     const target = nodeIndex.get(link['@targetId']);
     if (!target) { console.warn(`  unresolved root link: ${link['@name']}`); continue; }
     const seen = new Set([`${target['@id']}|`]);
+    // The rank category (primary=true) usually sits on the root entryLink,
+    // faction tags on the shared target entry — merge both.
+    const categories = [...categoriesOf(link), ...categoriesOf(target)
+      .filter(c => !categoriesOf(link).some(l => l.entryId === c.entryId))];
     units.push({
       name: link['@name'] || target['@name'],
       type: target['@type'],
@@ -209,7 +213,7 @@ function buildFactionData(slug) {
       linkId: link['@id'],
       entryId: target['@id'],
       points: pointsOf(link) ?? pointsOf(target) ?? undefined,
-      categories: categoriesOf(target),
+      categories,
       children: walkChildren(target, [link['@id']], '', 0, seen)
     });
   }

@@ -16,6 +16,16 @@
    "entryId": "1ae5-ebd2-c2f0-74da",
    "categories": [
     {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -141,6 +151,16 @@
    "linkId": "4aaa-8b49-81fa-859d",
    "entryId": "886b-7a97-d451-3f0c",
    "categories": [
+    {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -4674,6 +4694,21 @@
    "entryId": "3923-9999-f3e2-9245",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "71a0-34a3-9bbf-e645",
+     "name": "0-1 Glade Lord or Spellweaver per 1,000 points",
+     "primary": false
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -8619,6 +8654,16 @@
    "linkId": "8538-cdff-3de9-7a4f",
    "entryId": "d3d1-dd14-80c2-840e",
    "categories": [
+    {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -13112,6 +13157,16 @@
    "entryId": "226a-c7c5-2a68-5f72",
    "categories": [
     {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -13233,6 +13288,16 @@
    "linkId": "c6c1-4fad-5477-e824",
    "entryId": "4a01-6b67-783-6d3a",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -17700,6 +17765,21 @@
    "entryId": "ff64-94cc-3afd-5333",
    "categories": [
     {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -17825,6 +17905,16 @@
    "linkId": "fb36-3be-b8a3-1fe3",
    "entryId": "9264-289b-db3a-5b8d",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -21480,6 +21570,11 @@
    "linkId": "cc75-3d13-3683-1c2f",
    "entryId": "f957-3ded-9234-666f",
    "categories": [
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -25395,6 +25490,11 @@
    "entryId": "4b26-6fe7-b18f-8392",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -25577,6 +25677,11 @@
    "linkId": "3260-b29b-a3b4-f5c2",
    "entryId": "8192-39b4-a938-caec",
    "categories": [
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -29441,6 +29546,21 @@
    "entryId": "2fbc-5442-c332-f043",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "71a0-34a3-9bbf-e645",
+     "name": "0-1 Glade Lord or Spellweaver per 1,000 points",
+     "primary": false
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -33304,6 +33424,11 @@
    "entryId": "96d3-d1a9-ff94-84f6",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -36987,6 +37112,11 @@
    "linkId": "1983-2db2-a1e9-1a36",
    "entryId": "4fdd-d23b-8a59-56db",
    "categories": [
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -40712,6 +40842,16 @@
    "entryId": "2cc9-e0e8-dd72-422a",
    "categories": [
     {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": true
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -40891,6 +41031,16 @@
    "linkId": "c80d-57d7-e7cb-3c2e",
    "entryId": "b811-3815-bff1-1680",
    "categories": [
+    {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -45468,6 +45618,16 @@
    "entryId": "f701-8966-f816-10c8",
    "categories": [
     {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -49137,6 +49297,16 @@
    "linkId": "2f11-1136-9c37-7ffa",
    "entryId": "d37c-a95d-615e-71d9",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -53610,6 +53780,16 @@
    "linkId": "c8ee-228f-f211-54cf",
    "entryId": "3f3d-ccd8-ad95-1750",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -58103,6 +58283,16 @@
    "entryId": "a167-14b-f89a-2f11",
    "categories": [
     {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -61766,6 +61956,16 @@
    "linkId": "ab94-1cf1-ee29-1bd0",
    "entryId": "7424-2365-3deb-fb13",
    "categories": [
+    {
+     "entryId": "633f-f67a-1b6a-d203",
+     "name": "Special",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -66242,6 +66442,21 @@
    "entryId": "db57-f9aa-42fe-a3bd",
    "categories": [
     {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -66284,6 +66499,16 @@
    "linkId": "b940-5b75-2113-ecc1",
    "entryId": "9264-289b-db3a-5b8d",
    "categories": [
+    {
+     "entryId": "f0e3-2e32-8866-ea32",
+     "name": "Core",
+     "primary": true
+    },
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
@@ -69940,6 +70165,16 @@
    "entryId": "9a51-e463-37b2-5381",
    "categories": [
     {
+     "entryId": "3ba8-a41e-b6ae-d4ba",
+     "name": "Named Characters",
+     "primary": true
+    },
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -70025,6 +70260,26 @@
    "entryId": "22da-2e6a-3ff1-d441",
    "categories": [
     {
+     "entryId": "3ba8-a41e-b6ae-d4ba",
+     "name": "Named Characters",
+     "primary": true
+    },
+    {
+     "entryId": "a4cc-15c9-cfae-1b3b",
+     "name": "Characters",
+     "primary": false
+    },
+    {
+     "entryId": "71a0-34a3-9bbf-e645",
+     "name": "0-1 Glade Lord or Spellweaver per 1,000 points",
+     "primary": false
+    },
+    {
+     "entryId": "27c9-52f0-c942-681e",
+     "name": "1 single 'per 1000 points' selection in Battle March",
+     "primary": false
+    },
+    {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
      "primary": false
@@ -70083,6 +70338,16 @@
    "linkId": "6ab7-c81a-d632-055f",
    "entryId": "806b-f97c-3a1c-28e2",
    "categories": [
+    {
+     "entryId": "fec1-537a-bbeb-7926",
+     "name": "Units (not including units whose troop type is 'swarms', 'war beasts' or 'war machines')",
+     "primary": false
+    },
+    {
+     "entryId": "2bfe-5863-46fe-d284",
+     "name": "Rare",
+     "primary": true
+    },
     {
      "entryId": "f9f5-dd21-7903-b9c",
      "name": "Faction: Wood Elf Realms",
