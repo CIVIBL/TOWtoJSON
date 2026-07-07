@@ -54,7 +54,8 @@ export function matchUnitName(unitNameArea, unitIndex) {
 
 /**
  * Normalize a name for comparison: lowercase, drop {faction} / (role) annotations
- * and asterisk footnote markers, collapse whitespace.
+ * and asterisk footnote markers, treat hyphens as spaces ("Men-at-Arms" ==
+ * "Men at Arms", "Eagle-Claw" == "Eagle Claw"), collapse whitespace.
  */
 function norm(s) {
   return String(s)
@@ -62,6 +63,7 @@ function norm(s) {
     .replace(/\{[^}]*\}/g, '')
     .replace(/\([^)]*\)/g, '')
     .replace(/\*/g, '')
+    .replace(/-/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -355,6 +357,10 @@ function addCommand(result, index, data) {
   if (!result.command.some(c => c.index === index)) {
     result.command.push({ index, name: norm(data.name_en || data.name || ''), data });
   }
+}
+
+export function applyClassification(result, c, unit, fromChampion) {
+  return apply(result, c, unit, fromChampion);
 }
 
 function apply(result, c, unit, fromChampion) {

@@ -1,0 +1,147 @@
+{
+  "__note": "Colloquial/legacy unit names players and BCP exports use, mapped to canonical OWB unit names. Values are either a canonical name string or { unit, implies } where implies lists equipment/option names the alias carries (a 'Halberdiers' entry means State Troops WITH halberds). Hand-maintained; hyphen/space and {annotation} differences need no alias (handled by the matcher).",
+  "empire-of-man": {
+    "halberdiers": { "unit": "State Troops", "implies": ["Halberds"] },
+    "spearmen": { "unit": "State Troops", "implies": ["Thrusting spears"] },
+    "swordsmen": { "unit": "State Troops", "implies": ["Hand weapons", "Shields"] },
+    "handgunners": { "unit": "State Missile Troops", "implies": ["Handguns"] },
+    "crossbowmen": { "unit": "State Missile Troops", "implies": ["Crossbows"] },
+    "archers": "Empire Archers",
+    "greatswords": "Empire Greatswords",
+    "knights": "Empire Knights",
+    "knights panther": "Empire Knights Panther",
+    "road wardens": "Empire Road Wardens",
+    "war wagon": "Empire War Wagon",
+    "engineer": "Empire Engineer",
+    "free company": "Free Company Militia",
+    "militia": "Free Company Militia",
+    "cannon": "Great Cannon {empire}",
+    "battle wizard": "Master Mage",
+    "warrior priest": "Priest of Sigmar"
+  },
+  "dwarfen-mountain-holds": {
+    "warriors": "Dwarf Warriors",
+    "dwarf lord": "King",
+    "gyrocopter": "Gyrocopters"
+  },
+  "kingdom-of-bretonnia": {
+    "knights of the realm": "Mounted Knights of the Realm",
+    "trebuchet": "Field Trebuchet",
+    "bowmen": "Peasant Bowmen",
+    "foot knights": "Knights of the Realm on Foot"
+  },
+  "high-elf-realms": {
+    "archers": "Elven Archers",
+    "spearmen": "Elven Spearmen",
+    "swordmasters": "Swordmasters of Hoeth",
+    "white lions": "White Lions of Chrace",
+    "sea guard": "Lothern Sea Guard",
+    "reavers": "Ellyrian Reavers",
+    "bolt thrower": "Eagle-Claw Bolt Thrower",
+    "lion chariot": "Lion Chariot of Chrace"
+  },
+  "orc-and-goblin-tribes": {
+    "orc boyz": "Orc Mob",
+    "boyz": "Orc Mob",
+    "orcs": "Orc Mob",
+    "black orcs": "Black Orc Mob",
+    "boar boyz": "Orc Boar Boy Mob",
+    "goblins": "Goblin Mob",
+    "night goblins": "Night Goblin Mob",
+    "wolf riders": "Goblin Wolf Rider Mob",
+    "spider riders": "Goblin Spider Rider Mob",
+    "squig hoppers": "Night Goblin Squig Hopper Mob",
+    "squig herd": "Night Goblin Squig Herd",
+    "trolls": "Common Troll Mob",
+    "stone trolls": "Stone Troll Mob",
+    "river trolls": "River Troll Mob",
+    "snotlings": "Snotling Mob",
+    "pump wagon": "Snotling Pump Wagons",
+    "rock lobber": "Goblin Rock Lobber",
+    "bolt thrower": "Goblin Bolt Throwa",
+    "doom diver": "Doom Diver Catapult"
+  },
+  "vampire-counts": {
+    "skeletons": "Skeleton Warriors {vampire counts}",
+    "skeleton warriors": "Skeleton Warriors {vampire counts}",
+    "ghouls": "Crypt Ghouls",
+    "vampire lord": "Vampire Count {renegade}",
+    "wolves": "Dire Wolves"
+  },
+  "tomb-kings-of-khemri": {
+    "skeletons": "Skeleton Warriors {tomb kings}",
+    "liche priest": "Mortuary Priest",
+    "liche high priest": "High Priest",
+    "warsphinx": "Khemrian Warsphinx"
+  },
+  "warriors-of-chaos": {
+    "marauders": "Chaos Marauders",
+    "warriors": "Chaos Warriors",
+    "knights": "Chaos Knights",
+    "warhounds": "Chaos Warhounds {warriors of chaos}",
+    "chosen": "Chosen Chaos Warriors"
+  },
+  "beastmen-brayherds": {
+    "bestigors": "Bestigor Herd",
+    "centigors": "Centigor Herd",
+    "minotaurs": "Minotaur Herd",
+    "razorgors": "Razorgor Herd",
+    "warhounds": "Chaos Warhounds"
+  },
+  "dark-elves": {
+    "corsairs": "Black Ark Corsairs",
+    "executioners": "Har Ganeth Executioners",
+    "black guard": "Black Guard of Naggarond",
+    "shades": "Dark Elf Shades",
+    "warriors": "Dark Elf Warriors",
+    "dreadspears": "Dark Elf Warriors",
+    "bleakswords": "Dark Elf Warriors",
+    "darkshards": "Repeater Crossbowmen",
+    "crossbowmen": "Repeater Crossbowmen",
+    "dreadlord": "Dark Elf Dreadlord",
+    "assassin": "Khainite Assassin",
+    "medusa": "Bloodwrack Medusas"
+  },
+  "lizardmen": {
+    "skinks": "Skink Skirmishers",
+    "saurus": "Saurus Warriors",
+    "terradons": "Terradon Riders",
+    "ripperdactyls": "Ripperdactyl Riders",
+    "salamanders": "Salamander Pack",
+    "razordons": "Razordon Pack",
+    "slann": "Slann Mage-Priest {renegade}",
+    "cold ones": "Cold One Riders"
+  },
+  "ogre-kingdoms": {
+    "bulls": "Ogre Bulls",
+    "ogres": "Ogre Bulls",
+    "gnoblars": "Gnoblar Fighters",
+    "sabretusks": "Sabretusk Pack",
+    "stonehorn": "Stonehorn Riders",
+    "thundertusk": "Thundertusk Riders"
+  },
+  "daemons-of-chaos": {
+    "bloodletters": "Bloodletters of Khorne",
+    "bloodcrushers": "Bloodcrushers of Khorne",
+    "flesh hounds": "Flesh Hounds of Khorne",
+    "daemonettes": "Daemonettes of Slaanesh",
+    "seekers": "Seekers of Slaanesh",
+    "fiends": "Fiends of Slaanesh",
+    "plaguebearers": "Plaguebearers of Nurgle",
+    "plague drones": "Plague Drones of Nurgle",
+    "beasts": "Beasts of Nurgle",
+    "pink horrors": "Pink Horrors of Tzeentch",
+    "blue horrors": "Blue Horrors of Tzeentch",
+    "flamers": "Flamers of Tzeentch",
+    "screamers": "Screamers of Tzeentch"
+  },
+  "wood-elf-realms": {
+    "treekin": "Tree Kin"
+  },
+  "skaven": {
+    "ratling gun team": "Weapon Team",
+    "jezzails": "Warplock Jezzails",
+    "globadiers": "Poisoned Wind Globadiers",
+    "censer bearers": "Plague Censer Bearers"
+  }
+}

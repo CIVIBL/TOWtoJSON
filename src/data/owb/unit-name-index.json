@@ -45,10 +45,22 @@
   "great bray-shamans": [
    "beastmen-brayherds"
   ],
+  "great bray shaman": [
+   "beastmen-brayherds"
+  ],
+  "great bray shamans": [
+   "beastmen-brayherds"
+  ],
   "bray-shaman": [
    "beastmen-brayherds"
   ],
   "bray-shamans": [
+   "beastmen-brayherds"
+  ],
+  "bray shaman": [
+   "beastmen-brayherds"
+  ],
+  "bray shamans": [
    "beastmen-brayherds"
   ],
   "doombull": [
@@ -273,10 +285,48 @@
    "beastmen-brayherds",
    "warriors-of-chaos"
   ],
+  "bestigors": [
+   "beastmen-brayherds"
+  ],
+  "bestigor": [
+   "beastmen-brayherds"
+  ],
+  "centigors": [
+   "beastmen-brayherds"
+  ],
+  "centigor": [
+   "beastmen-brayherds"
+  ],
+  "minotaurs": [
+   "beastmen-brayherds"
+  ],
+  "minotaur": [
+   "beastmen-brayherds"
+  ],
+  "razorgors": [
+   "beastmen-brayherds"
+  ],
+  "razorgor": [
+   "beastmen-brayherds"
+  ],
+  "warhounds": [
+   "beastmen-brayherds",
+   "warriors-of-chaos"
+  ],
+  "warhound": [
+   "beastmen-brayherds",
+   "warriors-of-chaos"
+  ],
   "sorcerer-prophet": [
    "chaos-dwarfs"
   ],
   "sorcerer-prophets": [
+   "chaos-dwarfs"
+  ],
+  "sorcerer prophet": [
+   "chaos-dwarfs"
+  ],
+  "sorcerer prophets": [
    "chaos-dwarfs"
   ],
   "daemonsmith sorcerer": [
@@ -710,6 +760,84 @@
   "skull cannon khorne": [
    "daemons-of-chaos"
   ],
+  "bloodletters": [
+   "daemons-of-chaos"
+  ],
+  "bloodletter": [
+   "daemons-of-chaos"
+  ],
+  "bloodcrushers": [
+   "daemons-of-chaos"
+  ],
+  "bloodcrusher": [
+   "daemons-of-chaos"
+  ],
+  "flesh hounds": [
+   "daemons-of-chaos"
+  ],
+  "flesh hound": [
+   "daemons-of-chaos"
+  ],
+  "daemonettes": [
+   "daemons-of-chaos"
+  ],
+  "daemonette": [
+   "daemons-of-chaos"
+  ],
+  "seekers": [
+   "daemons-of-chaos"
+  ],
+  "seeker": [
+   "daemons-of-chaos"
+  ],
+  "fiends": [
+   "daemons-of-chaos"
+  ],
+  "fiend": [
+   "daemons-of-chaos"
+  ],
+  "plaguebearers": [
+   "daemons-of-chaos"
+  ],
+  "plaguebearer": [
+   "daemons-of-chaos"
+  ],
+  "plague drones": [
+   "daemons-of-chaos"
+  ],
+  "plague drone": [
+   "daemons-of-chaos"
+  ],
+  "beasts": [
+   "daemons-of-chaos"
+  ],
+  "beast": [
+   "daemons-of-chaos"
+  ],
+  "pink horrors": [
+   "daemons-of-chaos"
+  ],
+  "pink horror": [
+   "daemons-of-chaos"
+  ],
+  "blue horrors": [
+   "daemons-of-chaos"
+  ],
+  "blue horror": [
+   "daemons-of-chaos"
+  ],
+  "flamers": [
+   "daemons-of-chaos"
+  ],
+  "flamer": [
+   "daemons-of-chaos"
+  ],
+  "screamers": [
+   "daemons-of-chaos"
+  ],
+  "screamer": [
+   "daemons-of-chaos"
+  ],
   "dark elf dreadlord": [
    "dark-elves"
   ],
@@ -857,6 +985,84 @@
   "reaper bolt throwers": [
    "dark-elves"
   ],
+  "corsairs": [
+   "dark-elves"
+  ],
+  "corsair": [
+   "dark-elves"
+  ],
+  "executioners": [
+   "dark-elves"
+  ],
+  "executioner": [
+   "dark-elves"
+  ],
+  "black guard": [
+   "dark-elves"
+  ],
+  "black guards": [
+   "dark-elves"
+  ],
+  "shades": [
+   "dark-elves"
+  ],
+  "shade": [
+   "dark-elves"
+  ],
+  "warriors": [
+   "dark-elves",
+   "dwarfen-mountain-holds",
+   "warriors-of-chaos"
+  ],
+  "warrior": [
+   "dark-elves",
+   "dwarfen-mountain-holds",
+   "warriors-of-chaos"
+  ],
+  "dreadspears": [
+   "dark-elves"
+  ],
+  "dreadspear": [
+   "dark-elves"
+  ],
+  "bleakswords": [
+   "dark-elves"
+  ],
+  "bleaksword": [
+   "dark-elves"
+  ],
+  "darkshards": [
+   "dark-elves"
+  ],
+  "darkshard": [
+   "dark-elves"
+  ],
+  "crossbowmen": [
+   "dark-elves",
+   "empire-of-man"
+  ],
+  "crossbowmens": [
+   "dark-elves",
+   "empire-of-man"
+  ],
+  "dreadlord": [
+   "dark-elves"
+  ],
+  "dreadlords": [
+   "dark-elves"
+  ],
+  "assassin": [
+   "dark-elves"
+  ],
+  "assassins": [
+   "dark-elves"
+  ],
+  "medusa": [
+   "dark-elves"
+  ],
+  "medusas": [
+   "dark-elves"
+  ],
   "king": [
    "dwarfen-mountain-holds"
   ],
@@ -903,10 +1109,12 @@
    "dwarfen-mountain-holds"
   ],
   "engineer": [
-   "dwarfen-mountain-holds"
+   "dwarfen-mountain-holds",
+   "empire-of-man"
   ],
   "engineers": [
-   "dwarfen-mountain-holds"
+   "dwarfen-mountain-holds",
+   "empire-of-man"
   ],
   "engineer sapper": [
    "dwarfen-mountain-holds"
@@ -1032,10 +1240,14 @@
    "dwarfen-mountain-holds"
   ],
   "bolt thrower": [
-   "dwarfen-mountain-holds"
+   "dwarfen-mountain-holds",
+   "high-elf-realms",
+   "orc-and-goblin-tribes"
   ],
   "bolt throwers": [
-   "dwarfen-mountain-holds"
+   "dwarfen-mountain-holds",
+   "high-elf-realms",
+   "orc-and-goblin-tribes"
   ],
   "grudge thrower": [
    "dwarfen-mountain-holds"
@@ -1050,10 +1262,12 @@
    "dwarfen-mountain-holds"
   ],
   "cannon": [
-   "dwarfen-mountain-holds"
+   "dwarfen-mountain-holds",
+   "empire-of-man"
   ],
   "cannons": [
-   "dwarfen-mountain-holds"
+   "dwarfen-mountain-holds",
+   "empire-of-man"
   ],
   "irondrakes": [
    "dwarfen-mountain-holds"
@@ -1085,6 +1299,12 @@
   "goblin-hewers": [
    "dwarfen-mountain-holds"
   ],
+  "goblin hewer": [
+   "dwarfen-mountain-holds"
+  ],
+  "goblin hewers": [
+   "dwarfen-mountain-holds"
+  ],
   "imperial dwarf mercenaries": [
    "dwarfen-mountain-holds"
   ],
@@ -1095,6 +1315,12 @@
    "dwarfen-mountain-holds"
   ],
   "prince ulther's dragon companys": [
+   "dwarfen-mountain-holds"
+  ],
+  "dwarf lord": [
+   "dwarfen-mountain-holds"
+  ],
+  "dwarf lords": [
    "dwarfen-mountain-holds"
   ],
   "general of the empire": [
@@ -1521,6 +1747,96 @@
   "imperial ogre": [
    "empire-of-man"
   ],
+  "halberdiers": [
+   "empire-of-man"
+  ],
+  "halberdier": [
+   "empire-of-man"
+  ],
+  "spearmen": [
+   "empire-of-man",
+   "high-elf-realms"
+  ],
+  "spearmens": [
+   "empire-of-man",
+   "high-elf-realms"
+  ],
+  "swordsmen": [
+   "empire-of-man"
+  ],
+  "swordsmens": [
+   "empire-of-man"
+  ],
+  "handgunners": [
+   "empire-of-man"
+  ],
+  "handgunner": [
+   "empire-of-man"
+  ],
+  "archers": [
+   "empire-of-man",
+   "high-elf-realms"
+  ],
+  "archer": [
+   "empire-of-man",
+   "high-elf-realms"
+  ],
+  "greatswords": [
+   "empire-of-man"
+  ],
+  "greatsword": [
+   "empire-of-man"
+  ],
+  "knights": [
+   "empire-of-man",
+   "warriors-of-chaos"
+  ],
+  "knight": [
+   "empire-of-man",
+   "warriors-of-chaos"
+  ],
+  "knights panther": [
+   "empire-of-man"
+  ],
+  "knights panthers": [
+   "empire-of-man"
+  ],
+  "road wardens": [
+   "empire-of-man"
+  ],
+  "road warden": [
+   "empire-of-man"
+  ],
+  "war wagon": [
+   "empire-of-man"
+  ],
+  "war wagons": [
+   "empire-of-man"
+  ],
+  "free company": [
+   "empire-of-man"
+  ],
+  "free companys": [
+   "empire-of-man"
+  ],
+  "militia": [
+   "empire-of-man"
+  ],
+  "militias": [
+   "empire-of-man"
+  ],
+  "battle wizard": [
+   "empire-of-man"
+  ],
+  "battle wizards": [
+   "empire-of-man"
+  ],
+  "warrior priest": [
+   "empire-of-man"
+  ],
+  "warrior priests": [
+   "empire-of-man"
+  ],
   "miao ying": [
    "grand-cathay"
   ],
@@ -1838,6 +2154,12 @@
   "eagle-claw bolt throwers": [
    "high-elf-realms"
   ],
+  "eagle claw bolt thrower": [
+   "high-elf-realms"
+  ],
+  "eagle claw bolt throwers": [
+   "high-elf-realms"
+  ],
   "lion guard": [
    "high-elf-realms"
   ],
@@ -1848,6 +2170,36 @@
    "high-elf-realms"
   ],
   "merwyrms": [
+   "high-elf-realms"
+  ],
+  "swordmasters": [
+   "high-elf-realms"
+  ],
+  "swordmaster": [
+   "high-elf-realms"
+  ],
+  "white lions": [
+   "high-elf-realms"
+  ],
+  "white lion": [
+   "high-elf-realms"
+  ],
+  "sea guard": [
+   "high-elf-realms"
+  ],
+  "sea guards": [
+   "high-elf-realms"
+  ],
+  "reavers": [
+   "high-elf-realms"
+  ],
+  "reaver": [
+   "high-elf-realms"
+  ],
+  "lion chariot": [
+   "high-elf-realms"
+  ],
+  "lion chariots": [
    "high-elf-realms"
   ],
   "duke": [
@@ -1883,6 +2235,12 @@
   "sergeant-at-arm": [
    "kingdom-of-bretonnia"
   ],
+  "sergeant at arms": [
+   "kingdom-of-bretonnia"
+  ],
+  "sergeant at arm": [
+   "kingdom-of-bretonnia"
+  ],
   "outcast wizard": [
    "kingdom-of-bretonnia",
    "renegade-crowns"
@@ -1913,6 +2271,12 @@
    "kingdom-of-bretonnia"
   ],
   "men-at-arm": [
+   "kingdom-of-bretonnia"
+  ],
+  "men at arms": [
+   "kingdom-of-bretonnia"
+  ],
+  "men at arm": [
    "kingdom-of-bretonnia"
   ],
   "peasant bowmen": [
@@ -2015,6 +2379,36 @@
    "kingdom-of-bretonnia",
    "renegade-crowns"
   ],
+  "knights of the realm": [
+   "kingdom-of-bretonnia"
+  ],
+  "knights of the realms": [
+   "kingdom-of-bretonnia"
+  ],
+  "knights realm": [
+   "kingdom-of-bretonnia"
+  ],
+  "knights the realm": [
+   "kingdom-of-bretonnia"
+  ],
+  "trebuchet": [
+   "kingdom-of-bretonnia"
+  ],
+  "trebuchets": [
+   "kingdom-of-bretonnia"
+  ],
+  "bowmen": [
+   "kingdom-of-bretonnia"
+  ],
+  "bowmens": [
+   "kingdom-of-bretonnia"
+  ],
+  "foot knights": [
+   "kingdom-of-bretonnia"
+  ],
+  "foot knight": [
+   "kingdom-of-bretonnia"
+  ],
   "slann mage-priest {renegade}": [
    "lizardmen"
   ],
@@ -2027,6 +2421,12 @@
   "slann mage-priests": [
    "lizardmen"
   ],
+  "slann mage priest": [
+   "lizardmen"
+  ],
+  "slann mage priests": [
+   "lizardmen"
+  ],
   "saurus oldblood": [
    "lizardmen"
   ],
@@ -2037,6 +2437,12 @@
    "lizardmen"
   ],
   "saurus scar-veterans": [
+   "lizardmen"
+  ],
+  "saurus scar veteran": [
+   "lizardmen"
+  ],
+  "saurus scar veterans": [
    "lizardmen"
   ],
   "skink priest": [
@@ -2145,6 +2551,54 @@
    "lizardmen"
   ],
   "ancient stegadons": [
+   "lizardmen"
+  ],
+  "skinks": [
+   "lizardmen"
+  ],
+  "skink": [
+   "lizardmen"
+  ],
+  "saurus": [
+   "lizardmen"
+  ],
+  "sauru": [
+   "lizardmen"
+  ],
+  "terradons": [
+   "lizardmen"
+  ],
+  "terradon": [
+   "lizardmen"
+  ],
+  "ripperdactyls": [
+   "lizardmen"
+  ],
+  "ripperdactyl": [
+   "lizardmen"
+  ],
+  "salamanders": [
+   "lizardmen"
+  ],
+  "salamander": [
+   "lizardmen"
+  ],
+  "razordons": [
+   "lizardmen"
+  ],
+  "razordon": [
+   "lizardmen"
+  ],
+  "slann": [
+   "lizardmen"
+  ],
+  "slanns": [
+   "lizardmen"
+  ],
+  "cold ones": [
+   "lizardmen"
+  ],
+  "cold one": [
    "lizardmen"
   ],
   "tyrant": [
@@ -2279,6 +2733,42 @@
    "ogre-kingdoms"
   ],
   "gorgers": [
+   "ogre-kingdoms"
+  ],
+  "bulls": [
+   "ogre-kingdoms"
+  ],
+  "bull": [
+   "ogre-kingdoms"
+  ],
+  "ogres": [
+   "ogre-kingdoms"
+  ],
+  "ogre": [
+   "ogre-kingdoms"
+  ],
+  "gnoblars": [
+   "ogre-kingdoms"
+  ],
+  "gnoblar": [
+   "ogre-kingdoms"
+  ],
+  "sabretusks": [
+   "ogre-kingdoms"
+  ],
+  "sabretusk": [
+   "ogre-kingdoms"
+  ],
+  "stonehorn": [
+   "ogre-kingdoms"
+  ],
+  "stonehorns": [
+   "ogre-kingdoms"
+  ],
+  "thundertusk": [
+   "ogre-kingdoms"
+  ],
+  "thundertusks": [
    "ogre-kingdoms"
   ],
   "orc warboss": [
@@ -2497,6 +2987,114 @@
   "bonegrinder giants": [
    "orc-and-goblin-tribes"
   ],
+  "orc boyz": [
+   "orc-and-goblin-tribes"
+  ],
+  "orc boyzs": [
+   "orc-and-goblin-tribes"
+  ],
+  "boyz": [
+   "orc-and-goblin-tribes"
+  ],
+  "boyzs": [
+   "orc-and-goblin-tribes"
+  ],
+  "orcs": [
+   "orc-and-goblin-tribes"
+  ],
+  "orc": [
+   "orc-and-goblin-tribes"
+  ],
+  "black orcs": [
+   "orc-and-goblin-tribes"
+  ],
+  "black orc": [
+   "orc-and-goblin-tribes"
+  ],
+  "boar boyz": [
+   "orc-and-goblin-tribes"
+  ],
+  "boar boyzs": [
+   "orc-and-goblin-tribes"
+  ],
+  "goblins": [
+   "orc-and-goblin-tribes"
+  ],
+  "goblin": [
+   "orc-and-goblin-tribes"
+  ],
+  "night goblins": [
+   "orc-and-goblin-tribes"
+  ],
+  "night goblin": [
+   "orc-and-goblin-tribes"
+  ],
+  "wolf riders": [
+   "orc-and-goblin-tribes"
+  ],
+  "wolf rider": [
+   "orc-and-goblin-tribes"
+  ],
+  "spider riders": [
+   "orc-and-goblin-tribes"
+  ],
+  "spider rider": [
+   "orc-and-goblin-tribes"
+  ],
+  "squig hoppers": [
+   "orc-and-goblin-tribes"
+  ],
+  "squig hopper": [
+   "orc-and-goblin-tribes"
+  ],
+  "squig herd": [
+   "orc-and-goblin-tribes"
+  ],
+  "squig herds": [
+   "orc-and-goblin-tribes"
+  ],
+  "trolls": [
+   "orc-and-goblin-tribes"
+  ],
+  "troll": [
+   "orc-and-goblin-tribes"
+  ],
+  "stone trolls": [
+   "orc-and-goblin-tribes"
+  ],
+  "stone troll": [
+   "orc-and-goblin-tribes"
+  ],
+  "river trolls": [
+   "orc-and-goblin-tribes"
+  ],
+  "river troll": [
+   "orc-and-goblin-tribes"
+  ],
+  "snotlings": [
+   "orc-and-goblin-tribes"
+  ],
+  "snotling": [
+   "orc-and-goblin-tribes"
+  ],
+  "pump wagon": [
+   "orc-and-goblin-tribes"
+  ],
+  "pump wagons": [
+   "orc-and-goblin-tribes"
+  ],
+  "rock lobber": [
+   "orc-and-goblin-tribes"
+  ],
+  "rock lobbers": [
+   "orc-and-goblin-tribes"
+  ],
+  "doom diver": [
+   "orc-and-goblin-tribes"
+  ],
+  "doom divers": [
+   "orc-and-goblin-tribes"
+  ],
   "renegade prince": [
    "renegade-crowns"
   ],
@@ -2687,6 +3285,30 @@
    "skaven"
   ],
   "plague censer bearer": [
+   "skaven"
+  ],
+  "ratling gun team": [
+   "skaven"
+  ],
+  "ratling gun teams": [
+   "skaven"
+  ],
+  "jezzails": [
+   "skaven"
+  ],
+  "jezzail": [
+   "skaven"
+  ],
+  "globadiers": [
+   "skaven"
+  ],
+  "globadier": [
+   "skaven"
+  ],
+  "censer bearers": [
+   "skaven"
+  ],
+  "censer bearer": [
    "skaven"
   ],
   "tomb king": [
@@ -2904,6 +3526,32 @@
   "casket souls": [
    "tomb-kings-of-khemri"
   ],
+  "skeletons": [
+   "tomb-kings-of-khemri",
+   "vampire-counts"
+  ],
+  "skeleton": [
+   "tomb-kings-of-khemri",
+   "vampire-counts"
+  ],
+  "liche priest": [
+   "tomb-kings-of-khemri"
+  ],
+  "liche priests": [
+   "tomb-kings-of-khemri"
+  ],
+  "liche high priest": [
+   "tomb-kings-of-khemri"
+  ],
+  "liche high priests": [
+   "tomb-kings-of-khemri"
+  ],
+  "warsphinx": [
+   "tomb-kings-of-khemri"
+  ],
+  "warsphinxs": [
+   "tomb-kings-of-khemri"
+  ],
   "vampire count {renegade}": [
    "vampire-counts"
   ],
@@ -3066,6 +3714,24 @@
   "hexwraith": [
    "vampire-counts"
   ],
+  "ghouls": [
+   "vampire-counts"
+  ],
+  "ghoul": [
+   "vampire-counts"
+  ],
+  "vampire lord": [
+   "vampire-counts"
+  ],
+  "vampire lords": [
+   "vampire-counts"
+  ],
+  "wolves": [
+   "vampire-counts"
+  ],
+  "wolve": [
+   "vampire-counts"
+  ],
   "daemon prince {warriors of chaos}": [
    "warriors-of-chaos"
   ],
@@ -3220,6 +3886,18 @@
    "warriors-of-chaos"
   ],
   "warpfire dragons": [
+   "warriors-of-chaos"
+  ],
+  "marauders": [
+   "warriors-of-chaos"
+  ],
+  "marauder": [
+   "warriors-of-chaos"
+  ],
+  "chosen": [
+   "warriors-of-chaos"
+  ],
+  "chosens": [
    "warriors-of-chaos"
   ],
   "glade lord": [
@@ -3415,6 +4093,12 @@
    "wood-elf-realms"
   ],
   "bear loren": [
+   "wood-elf-realms"
+  ],
+  "treekin": [
+   "wood-elf-realms"
+  ],
+  "treekins": [
    "wood-elf-realms"
   ]
  }

@@ -218,20 +218,24 @@ Hold the line
       return magicItemsData;
     }
 
-    // Generated detection indexes (scripts/build-data.mjs)
+    // Generated detection indexes (scripts/build-data.mjs) + colloquial
+    // unit-name aliases (hand-maintained)
     let unitNameIndex = null;
     let compositionsData = null;
+    let unitAliases = null;
 
     async function loadDetectionData() {
-      if (unitNameIndex && compositionsData) return { unitNameIndex, compositionsData };
-      const [idxResp, compResp] = await Promise.all([
+      if (unitNameIndex && compositionsData) return { unitNameIndex, compositionsData, unitAliases };
+      const [idxResp, compResp, aliasResp] = await Promise.all([
         fetch('src/data/owb/unit-name-index.json'),
-        fetch('src/data/owb/army-compositions.json')
+        fetch('src/data/owb/army-compositions.json'),
+        fetch('src/data/owb/unit-aliases.json')
       ]);
-      if (!idxResp.ok || !compResp.ok) throw new Error('Failed to load detection data');
+      if (!idxResp.ok || !compResp.ok || !aliasResp.ok) throw new Error('Failed to load detection data');
       unitNameIndex = await idxResp.json();
       compositionsData = await compResp.json();
-      return { unitNameIndex, compositionsData };
+      unitAliases = await aliasResp.json();
+      return { unitNameIndex, compositionsData, unitAliases };
     }
 
     // ============================================
@@ -468,7 +472,8 @@ Hold the line
 
         // Smart parse - uses faction data as dictionary to find units in any format
         const magicItemIndex = buildMagicItemIndex(magicItems, factionSlug);
-        const parsed = parseWithFactionData(text, factionData, magicItemIndex);
+        const { unitAliases } = await loadDetectionData();
+        const parsed = parseWithFactionData(text, factionData, magicItemIndex, unitAliases?.[factionSlug]);
 
         if (parsed.units.length === 0) {
           throw new Error('No units found in the text. Please check that it contains valid unit names.');

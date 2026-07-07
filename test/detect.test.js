@@ -42,6 +42,13 @@ test('cross-faction units resolve when one faction explains all of them', () => 
   assert.equal(detectFaction(text, unitNameIndex, compositions), 'beastmen-brayherds');
 });
 
+test('colloquial alias names detect their faction (hardening sweep)', () => {
+  // "Halberdiers"/"Handgunners" are aliases for Empire State Troops variants;
+  // the generated index includes alias names.
+  const text = '300 - 20 Halberdiers\n250 - 10 Handgunners';
+  assert.equal(detectFaction(text, unitNameIndex, compositions), 'empire-of-man');
+});
+
 test('unrelated text detects nothing', () => {
   assert.equal(detectFaction('completely unrelated text\nabout nothing', unitNameIndex, compositions), null);
 });

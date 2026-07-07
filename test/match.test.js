@@ -135,7 +135,7 @@ test('full sub-line match picks the right compound variant', () => {
 • 14x Giant Rat
 • 1x Packmaster, Things-catcher`;
   const r = extractOptions(block, giantRats, skavenItems);
-  const packmaster = r.options.find(o => /things-catcher/i.test(o.name));
+  const packmaster = r.options.find(o => /things.catcher/i.test(o.name));
   assert.ok(packmaster, 'Things-catcher variant matched, not Whip');
   assert.equal(r.options.some(o => /whip/i.test(o.name)), false);
 });

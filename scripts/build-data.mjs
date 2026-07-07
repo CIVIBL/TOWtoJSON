@@ -31,9 +31,16 @@ async function fetchText(url) {
   return resp.text();
 }
 
-function buildUnitNameIndex(factionFiles) {
+function buildUnitNameIndex(factionFiles, aliases) {
   const names = {};
   const unitCounts = {};
+  const addName = (name, slug) => {
+    for (const variation of generateNameVariations(name)) {
+      const key = variation.toLowerCase();
+      if (!names[key]) names[key] = [];
+      if (!names[key].includes(slug)) names[key].push(slug);
+    }
+  };
   for (const [slug, data] of factionFiles) {
     let count = 0;
     for (const category of CATEGORIES) {
@@ -41,12 +48,12 @@ function buildUnitNameIndex(factionFiles) {
         const name = unit.name_en || unit.name || '';
         if (!name) continue;
         count++;
-        for (const variation of generateNameVariations(name)) {
-          const key = variation.toLowerCase();
-          if (!names[key]) names[key] = [];
-          if (!names[key].includes(slug)) names[key].push(slug);
-        }
+        addName(name, slug);
       }
+    }
+    // Colloquial aliases count for detection too ("Halberdiers" -> empire).
+    for (const alias of Object.keys(aliases[slug] || {})) {
+      if (!alias.startsWith('__')) addName(alias, slug);
     }
     unitCounts[slug] = count;
   }
@@ -86,10 +93,11 @@ async function buildArmyCompositions() {
 }
 
 const factionFiles = readdirSync(dataDir)
-  .filter(f => f.endsWith('.json') && !['magic-items.json', 'unit-name-index.json', 'army-compositions.json'].includes(f))
+  .filter(f => f.endsWith('.json') && !['magic-items.json', 'unit-name-index.json', 'army-compositions.json', 'unit-aliases.json'].includes(f))
   .map(f => [f.replace(/\.json$/, ''), JSON.parse(readFileSync(join(dataDir, f), 'utf-8'))]);
 
-const { names, unitCounts } = buildUnitNameIndex(factionFiles);
+const unitAliases = JSON.parse(readFileSync(join(dataDir, 'unit-aliases.json'), 'utf-8'));
+const { names, unitCounts } = buildUnitNameIndex(factionFiles, unitAliases);
 const factions = await buildArmyCompositions();
 
 const stamp = {

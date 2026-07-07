@@ -2,13 +2,19 @@
 // Uses faction data as dictionary to find units in ANY text format.
 // Extracted verbatim from index.html (Phase A1) — behavior changes land in Phase B.
 
-import { matchUnitName, extractOptions, tokenizeUnitBlock, tokenEquals } from './match.js';
+import { matchUnitName, extractOptions, tokenizeUnitBlock, tokenEquals, classifyToken, applyClassification } from './match.js';
+
+const normName = (s) => String(s).toLowerCase()
+  .replace(/\s*\{[^}]*\}/g, '').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
 
 /**
- * Build a searchable index of unit names from faction data
+ * Build a searchable index of unit names from faction data.
+ * aliases (optional, from unit-aliases.json): colloquial name -> canonical
+ * name string or { unit, implies: [equipment/option names the alias carries] }.
  */
-export function buildUnitNameIndex(factionData) {
+export function buildUnitNameIndex(factionData, aliases = null) {
   const index = new Map();
+  const byNormName = new Map();
   const categories = ['characters', 'core', 'special', 'rare'];
 
   for (const category of categories) {
@@ -16,6 +22,12 @@ export function buildUnitNameIndex(factionData) {
     for (const unit of units) {
       const name = unit.name_en || unit.name || '';
       if (!name) continue;
+      // Duplicate names exist (regimental "State Troops" vs its detachment
+      // variant) — prefer the non-detachment template for alias resolution.
+      const existing = byNormName.get(normName(name));
+      if (!existing || (existing.unit.detachment && !unit.detachment)) {
+        byNormName.set(normName(name), { unit, category, originalName: name });
+      }
 
       // Generate variations for flexible matching
       const variations = generateNameVariations(name);
@@ -28,6 +40,18 @@ export function buildUnitNameIndex(factionData) {
       }
     }
   }
+
+  for (const [alias, target] of Object.entries(aliases || {})) {
+    if (alias.startsWith('__')) continue;
+    const canonical = typeof target === 'string' ? target : target.unit;
+    const implies = typeof target === 'string' ? [] : target.implies || [];
+    const entry = byNormName.get(normName(canonical));
+    if (!entry) continue; // stale alias; test/aliases.test.js guards this
+    for (const variation of generateNameVariations(alias)) {
+      index.set(variation.toLowerCase(), { ...entry, implies, matchLength: variation.length });
+    }
+  }
+
   return index;
 }
 
@@ -37,9 +61,14 @@ export function buildUnitNameIndex(factionData) {
 export function generateNameVariations(name) {
   const variations = [name];
   // Strip {faction} annotations like "Hell Pit Abomination {renegade}" so the
-  // clean name is matchable (phase-b/b1.md case 6).
+  // clean name is matchable (phase-b/b1.md case 6), and offer hyphens as
+  // spaces ("Men-at-Arms" / "Men at Arms").
   const stripped = name.replace(/\s*\{[^}]*\}/g, '').trim();
-  const bases = new Set([name.toLowerCase(), stripped.toLowerCase()]);
+  const bases = new Set([
+    name.toLowerCase(),
+    stripped.toLowerCase(),
+    stripped.toLowerCase().replace(/-/g, ' ').replace(/\s+/g, ' ')
+  ]);
 
   for (const lower of bases) {
     variations.push(lower);
@@ -248,8 +277,8 @@ export function extractDetachments(context, detachmentIndex) {
  * Main parsing function - anchor-based approach
  * Only creates units from lines that have points (real unit entries)
  */
-export function parseWithFactionData(text, factionData, magicItemIndex) {
-  const unitIndex = buildUnitNameIndex(factionData);
+export function parseWithFactionData(text, factionData, magicItemIndex, aliases = null) {
+  const unitIndex = buildUnitNameIndex(factionData, aliases);
   const detachmentIndex = buildDetachmentIndex(factionData);
   const sections = parseSectionHeaders(text);
   const anchors = findUnitAnchors(text);
@@ -278,6 +307,14 @@ export function parseWithFactionData(text, factionData, magicItemIndex) {
 
       // Extract options from the full context
       const options = extractOptions(context, matchedUnit.unit, magicItemIndex);
+
+      // Aliases can imply equipment ("Halberdiers" = State Troops WITH
+      // halberds) — classify and apply the implied names like tokens.
+      for (const implied of matchedUnit.implies || []) {
+        const c = classifyToken(implied, matchedUnit.unit, magicItemIndex);
+        if (c.type === 'unknown') options.unknownTokens.push(implied);
+        else applyClassification(options, c, matchedUnit.unit, false);
+      }
 
       // Check for detachments if this is a regimental unit
       let detachments = [];
