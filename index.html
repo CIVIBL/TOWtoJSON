@@ -126,11 +126,8 @@ Hold the line
           <button
             id="btn-nr"
             class="format-btn flex-1 px-4 py-2 rounded font-medium transition-colors bg-stone-card border border-stone-border text-parchment-muted hover:bg-stone-border"
-            data-format="nr"
-            disabled
-            title="Coming soon">
+            data-format="nr">
             New Recruit
-            <span class="text-xs opacity-60">(soon)</span>
           </button>
         </div>
       </div>
@@ -196,6 +193,7 @@ Hold the line
     import { buildMagicItemIndex } from './src/js/items.js';
     import { detectFaction, detectArmyOfInfamy, getArmyCompositions } from './src/js/detect.js';
     import { generateOWBJson } from './src/js/generate.js';
+    import { generateNRJson } from './src/js/generate-nr.js';
     import { buildReport, cleanDisplayName } from './src/js/report.js';
 
     // ============================================
@@ -354,13 +352,35 @@ Hold the line
       await showCompositionsFor(slug, textarea.value.trim());
     });
 
-    btnOwb.addEventListener('click', () => {
-      selectedFormat = 'owb';
-      btnOwb.classList.remove('bg-stone-card', 'text-parchment-muted', 'border', 'border-stone-border');
-      btnOwb.classList.add('bg-aged-gold', 'text-stone-bg');
-      btnNr.classList.remove('bg-aged-gold', 'text-stone-bg');
-      btnNr.classList.add('bg-stone-card', 'text-parchment-muted', 'border', 'border-stone-border');
-    });
+    function setFormat(format) {
+      selectedFormat = format;
+      const on = format === 'owb' ? btnOwb : btnNr;
+      const off = format === 'owb' ? btnNr : btnOwb;
+      on.classList.remove('bg-stone-card', 'text-parchment-muted', 'border', 'border-stone-border');
+      on.classList.add('bg-aged-gold', 'text-stone-bg');
+      off.classList.remove('bg-aged-gold', 'text-stone-bg');
+      off.classList.add('bg-stone-card', 'text-parchment-muted', 'border', 'border-stone-border');
+    }
+    btnOwb.addEventListener('click', () => setFormat('owb'));
+    btnNr.addEventListener('click', () => setFormat('nr'));
+
+    // New Recruit catalogue data (per COMPOSITION, not faction — NR ships
+    // separate catalogues for Armies of Infamy)
+    const nrDataCache = {};
+    let nrGameSystem = null;
+
+    async function loadNrData(compositionSlug) {
+      if (!nrGameSystem) {
+        const resp = await fetch('src/data/nr/game-system.json');
+        if (!resp.ok) throw new Error('Failed to load New Recruit game system data');
+        nrGameSystem = await resp.json();
+      }
+      if (!(compositionSlug in nrDataCache)) {
+        const resp = await fetch(`src/data/nr/${compositionSlug}.json`);
+        nrDataCache[compositionSlug] = resp.ok ? await resp.json() : null;
+      }
+      return { nrFaction: nrDataCache[compositionSlug], gameSystem: nrGameSystem };
+    }
 
     function showFeedback(html) {
       feedbackContent.innerHTML = html;
@@ -377,6 +397,44 @@ Hold the line
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+    }
+
+    async function convertToNewRecruit(matchedList, factionSlug, compositionSlug) {
+      const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const compositionName = armyCompositionSelect.options[armyCompositionSelect.selectedIndex]?.text || 'Grand Army';
+      const displayFaction = factionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+      const { nrFaction, gameSystem } = await loadNrData(compositionSlug);
+      if (!nrFaction) {
+        showFeedback(`<div class="text-aged-gold text-sm">
+          New Recruit export is not yet available for ${esc(displayFaction)} (${esc(compositionName)}).
+          Old World Builder export works for every faction — or open an issue on GitHub to request this one.
+        </div>`);
+        return;
+      }
+
+      const { roster, warnings } = generateNRJson(matchedList, nrFaction, gameSystem, {
+        name: `${displayFaction} Army`
+      });
+
+      const total = matchedList.units.length;
+      const unitWarnings = warnings.filter(w => /not (matched|found in the New Recruit catalogue)$/.test(w.reason));
+      const matched = total - unitWarnings.length;
+      const clean = warnings.length === 0;
+
+      let html = `<div class="flex items-center gap-2 ${clean ? 'text-aged-sage' : 'text-aged-crimson'} mb-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${clean ? 'M5 13l4 4L19 7' : 'M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z'}"></path>
+        </svg>
+        <span class="font-medium">New Recruit: ${matched} of ${total} entries — ${esc(displayFaction)}, ${esc(compositionName)}, ${roster.roster.costs[0].value} pts</span>
+      </div>`;
+      for (const w of warnings) {
+        html += `<div class="text-aged-gold text-sm mb-1">${esc(w.unit)}: ${esc(w.reason)}.</div>`;
+      }
+      html += `<div class="text-parchment-muted text-xs mt-2">Import the file at newrecruit.eu (My lists &gt; Import).</div>`;
+      showFeedback(html);
+
+      downloadJson(roster, `${factionSlug}_${roster.roster.costs[0].value}pts.nr.json`);
     }
 
     btnConvert.addEventListener('click', async () => {
@@ -416,6 +474,11 @@ Hold the line
 
         // Get selected army composition
         const selectedComposition = armyCompositionSelect.value || factionSlug;
+
+        if (selectedFormat === 'nr') {
+          await convertToNewRecruit(matchedList, factionSlug, selectedComposition);
+          return;
+        }
 
         // Generate
         const owbJson = generateOWBJson(matchedList, {
