@@ -92,6 +92,9 @@ function buildSelection(node, ctx, parentNumber, matchedNames) {
   } else if (node.type !== 'model' && node.type !== 'unit' && parentNumber > 1) {
     number = parentNumber;
   }
+  // A node's min constraint is a floor (e.g. the Plague Furnace requires
+  // exactly 3 Plague Monk Crew) — NR flags rosters below it.
+  if (typeof node.min === 'number' && node.min > number) number = node.min;
 
   const memo = ctx.wantsMemo;
   const children = [];

@@ -111,6 +111,21 @@ test('Giant Rats: packmaster with whip, not things-catcher', () => {
   }
 });
 
+test('mandatory nodes respect their minimum count (Plague Monk Crew min 3)', () => {
+  const { roster } = run();
+  const priests = roster.roster.forces[0].selections.filter(s => s.name === 'Plague Priest');
+  assert.equal(priests.length, 2);
+  for (const priest of priests) {
+    const flatten = (sels, out = []) => {
+      for (const s of sels || []) { out.push(s); flatten(s.selections, out); }
+      return out;
+    };
+    const crew = flatten(priest.selections).find(s => s.name === 'Plague Monk Crew');
+    assert.ok(crew, 'Plague Monk Crew present under the Plague Furnace');
+    assert.equal(crew.number, 3, 'crew count must satisfy the min=3 constraint');
+  }
+});
+
 test('Grey Seer: wizard level, lore, mount, and items resolve', () => {
   const { roster, warnings } = run();
   const greySeer = findSel(roster.roster.forces[0].selections, 'Grey Seer');
