@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "python scripts/serve.py",
     "test": "node --test \"test/*.test.js\"",
-    "build:data": "node scripts/build-data.mjs"
+    "build:data": "node scripts/build-data.mjs",
+    "build:nr": "node scripts/build-nr-data.mjs"
   },
   "keywords": [
     "warhammer",
@@ -14,5 +15,8 @@
     "bcp",
     "army-list"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "fast-xml-parser": "^5.9.3"
+  }
 }
