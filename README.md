@@ -46,7 +46,10 @@ npm run serve       # dev server (no-cache) on :8080
 npm test            # node --test suite
 npm run build:data  # regenerate detection indexes from OWB repo data
 npm run build:nr    # regenerate New Recruit catalogue indexes from .cat files
+npm run update:data # refresh ALL game data from upstream (run after GW/OWB balance updates), then test
 ```
+
+Unit points and stats are snapshots of the upstream repos — they do not update themselves. After a GW points update lands upstream, run `npm run update:data` and commit the result; the test suite flags renames and points drift.
 
 Game data lives in `src/data/` — OWB faction JSONs plus generated indexes (`unit-name-index.json`, `army-compositions.json`, `src/data/nr/*`). Never hand-edit generated files; extend `src/data/owb/unit-aliases.json` for new colloquial unit names.
 
