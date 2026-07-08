@@ -1,0 +1,63 @@
+# Monthly game-data refresh: fetches current OWB faction data and NR
+# catalogues, regenerates all indexes, and opens a pull request when anything
+# changed. Tests run against the fresh data; a failing suite does NOT block
+# the PR — the result is reported in the PR body so renames/points drift get
+# reviewed by a human.
+name: Update game data
+
+on:
+  schedule:
+    - cron: '0 6 1 * *' # 06:00 UTC on the 1st of each month
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh OWB faction data and detection indexes
+        run: node scripts/build-data.mjs --fetch
+
+      - name: Refresh New Recruit catalogue indexes
+        run: node scripts/build-nr-data.mjs --fresh
+
+      - name: Run test suite against fresh data
+        id: test
+        run: npm test
+        continue-on-error: true
+
+      - name: Open pull request if data changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: data-refresh
+          commit-message: 'data: refresh game data from upstream'
+          title: 'Game data refresh (tests: ${{ steps.test.outcome }})'
+          body: |
+            Automated refresh of game data from upstream repos:
+            - [old-world-builder](https://github.com/nthiebes/old-world-builder) (faction data, points, compositions)
+            - [Warhammer-The-Old-World](https://github.com/vflam/Warhammer-The-Old-World) (New Recruit catalogues)
+
+            Test suite on the fresh data: **${{ steps.test.outcome }}**
+
+            If tests failed, upstream renamed a unit an alias targets, restructured
+            an NR catalogue, or changed the Skaven fixture's pricing — see the
+            workflow log, fix the alias/test expectations in this branch, and merge.
+          delete-branch: true
+
+      - name: Fail the job when tests failed
+        if: steps.test.outcome == 'failure'
+        run: |
+          echo "Tests failed against refreshed data - review the PR before merging."
+          exit 1
