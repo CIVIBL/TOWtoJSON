@@ -1652,8 +1652,8 @@
           "notes": {
             "name_en": "0-1 per 1000 points",
             "name_cn": "每1000分0-1",
-            "name_de": "0-1 per 1000 points",
-            "name_es": "0-1 per 1000 points",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
             "name_fr": "0-1 par tranche de 1000 points"
           }
         },
@@ -1668,8 +1668,8 @@
           "notes": {
             "name_en": "0-1 per 1000 points",
             "name_cn": "每1000分0-1",
-            "name_de": "0-1 per 1000 points",
-            "name_es": "0-1 per 1000 points",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
             "name_fr": "0-1 par tranche de 1000 points"
           }
         },
@@ -1858,8 +1858,12 @@
           "name_fr": "Obstiné",
           "points": 1,
           "perModel": true,
-          "minimum": 0,
-          "maximum": 0
+          "notes": {
+            "name_en": "0-1 per army",
+            "name_cn": "0-1 per army",
+            "name_de": "0-1 pro Armee",
+            "name_fr": "0-1 par armée"
+          }
         },
         {
           "name_en": "Veteran",
@@ -1869,8 +1873,12 @@
           "name_fr": "Vétérans",
           "points": 1,
           "perModel": true,
-          "minimum": 0,
-          "maximum": 0
+          "notes": {
+            "name_en": "0-1 per army",
+            "name_cn": "0-1 per army",
+            "name_de": "0-1 pro Armee",
+            "name_fr": "0-1 par armée"
+          }
         },
         {
           "name_en": "Shields",
@@ -2861,6 +2869,8 @@
           "notes": {
             "name_en": "0-1 per 1000 points",
             "name_cn": "每1000分0-1",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
             "name_fr": "0-1 par tranche de 1000 points"
           }
         },
@@ -2875,6 +2885,8 @@
           "notes": {
             "name_en": "0-1 per 1000 points",
             "name_cn": "每1000分0-1",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
             "name_fr": "0-1 par tranche de 1000 points"
           }
         }

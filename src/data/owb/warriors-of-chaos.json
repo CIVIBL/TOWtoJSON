@@ -3175,10 +3175,11 @@
           },
           "notes": {
             "name_en": "0-1 unit per 1000 points may purchase a magic standard",
-            "name_cn": "每1000分，0-1个单位可以购买一面魔法战旗",
+            "name_cn": "0-1单位/每1000分可以选择装备一个魔法战旗",
             "name_it": "0-1 unit per 1000 points may purchase a magic standard",
             "name_de": "0-1 Einheit pro 1000 Punkte darf eine Magische Standarte erwerben",
-            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique"
+            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique",
+            "name_es": "0-1 unidad cada 1.000 puntos puede adquirir un estandarte mágico"
           },
           "points": 5
         },
@@ -3346,11 +3347,10 @@
           "name_fr": "Embusqueurs",
           "points": 0,
           "perModel": true,
-          "armyComposition": "wolves-of-the-sea",
           "notes": {
-            "name_en": "If Frydaal is in the army",
-            "name_fr": "Si Frydaal est incluse dans l’armée",
-            "name_de": "Wenn Frydaal Teil der Armee ist"
+            "name_en": "0-1 if Frydaal is in the army",
+            "name_fr": "0-1 si Frydaal est incluse dans l’armée",
+            "name_de": "0-1 wenn Frydaal Teil der Armee ist"
           }
         },
         {
@@ -3477,10 +3477,11 @@
           },
           "notes": {
             "name_en": "0-1 unit per 1000 points may purchase a magic standard",
-            "name_cn": "每1000分，0-1个单位可以购买一面魔法战旗",
+            "name_cn": "0-1单位/每1000分可以选择装备一个魔法战旗",
             "name_it": "0-1 unit per 1000 points may purchase a magic standard",
             "name_de": "0-1 Einheit pro 1000 Punkte darf eine Magische Standarte erwerben",
-            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique"
+            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique",
+            "name_es": "0-1 unidad cada 1.000 puntos puede adquirir un estandarte mágico"
           },
           "points": 5
         },
@@ -3656,11 +3657,10 @@
           "name_fr": "Embusqueurs",
           "points": 0,
           "perModel": true,
-          "armyComposition": "wolves-of-the-sea",
           "notes": {
-            "name_cn": "如果弗丽达尔在军队中",
-            "name_en": "If Frydaal is in the army",
-            "name_fr": "Si Frydaal est incluse dans l’armée"
+            "name_en": "0-1 if Frydaal is in the army",
+            "name_fr": "0-1 si Frydaal est incluse dans l’armée",
+            "name_de": "0-1 wenn Frydaal Teil der Armee ist"
           }
         },
         {
@@ -3889,7 +3889,9 @@
           "name_fr": "Déchus de Khorne",
           "points": 0,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "exclusive": true,
+          "active": true
         },
         {
           "name_en": "Forsaken by Nurgle",
@@ -3899,7 +3901,8 @@
           "name_fr": "Déchus de Nurgle",
           "points": 0,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "exclusive": true
         },
         {
           "name_en": "Forsaken by Slaanesh",
@@ -3909,7 +3912,8 @@
           "name_fr": "Déchus de Slaanesh",
           "points": 0,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "exclusive": true
         },
         {
           "name_en": "Forsaken by Tzeentch",
@@ -3919,7 +3923,8 @@
           "name_fr": "Déchus de Tzeentch",
           "points": 0,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "exclusive": true
         }
       ],
       "mounts": [],

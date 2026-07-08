@@ -18,7 +18,45 @@
           "name_fr": "Général",
           "name_es": "General",
           "points": 0,
-          "armyComposition": ["tomb-kings-of-khemri", "nehekharan-royal-hosts"]
+          "armyComposition": ["tomb-kings-of-khemri", "nehekharan-royal-hosts"],
+          "options": [
+            {
+              "name_en": "Arise!, Level 1 Wizard",
+              "name_cn": "唤醒!, 1级法师",
+              "name_it": "Risorgi!, Mago di 1° Livello",
+              "name_de": "Erhebt euch!, Level 1 Zauberer",
+              "name_fr": "Levez-vous!, Sorcier de Niveau 1",
+              "points": 35,
+              "notes": {
+                "name_en": "Must be Hierophant",
+                "name_cn": "Must be Hierophant",
+                "name_de": "Must be Hierophant",
+                "name_es": "Must be Hierophant",
+                "name_fr": "Must be Hierophant",
+                "name_it": "Must be Hierophant"
+              },
+              "armyComposition": "nehekharan-royal-hosts"
+            }
+          ]
+        },
+        {
+          "name_en": "The Hierophant",
+          "name_cn": "The Hierophant",
+          "name_it": "The Hierophant",
+          "name_de": "The Hierophant",
+          "name_fr": "The Hierophant",
+          "name_es": "The Hierophant",
+          "points": 0,
+          "exclusive": false,
+          "notes": {
+            "name_en": "Only available to General if given Arise and Level 1 Wizard",
+            "name_cn": "Only available to General if given Arise and Level 1 Wizard",
+            "name_de": "Only available to General if given Arise and Level 1 Wizard",
+            "name_es": "Only available to General if given Arise and Level 1 Wizard",
+            "name_fr": "Only available to General if given Arise and Level 1 Wizard",
+            "name_it": "Only available to General if given Arise and Level 1 Wizard"
+          },
+          "armyComposition": ["nehekharan-royal-hosts"]
         }
       ],
       "equipment": [
@@ -106,15 +144,6 @@
           "name_fr": "Bouclier",
           "points": 2,
           "perModel": true
-        },
-        {
-          "name_en": "Arise!, Level 1 Wizard",
-          "name_cn": "唤醒!, 1级法师",
-          "name_it": "Risorgi!, Mago di 1° Livello",
-          "name_de": "Erhebt euch!, Level 1 Zauberer",
-          "name_fr": "Levez-vous!, Sorcier de Niveau 1",
-          "points": 35,
-          "armyComposition": "nehekharan-royal-hosts"
         }
       ],
       "mounts": [
@@ -236,7 +265,7 @@
           }
         }
       ],
-      "lores": [],
+      "lores": ["necromancy"],
       "specialRules": {
         "name_en": "Curse of the Necropolis, Dry as Dust, Flammable, Indomitable (2), Khopesh, My Will Be Done, Nehekharan Undead, Regeneration (5+)",
         "name_cn": "墓地诅咒, 干枯如尘, 易燃, 顽强不屈(2), 霍佩什, 吾愿必达, 尼赫喀拉亡灵, 重生(5+)",
@@ -299,7 +328,45 @@
           "name_fr": "Général",
           "name_es": "General",
           "points": 0,
-          "armyComposition": ["tomb-kings-of-khemri", "nehekharan-royal-hosts"]
+          "armyComposition": ["tomb-kings-of-khemri", "nehekharan-royal-hosts"],
+          "options": [
+            {
+              "name_en": "Arise!, Level 1 Wizard",
+              "name_cn": "唤醒!, 1级法师",
+              "name_it": "Risorgi!, Mago di 1° Livello",
+              "name_de": "Erhebt euch!, Level 1 Zauberer",
+              "name_fr": "Levez-vous!, Sorcier de Niveau 1",
+              "points": 35,
+              "notes": {
+                "name_en": "Must be Hierophant",
+                "name_cn": "Must be Hierophant",
+                "name_de": "Must be Hierophant",
+                "name_es": "Must be Hierophant",
+                "name_fr": "Must be Hierophant",
+                "name_it": "Must be Hierophant"
+              },
+              "armyComposition": "nehekharan-royal-hosts"
+            }
+          ]
+        },
+        {
+          "name_en": "The Hierophant",
+          "name_cn": "The Hierophant",
+          "name_it": "The Hierophant",
+          "name_de": "The Hierophant",
+          "name_fr": "The Hierophant",
+          "name_es": "The Hierophant",
+          "points": 0,
+          "exclusive": false,
+          "notes": {
+            "name_en": "Only available to General if given Arise and Level 1 Wizard",
+            "name_cn": "Only available to General if given Arise and Level 1 Wizard",
+            "name_de": "Only available to General if given Arise and Level 1 Wizard",
+            "name_es": "Only available to General if given Arise and Level 1 Wizard",
+            "name_fr": "Only available to General if given Arise and Level 1 Wizard",
+            "name_it": "Only available to General if given Arise and Level 1 Wizard"
+          },
+          "armyComposition": ["nehekharan-royal-hosts"]
         }
       ],
       "equipment": [
@@ -387,15 +454,6 @@
           "name_fr": "Bouclier",
           "points": 2,
           "perModel": true
-        },
-        {
-          "name_en": "Arise!, Level 1 Wizard",
-          "name_cn": "唤醒!, 1级法师",
-          "name_it": "Risorgi!, Mago di 1° Livello",
-          "name_de": "Erhebt euch!, Level 1 Zauberer",
-          "name_fr": "Levez-vous!, Sorcier de Niveau 1",
-          "points": 35,
-          "armyComposition": "nehekharan-royal-hosts"
         }
       ],
       "mounts": [
@@ -467,7 +525,7 @@
           }
         }
       ],
-      "lores": [],
+      "lores": ["necromancy"],
       "specialRules": {
         "name_en": "Curse of the Necropolis, Dry as Dust, Flammable, Indomitable (2), Khopesh, My Will Be Done, Nehekharan Undead, Regeneration (5+)",
         "name_cn": "墓地诅咒, 干枯如尘, 易燃, 顽强不屈(2), 霍佩什, 吾愿必达, 尼赫喀拉亡灵, 重生(5+)",
@@ -1520,6 +1578,14 @@
           "magic": {
             "types": ["banner"],
             "maxPoints": 50
+          },
+          "notes": {
+            "name_en": "0-1 unit per 1000 points may purchase a magic standard",
+            "name_cn": "0-1单位/每1000分可以选择装备一个魔法战旗",
+            "name_it": "0-1 unit per 1000 points may purchase a magic standard",
+            "name_de": "0-1 Einheit pro 1000 Punkte darf eine Magische Standarte erwerben",
+            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique",
+            "name_es": "0-1 unidad cada 1.000 puntos puede adquirir un estandarte mágico"
           }
         },
         {
@@ -1577,14 +1643,21 @@
           "maximum": 0
         },
         {
-          "name_en": "Nehekharan Phalanx (0-1 per 1000 points)",
-          "name_cn": "尼赫喀拉方阵(每1000分0-1)",
-          "name_it": "Falange di Nehekharan (una ogni 1000pti)",
-          "name_de": "Nehekharanische Phalanx (0-1 pro 1000 Punkte)",
-          "name_fr": "Phalange de Nehekhara (0-1 par tranche de 1000 points)",
+          "name_en": "Nehekharan Phalanx",
+          "name_cn": "尼赫喀拉方阵",
+          "name_it": "Falange di Nehekharan",
+          "name_de": "Nehekharanische Phalanx",
+          "name_fr": "Phalange de Nehekhara",
           "points": 10,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "notes": {
+            "name_en": "0-1 per 1000 points",
+            "name_cn": "每1000分0-1",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
+            "name_fr": "0-1 par tranche de 1000 points"
+          }
         }
       ],
       "mounts": [],
@@ -1734,7 +1807,7 @@
       "name_es": "Tomb Guard",
       "name_fr": "Gardien des Tombes",
       "name_it": "Guardia dei Sepolcri",
-      "id": "tomb-guard",
+      "id": "tomb-guard-core",
       "points": 10,
       "minimum": 5,
       "maximum": 0,
@@ -1813,26 +1886,40 @@
       ],
       "options": [
         {
-          "name_en": "Drilled (0-1 per 1000 points)",
-          "name_cn": "受训(每1000分0-1)",
-          "name_it": "Addestrato (una ogni 1000pti)",
-          "name_de": "Gut ausgebildet (0-1 pro 1000 Punkte)",
-          "name_fr": "Bien Entraînés (0-1 par tranche de 1000 points)",
+          "name_en": "Drilled",
+          "name_cn": "受训",
+          "name_it": "Addestrato",
+          "name_de": "Gut ausgebildet",
+          "name_fr": "Bien Entraînés",
           "points": 1,
           "perModel": true,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "notes": {
+            "name_en": "0-1 per 1000 points",
+            "name_cn": "每1000分0-1",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
+            "name_fr": "0-1 par tranche de 1000 points"
+          }
         },
         {
-          "name_en": "Nehekharan Phalanx (0-1 per 1000 points)",
-          "name_cn": "尼赫喀拉方阵(每1000分0-1)",
-          "name_it": "Falange di Nehekharan (una ogni 1000 points)",
-          "name_de": "Nehekharanische Phalanx (0-1 pro 1000 Punkte)",
-          "name_fr": "Phalange de Nehekhara (0-1 par tranche de 1000 points)",
+          "name_en": "Nehekharan Phalanx",
+          "name_cn": "尼赫喀拉方阵",
+          "name_it": "Falange di Nehekharan",
+          "name_de": "Nehekharanische Phalanx",
+          "name_fr": "Phalange de Nehekhara",
           "points": 1,
           "perModel": true,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "notes": {
+            "name_en": "0-1 per 1000 points",
+            "name_cn": "每1000分0-1",
+            "name_de": "0-1 pro 1000 Punkte",
+            "name_es": "0-1 por cada 1000 puntos",
+            "name_fr": "0-1 par tranche de 1000 points"
+          }
         }
       ],
       "mounts": [],
@@ -1864,7 +1951,7 @@
             "name_en": "0-1 unit of Tomb Guard or Tomb Guard Chariots may be taken as a Core choice",
             "name_cn": "0-1个单位的古墓守卫或古墓守卫战车可作为核心选择",
             "name_de": "0-1 Einheit Gruftwächter oder Streitwagen der Gruftwächter darf als Kernauswahl gewählt werden",
-            "name_es": "",
+            "name_es": "0-1 unit of Tomb Guard or Tomb Guard Chariots may be taken as a Core choice",
             "name_fr": "0-1 unité de Gardien des Tombes ou Chars Gardien des Tombes peut être prise comme choix d’Unité de Base",
             "name_it": "0-1 unità di Guardia dei Sepolcri o Carri della Guardia dei Sepolcri possono essere scelte come Truppa"
           }
@@ -1878,7 +1965,7 @@
       "name_es": "Sepulchral Stalkers",
       "name_fr": "Rôdeurs Sépulcraux",
       "name_it": "Cacciatore dei Sepolcri",
-      "id": "sepulchral-stalkers",
+      "id": "sepulchral-stalkers-core",
       "points": 52,
       "minimum": 2,
       "maximum": 0,
@@ -1917,7 +2004,14 @@
           "points": 2,
           "perModel": true,
           "minimum": 0,
-          "maximum": 1
+          "maximum": 1,
+          "notes": {
+            "name_en": "0-1 per army",
+            "name_cn": "0-1 per army",
+            "name_de": "0-1 pro Armee",
+            "name_es": "0-1 per army",
+            "name_fr": "0-1 par armée"
+          }
         }
       ],
       "mounts": [],
@@ -2000,7 +2094,14 @@
           "points": 1,
           "perModel": true,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "notes": {
+            "name_en": "0-1 per army",
+            "name_cn": "0-1 per army",
+            "name_de": "0-1 pro Armee",
+            "name_es": "0-1 per army",
+            "name_fr": "0-1 par armée"
+          }
         },
         {
           "name_en": "Ambushers",
@@ -2268,10 +2369,11 @@
           },
           "notes": {
             "name_en": "0-1 unit per 1000 points may purchase a magic standard",
-            "name_cn": "每1000分，0-1个单位可以购买一面魔法战旗",
+            "name_cn": "0-1单位/每1000分可以选择装备一个魔法战旗",
             "name_it": "0-1 unit per 1000 points may purchase a magic standard",
             "name_de": "0-1 Einheit pro 1000 Punkte darf eine Magische Standarte erwerben",
-            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique"
+            "name_fr": "0-1 unité par tranche de 1000 points peut acheter une bannière magique",
+            "name_es": "0-1 unidad cada 1.000 puntos puede adquirir un estandarte mágico"
           }
         },
         {
@@ -2813,7 +2915,7 @@
       "name_de": "Streitwagen der Gruftwächter",
       "name_es": "Tomb Guard Chariots",
       "name_fr": "Chars Gardien des Tombes",
-      "id": "tomb-guard-chariots",
+      "id": "tomb-guard-chariots-core",
       "points": 49,
       "minimum": 3,
       "maximum": 0,
@@ -2886,7 +2988,7 @@
             "name_en": "0-1 unit of Tomb Guard or Tomb Guard Chariots may be taken as a Core choice",
             "name_cn": "0-1个单位的古墓守卫或古墓守卫战车可作为核心选择",
             "name_de": "0-1 Einheit Gruftwächter oder Streitwagen der Gruftwächter können als Kernauswahl gewählt werden",
-            "name_es": "",
+            "name_es": "0-1 unit of Tomb Guard or Tomb Guard Chariots may be taken as a Core choice",
             "name_fr": "0-1 unité de Gardien des Tombes ou Chars Gardien des Tombes peut être prise comme choix d’Unité de Base",
             "name_it": "0-1 unità di Guardia dei Sepolci 0 Carri della Guardia del Sepolcro può essere presa come scelta di Truppa"
           }
@@ -3591,7 +3693,14 @@
           "points": 2,
           "perModel": true,
           "minimum": 0,
-          "maximum": 0
+          "maximum": 0,
+          "notes": {
+            "name_en": "0-1 per army",
+            "name_cn": "0-1 per army",
+            "name_de": "0-1 pro Armee",
+            "name_es": "0-1 per army",
+            "name_fr": "0-1 par armée"
+          }
         }
       ],
       "mounts": [],
