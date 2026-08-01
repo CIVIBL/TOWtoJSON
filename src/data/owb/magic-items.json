@@ -145,6 +145,19 @@
       "name": "sword of swiftness"
     },
     {
+      "name_en": "Skirmisher's Blade",
+      "name_cn": "散兵之刃",
+      "name_de": "Skirmisher's Blade",
+      "name_fr": "Skirmisher's Blade",
+      "name_it": "Skirmisher's Blade",
+      "name_pl": "Skirmisher's Blade",
+      "name": "skirmisher's blade",
+      "points": 25,
+      "type": "weapon",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "狂战士之刃",
       "name_de": "Berserkerklinge",
       "name_en": "Berserker Blade",
@@ -170,6 +183,19 @@
       "name": "sword of might"
     },
     {
+      "name_en": "Thornspitter Stave",
+      "name_cn": "荆刺喷射杖",
+      "name_de": "Thornspitter Stave",
+      "name_fr": "Thornspitter Stave",
+      "name_it": "Thornspitter Stave",
+      "name_pl": "Thornspitter Stave",
+      "name": "thornspitter stave",
+      "points": 20,
+      "type": "weapon",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "刺叮之刃",
       "name_de": "Reißende Klinge",
       "name_en": "Biting Blade",
@@ -193,6 +219,32 @@
       "type": "weapon",
       "onePerArmy": false,
       "name": "sword of striking"
+    },
+    {
+      "name_en": "Trailblazer's Hatchet",
+      "name_cn": "开拓者砍刀",
+      "name_de": "Trailblazer's Hatchet",
+      "name_fr": "Trailblazer's Hatchet",
+      "name_it": "Trailblazer's Hatchet",
+      "name_pl": "Trailblazer's Hatchet",
+      "name": "trailblazer's hatchet",
+      "points": 15,
+      "type": "weapon",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
+      "name_en": "Diestro's Blade",
+      "name_cn": "斗士之刃",
+      "name_de": "Diestro's Blade",
+      "name_fr": "Diestro's Blade",
+      "name_it": "Diestro's Blade",
+      "name_pl": "Diestro's Blade",
+      "name": "diestro's blade",
+      "points": 10,
+      "type": "weapon",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
     },
     {
       "name_cn": "烈焰之刃*",
@@ -294,6 +346,19 @@
       "name": "spellshield"
     },
     {
+      "name_en": "Helm Of Courage",
+      "name_cn": "勇气头盔",
+      "name_de": "Helm Of Courage",
+      "name_fr": "Helm Of Courage",
+      "name_it": "Helm Of Courage",
+      "name_pl": "Helm Of Courage",
+      "name": "helm of courage",
+      "points": 25,
+      "type": "armor",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "陨铁甲",
       "name_de": "Meteoreisenrüstung",
       "name_en": "Armour of Meteoric Iron",
@@ -318,6 +383,32 @@
       "name": "trailblazer's hauberk"
     },
     {
+      "name_en": "Padded Hauberk",
+      "name_cn": "衬垫锁子甲",
+      "name_de": "Padded Hauberk",
+      "name_fr": "Padded Hauberk",
+      "name_it": "Padded Hauberk",
+      "name_pl": "Padded Hauberk",
+      "name": "padded hauberk",
+      "points": 20,
+      "type": "armor",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
+      "name_en": "Iron-rimmed Shield",
+      "name_cn": "镶铁盾牌",
+      "name_de": "Iron-rimmed Shield",
+      "name_fr": "Iron-rimmed Shield",
+      "name_it": "Iron-rimmed Shield",
+      "name_pl": "Iron-rimmed Shield",
+      "name": "iron-rimmed shield",
+      "points": 15,
+      "type": "armor",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "附魔盾牌*",
       "name_de": "Verzauberter Schild*",
       "name_en": "Enchanted Shield*",
@@ -330,6 +421,19 @@
       "type": "armor",
       "onePerArmy": false,
       "name": "enchanted shield"
+    },
+    {
+      "name_en": "Shadowed Mantle",
+      "name_cn": "阴影斗篷",
+      "name_de": "Shadowed Mantle",
+      "name_fr": "Shadowed Mantle",
+      "name_it": "Shadowed Mantle",
+      "name_pl": "Shadowed Mantle",
+      "name": "shadowed mantle",
+      "points": 10,
+      "type": "armor",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
     },
     {
       "name_cn": "庇佑之盾*",
@@ -394,6 +498,19 @@
       "name": "talisman of protection"
     },
     {
+      "name_en": "Talisman Of Authority",
+      "name_cn": "权威护符",
+      "name_de": "Talisman Of Authority",
+      "name_fr": "Talisman Of Authority",
+      "name_it": "Talisman Of Authority",
+      "name_pl": "Talisman Of Authority",
+      "name": "talisman Of authority",
+      "points": 30,
+      "type": "talisman",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "军需官的硬币*",
       "name_de": "Münze des Zahlmeisters*",
       "name_en": "Paymaster's Coin*",
@@ -431,6 +548,19 @@
       "type": "talisman",
       "onePerArmy": false,
       "name": "luckstone"
+    },
+    {
+      "name_en": "The Warding Talisman",
+      "name_cn": "守护护符",
+      "name_de": "The Warding Talisman",
+      "name_fr": "The Warding Talisman",
+      "name_it": "The Warding Talisman",
+      "name_pl": "The Warding Talisman",
+      "name": "the warding talisman",
+      "points": 15,
+      "type": "talisman",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
     },
     {
       "name_cn": "铁纪旗",
@@ -539,6 +669,32 @@
       "type": "banner",
       "onePerArmy": true,
       "name": "war banner"
+    },
+    {
+      "name_en": "Banner Of Renown",
+      "name_cn": "威名战旗",
+      "name_de": "Banner Of Renown",
+      "name_fr": "Banner Of Renown",
+      "name_it": "Banner Of Renown",
+      "name_pl": "Banner Of Renown",
+      "name": "banner of renown",
+      "points": 15,
+      "type": "banner",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
+      "name_en": "The Banner Of The Bold",
+      "name_cn": "胆气战旗",
+      "name_de": "The Banner Of The Bold",
+      "name_fr": "The Banner Of The Bold",
+      "name_it": "The Banner Of The Bold",
+      "name_pl": "The Banner Of The Bold",
+      "name": "the banner of the bold",
+      "points": 10,
+      "type": "banner",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
     },
     {
       "name_cn": "巫师帽",
@@ -652,6 +808,32 @@
       "name": "becalming orb"
     },
     {
+      "name_en": "The Ranger's Glass",
+      "name_cn": "游侠望远镜",
+      "name_de": "The Ranger's Glass",
+      "name_fr": "The Ranger's Glass",
+      "name_it": "The Ranger's Glass",
+      "name_pl": "The Ranger's Glass",
+      "name": "the ranger's glass",
+      "points": 20,
+      "type": "enchanted-item",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
+      "name_en": "The All-Seeing Eye Of Numas",
+      "name_cn": "努马斯全知之眼",
+      "name_de": "The All-Seeing Eye Of Numas",
+      "name_fr": "The All-Seeing Eye Of Numas",
+      "name_it": "The All-Seeing Eye Of Numas",
+      "name_pl": "The All-Seeing Eye Of Numas",
+      "name": "the all-seeing eye of numas",
+      "points": 15,
+      "type": "enchanted-item",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "速度药剂*",
       "name_de": "Trank der Schnelligkeit*",
       "name_en": "Potion of Speed*",
@@ -665,6 +847,20 @@
       "name": "potion of speed"
     },
     {
+      "name_en": "Wilderness Map*",
+      "name_cn": "荒野地图*",
+      "name_de": "Wilderness Map*",
+      "name_fr": "Wilderness Map*",
+      "name_it": "Wilderness Map*",
+      "name_pl": "Wilderness Map*",
+      "name": "wilderness map*",
+      "points": 10,
+      "type": "enchanted-item",
+      "onePerArmy": false,
+      "stackable": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "鲁莽药剂",
       "name_de": "Trank der Tollkühnheit*",
       "name_en": "Potion of Foolhardiness*",
@@ -676,6 +872,19 @@
       "type": "enchanted-item",
       "onePerArmy": false,
       "name": "potion of foolhardiness"
+    },
+    {
+      "name_en": "Enchanted Almanack",
+      "name_cn": "附魔年鉴",
+      "name_de": "Enchanted Almanack",
+      "name_fr": "Enchanted Almanack",
+      "name_it": "Enchanted Almanack",
+      "name_pl": "Enchanted Almanack",
+      "name": "enchanted almanack",
+      "points": 5,
+      "type": "enchanted-item",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
     },
     {
       "name_cn": "反馈卷轴",
@@ -801,6 +1010,47 @@
       "name": "arcane familiar"
     },
     {
+      "name_en": "Scroll Of Fiery Convocation*",
+      "name_cn": "万焰燃集卷轴*",
+      "name_de": "Scroll Of Fiery Convocation*",
+      "name_fr": "Scroll Of Fiery Convocation*",
+      "name_it": "Scroll Of Fiery Convocation*",
+      "name_pl": "Scroll Of Fiery Convocation*",
+      "name": "scroll of fiery convocation*",
+      "points": 15,
+      "stackable": true,
+      "type": "arcane-item",
+      "onePerArmy": false,
+      "compositionRule": "battle-march"
+    },
+    {
+      "name_en": "Scroll Of Deathly Whispers*",
+      "name_cn": "死亡低语卷轴*",
+      "name_de": "Scroll Of Deathly Whispers*",
+      "name_fr": "Scroll Of Deathly Whispers*",
+      "name_it": "Scroll Of Deathly Whispers*",
+      "name_pl": "Scroll Of Deathly Whispers*",
+      "name": "scroll of deathly whispers*",
+      "points": 10,
+      "stackable": true,
+      "type": "arcane-item",
+      "onePerArmy": false,
+      "compositionRule": "battle-march"
+    },
+    {
+      "name_en": "Wyrdstone Shard",
+      "name_cn": "命运石碎片",
+      "name_de": "Wyrdstone Shard",
+      "name_fr": "Wyrdstone Shard",
+      "name_it": "Wyrdstone Shard",
+      "name_pl": "Wyrdstone Shard",
+      "name": "wyrdstone shard",
+      "points": 10,
+      "type": "arcane-item",
+      "onePerArmy": true,
+      "compositionRule": "battle-march"
+    },
+    {
       "name_cn": "接地杖",
       "name_de": "Erdener Stab",
       "name_en": "Earthing Rod",
@@ -811,6 +1061,20 @@
       "type": "arcane-item",
       "onePerArmy": true,
       "name": "earthing rod"
+    },
+    {
+      "name_en": "Scroll Of Obfuscation*",
+      "name_cn": "迷雾卷轴*",
+      "name_de": "Scroll Of Obfuscation*",
+      "name_fr": "Scroll Of Obfuscation*",
+      "name_it": "Scroll Of Obfuscation*",
+      "name_pl": "Scroll Of Obfuscation*",
+      "name": "scroll of obfuscation*",
+      "points": 5,
+      "stackable": true,
+      "type": "arcane-item",
+      "onePerArmy": false,
+      "compositionRule": "battle-march"
     }
   ],
   "kingdom-of-bretonnia": [
@@ -1737,17 +2001,16 @@
       "name": "laurels of victory"
     },
     {
-      "name_de": "Blinzelmanns Fantastisches Fernrohr*",
-      "name_en": "Squintsoffen's Marvellous Magnifier*",
-      "name_cn": "斯奎特索芬的奇妙放大镜*",
-      "name_fr": "Merveilleux Télescope de Lorgnegraf*",
-      "name_it": "Squintsoffen's Marvellous Magnifier*",
-      "name_pl": "Squintsoffen's Marvellous Magnifier*",
+      "name_de": "Blinzelmanns Fantastisches Fernrohr",
+      "name_en": "Squintsoffen's Marvellous Magnifier",
+      "name_cn": "斯奎特索芬的奇妙放大镜",
+      "name_fr": "Merveilleux Télescope de Lorgnegraf",
+      "name_it": "Squintsoffen's Marvellous Magnifier",
+      "name_pl": "Squintsoffen's Marvellous Magnifier",
       "points": 35,
       "type": "enchanted-item",
-      "stackable": true,
       "armyComposition": "city-state-of-nuln",
-      "onePerArmy": false,
+      "onePerArmy": true,
       "name": "squintsoffen's marvellous magnifier"
     },
     {
@@ -2674,15 +2937,14 @@
       "name": "wollopa's one hit wunda"
     },
     {
-      "name_de": "Trollhauthose*",
-      "name_en": "Trollhide Trousers*",
-      "name_cn": "巨魔皮裤子*",
-      "name_fr": "Pantalons en Peau d’Troll*",
-      "name_it": "Trollhide Trousers*",
+      "name_de": "Trollhauthose",
+      "name_en": "Trollhide Trousers",
+      "name_cn": "巨魔皮裤子",
+      "name_fr": "Pantalons en Peau d’Troll",
+      "name_it": "Trollhide Trousers",
       "points": 40,
-      "stackable": true,
       "type": "armor",
-      "onePerArmy": false,
+      "onePerArmy": true,
       "name": "trollhide trousers"
     },
     {
@@ -5368,15 +5630,14 @@
       "name": "ring of fury"
     },
     {
-      "name_de": "Samen der Wiedergeburt*",
-      "name_en": "Seed of Rebirth*",
-      "name_cn": "重生之种*",
-      "name_fr": "Graine de Renaissance*",
-      "name_it": "Seed of Rebirth*",
+      "name_de": "Samen der Wiedergeburt",
+      "name_en": "Seed of Rebirth",
+      "name_cn": "重生之种",
+      "name_fr": "Graine de Renaissance",
+      "name_it": "Seed of Rebirth",
       "points": 20,
-      "stackable": true,
       "type": "enchanted-item",
-      "onePerArmy": false,
+      "onePerArmy": true,
       "name": "seed of rebirth"
     },
     {
