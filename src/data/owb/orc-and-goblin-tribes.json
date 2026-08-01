@@ -2748,7 +2748,7 @@
       "name_de": "Gewöhnlicher Troll-Mob",
       "name_fr": "Bande de Trolls",
       "id": "common-troll-mob",
-      "points": 41,
+      "points": 39,
       "minimum": 1,
       "maximum": 9,
       "armyComposition": {
@@ -2826,7 +2826,7 @@
       "name_de": "Flusstroll-Mob",
       "name_fr": "Bande de Trolls d’Eau",
       "id": "river-troll-mob",
-      "points": 49,
+      "points": 47,
       "minimum": 1,
       "maximum": 9,
       "armyComposition": {
@@ -2905,7 +2905,7 @@
       "name_de": "Steintroll-Mob",
       "name_fr": "Bande de Trolls de Pierre",
       "id": "stone-troll-mob",
-      "points": 45,
+      "points": 43,
       "minimum": 1,
       "maximum": 9,
       "armyComposition": {
@@ -3181,11 +3181,11 @@
       ],
       "mounts": [],
       "specialRules": {
-        "name_en": "Choppas, Close Order, Ignore Goblin Panic, Impetuous, Warband",
-        "name_cn": "大砍刀, 紧密阵型, 无视地精恐慌, 鲁莽, 战帮",
-        "name_de": "Spaltas, Geschlossen Ränge, Goblin-Panik ignorieren, Ungestüm, Kriegerschar",
-        "name_es": "Choppas, Close Order, Ignore Goblin Panic, Impetuous, Warband",
-        "name_fr": "Kikoup’, Ordre Serré, Ignore la Panique des Gobelins, Impétueux, Bande de Guerre"
+        "name_en": "Choppas, Close Order, Ignore Goblin Panic, Impetuous, Warband, Furious Charge",
+        "name_cn": "大砍刀, 紧密阵型, 无视地精恐慌, 鲁莽, 战帮, 狂怒冲锋",
+        "name_de": "Spaltas, Geschlossen Ränge, Goblin-Panik ignorieren, Ungestüm, Kriegerschar, Furious Charge",
+        "name_es": "Choppas, Close Order, Ignore Goblin Panic, Impetuous, Warband, Furious Charge",
+        "name_fr": "Kikoup’, Ordre Serré, Ignore la Panique des Gobelins, Impétueux, Bande de Guerre, Furious Charge"
       }
     },
     {
@@ -4577,20 +4577,20 @@
       ],
       "equipment": [
         {
-          "name_en": "Hand weapons",
-          "name_cn": "单手武器",
-          "name_de": "Handwaffen",
-          "name_fr": "Armes de base",
+          "name_en": "Hand weapons, Huge gobs (Squigs only)",
+          "name_cn": "单手武器, Huge gobs (Squigs only)",
+          "name_de": "Handwaffen, Huge gobs (Squigs only)",
+          "name_fr": "Armes de base, Huge gobs (Squigs only)",
           "points": 0,
           "perModel": true,
           "active": true,
           "equippedDefault": true
         },
         {
-          "name_en": "Cavalry spears",
-          "name_cn": "骑兵长矛",
-          "name_de": "Kavalleriespeere",
-          "name_fr": "Lances de cavalerie",
+          "name_en": "Cavalry spears, Huge gobs (Squigs only)",
+          "name_cn": "骑兵长矛, Huge gobs (Squigs only)",
+          "name_de": "Kavalleriespeere, Huge gobs (Squigs only)",
+          "name_fr": "Lances de cavalerie, Huge gobs (Squigs only)",
           "points": 1,
           "perModel": true
         }
@@ -4748,7 +4748,7 @@
       "name_de": "Gewöhnlicher-Troll-Mob",
       "name_fr": "Bande de Trolls",
       "id": "common-troll-mob",
-      "points": 41,
+      "points": 39,
       "minimum": 1,
       "maximum": 9,
       "armyComposition": {
@@ -4824,7 +4824,7 @@
       "name_de": "Flusstroll-Mob",
       "name_fr": "Bande de Trolls d’Eau",
       "id": "river-troll-mob",
-      "points": 49,
+      "points": 47,
       "minimum": 1,
       "maximum": 9,
       "armyComposition": {
@@ -4900,7 +4900,7 @@
       "name_de": "Steintroll-Mob",
       "name_fr": "Bande de Trolls de Pierre",
       "id": "stone-troll-mob",
-      "points": 45,
+      "points": 43,
       "minimum": 1,
       "maximum": 9,
       "armyComposition": {
